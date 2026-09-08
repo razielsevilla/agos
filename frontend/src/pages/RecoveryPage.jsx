@@ -1,4 +1,4 @@
-﻿// RecoveryPage.jsx — AGOS-020: Post-flood recovery-priority record (closing the loop)
+// RecoveryPage.jsx — AGOS-020: Post-flood recovery-priority record (closing the loop)
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, RotateCcw, Home, AlertTriangle, Layers, CheckCircle } from 'lucide-react'
@@ -118,10 +118,10 @@ export default function RecoveryPage() {
         </>
       )}
 
-      {records.length === 0 && (
+      {topPriority.length === 0 && records.length > 0 && (
         <div className="empty-state">
           <RotateCcw size={32} />
-          <span>No households marked yet. Go back and mark households as affected first.</span>
+          <span>No households confirmed affected yet. Go back and mark households as flooded to build the relief-priority list.</span>
         </div>
       )}
     </div>
