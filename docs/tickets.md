@@ -37,13 +37,13 @@ Development flow for the Hack4Progress hackathon deliverables: the OpenCV waterl
 
 | Ticket ID | Ticket Name | Status | Type | Acceptance Criteria | Dependency |
 |---|---|---|---|---|---|
-| AGOS-009 | Backend service scaffolding (FastAPI/Flask + SQLite) | Blocked | Backend | - [ ] Service runs locally with a health-check route<br>- [ ] SQLite (or local file store) connected<br>- [ ] Project follows AGOS-003 contract structure | AGOS-001, AGOS-003 |
-| AGOS-010 | Seed database with synthetic dataset | Blocked | Backend | - [ ] AGOS-004 dataset loaded into DB on startup<br>- [ ] Data queryable via a basic script/shell check | AGOS-004, AGOS-009 |
-| AGOS-011 | Endpoint: flagged streets & risk score | Blocked | Backend | - [ ] Returns list of flagged streets with a rainfall-fusion sample risk score<br>- [ ] Risk score derived from static/sample rainfall input, not live feed<br>- [ ] Matches AGOS-003 contract | AGOS-010 |
-| AGOS-012 | Endpoint: ranked household risk list | Blocked | Backend | - [ ] Returns ranked households for a given street<br>- [ ] Ranking uses elevation/ground-floor fields, human-reviewable (not a black-box score alone)<br>- [ ] Matches AGOS-003 contract | AGOS-010 |
-| AGOS-013 | Endpoint: mark household as flooded/affected | Blocked | Backend | - [ ] Accepts household ID + affected status during a simulated event<br>- [ ] Persists status change<br>- [ ] Returns updated household record | AGOS-012 |
-| AGOS-014 | Endpoint: post-flood recovery-priority record | Blocked | Backend | - [ ] Returns same household list annotated with actual affected status<br>- [ ] Sorts/flags households that were both predicted at-risk and confirmed affected<br>- [ ] Demonstrates closing-the-loop transformation from AGOS-012's list | AGOS-013 |
-| AGOS-015 | Endpoint: generate mock alert payload | Blocked | Backend | - [ ] Returns flagged street, household list, and a suggested still-passable evacuation route<br>- [ ] Formatted as what a barangay DRRMO/resident would receive | AGOS-011, AGOS-012 |
+| AGOS-009 | Backend service scaffolding (FastAPI/Flask + SQLite) | Done | Backend | - [x] Service runs locally with a health-check route<br>- [x] SQLite (or local file store) connected<br>- [x] Project follows AGOS-003 contract structure | AGOS-001, AGOS-003 |
+| AGOS-010 | Seed database with synthetic dataset | Done | Backend | - [x] AGOS-004 dataset loaded into DB on startup<br>- [x] Data queryable via a basic script/shell check | AGOS-004, AGOS-009 |
+| AGOS-011 | Endpoint: flagged streets & risk score | Done | Backend | - [x] Returns list of flagged streets with a rainfall-fusion sample risk score<br>- [x] Risk score derived from static/sample rainfall input, not live feed<br>- [x] Matches AGOS-003 contract | AGOS-010 |
+| AGOS-012 | Endpoint: ranked household risk list | Done | Backend | - [x] Returns ranked households for a given street<br>- [x] Ranking uses elevation/ground-floor fields, human-reviewable (not a black-box score alone)<br>- [x] Matches AGOS-003 contract | AGOS-010 |
+| AGOS-013 | Endpoint: mark household as flooded/affected | Done | Backend | - [x] Accepts household ID + affected status during a simulated event<br>- [x] Persists status change<br>- [x] Returns updated household record | AGOS-012 |
+| AGOS-014 | Endpoint: post-flood recovery-priority record | Done | Backend | - [x] Returns same household list annotated with actual affected status<br>- [x] Sorts/flags households that were both predicted at-risk and confirmed affected<br>- [x] Demonstrates closing-the-loop transformation from AGOS-012's list | AGOS-013 |
+| AGOS-015 | Endpoint: generate mock alert payload | Done | Backend | - [x] Returns flagged street, household list, and a suggested still-passable evacuation route<br>- [x] Formatted as what a barangay DRRMO/resident would receive | AGOS-011, AGOS-012 |
 
 ---
 
