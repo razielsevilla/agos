@@ -15,7 +15,7 @@ Development flow for the Hack4Progress hackathon deliverables: the OpenCV waterl
 
 | Ticket ID | Ticket Name | Status | Type | Acceptance Criteria | Dependency |
 |---|---|---|---|---|---|
-| AGOS-001 | Repo & dev environment scaffolding | Ready to Start | Setup | - [ ] Repo structure created (backend/, frontend/, cv/, docs/, data/)<br>- [ ] README with local run instructions<br>- [ ] Python + Node toolchains confirmed working for all 4 members | None |
+| AGOS-001 | Repo & dev environment scaffolding | Done | Setup | - [x] Repo structure created (backend/, frontend/, cv/, docs/, data/)<br>- [x] README with local run instructions<br>- [x] Python + Node toolchains confirmed working for all 4 members | None |
 | AGOS-002 | Define data model schema | Ready to Start | Data | - [ ] Household record fields defined (address, street ID, elevation, ground-floor flag, risk score, status)<br>- [ ] Street/camera record fields defined<br>- [ ] Flood event / rainfall record fields defined<br>- [ ] Schema written to `docs/data-model.md` | None |
 | AGOS-003 | Define API contract | Blocked | Backend | - [ ] Endpoint list drafted (streets, households, mark-affected, recovery record, alert payload)<br>- [ ] Request/response shapes agreed with frontend dev<br>- [ ] Contract written to `docs/api-contract.md` | AGOS-002 |
 | AGOS-004 | Prepare illustrative/synthetic dataset | Blocked | Data | - [ ] Sample streets with rainfall-fusion risk scores<br>- [ ] Sample households per street with elevation/ground-floor data and ranked risk<br>- [ ] Dataset saved as seed file (JSON/CSV) matching AGOS-002 schema | AGOS-002 |
