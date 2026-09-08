@@ -1,95 +1,109 @@
 @echo off
-setlocal
+setlocal EnableDelayedExpansion
 
-echo ============================================================
-echo  AGOS — Starting backend + frontend
-echo ============================================================
+:: Set console title
+title AGOS - Command Center Launcher
+
+:: Clear screen
+cls
+
+echo ===============================================================================
+echo.
+echo    /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$ 
+echo   /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$
+echo  ^| $$  \ $$^| $$  \__/^| $$  \ $$^| $$  \__/
+echo  ^| $$$$$$$$^| $$ /$$$$^| $$  ^| $$^|  $$$$$$ 
+echo  ^| $$__  $$^| $$^|_  $$^| $$  ^| $$ \____  $$
+echo  ^| $$  ^| $$^| $$  \ $$^| $$  ^| $$ /$$  \ $$
+echo  ^|__/  ^|__/^|  $$$$$$/^|  $$$$$$/^|  $$$$$$/
+echo              \______/  \______/  \______/ 
+echo.
+echo   AI for Geospatial Overflow Surveillance
+echo   CDRRMO Command Center Launcher
+echo ===============================================================================
 echo.
 
 :: ── Resolve Python executable ─────────────────────────────────
+echo [*] Checking System Prerequisites...
+
 set PYEXE=
 where py >nul 2>&1
-if %ERRORLEVEL% == 0 (
-    set PYEXE=py
-    echo [OK] Python launcher found: py
-    goto :check_node
-)
-where python >nul 2>&1
-if %ERRORLEVEL% == 0 (
-    set PYEXE=python
-    echo [OK] Python found: python
-    goto :check_node
-)
-where python3 >nul 2>&1
-if %ERRORLEVEL% == 0 (
-    set PYEXE=python3
-    echo [OK] Python found: python3
-    goto :check_node
+if %ERRORLEVEL% == 0 ( set PYEXE=py ) else (
+    where python >nul 2>&1
+    if %ERRORLEVEL% == 0 ( set PYEXE=python ) else (
+        where python3 >nul 2>&1
+        if %ERRORLEVEL% == 0 ( set PYEXE=python3 )
+    )
 )
 
-echo [ERROR] Python not found. Install Python from https://python.org and add it to PATH.
-pause
-exit /b 1
-
-:: ── Check Node / npm ─────────────────────────────────────────
-:check_node
-where npm >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] npm not found. Install Node.js from https://nodejs.org and add it to PATH.
+if "%PYEXE%"=="" (
+    echo [!] ERROR: Python not found. Please install Python 3.10+ and add to PATH.
     pause
     exit /b 1
 )
-echo [OK] npm found
+echo  + Python found: !PYEXE!
 
-:: ── Install backend deps if missing ──────────────────────────
-echo.
-echo [1/4] Checking backend dependencies...
-%PYEXE% -c "import fastapi, uvicorn, sqlalchemy, pydantic" >nul 2>&1
+:: ── Check Node / npm ─────────────────────────────────────────
+where npm >nul 2>&1
 if %ERRORLEVEL% NEQ 0 (
-    echo       Installing from requirements.txt...
-    %PYEXE% -m pip install -r backend\requirements.txt
-    if %ERRORLEVEL% NEQ 0 (
-        echo [ERROR] pip install failed. Check requirements.txt or your internet connection.
-        pause
-        exit /b 1
-    )
-) else (
-    echo       All backend dependencies already installed.
+    echo [!] ERROR: npm not found. Please install Node.js 18+ and add to PATH.
+    pause
+    exit /b 1
+)
+echo  + Node.js ^& npm found.
+echo.
+
+:: ── Setup Backend (Virtual Env & Dependencies) ────────────────
+echo [*] Initializing Backend (FastAPI)...
+cd /d "%~dp0backend"
+
+if not exist ".venv\Scripts\python.exe" (
+    echo  + Creating Python virtual environment...
+    !PYEXE! -m venv .venv
 )
 
-:: ── Install frontend deps if missing ─────────────────────────
-echo.
-echo [2/4] Checking frontend dependencies...
-if not exist "frontend\node_modules" (
-    echo       Running npm install...
-    cd frontend
-    npm install
-    if %ERRORLEVEL% NEQ 0 (
-        echo [ERROR] npm install failed.
-        pause
-        exit /b 1
-    )
-    cd ..
-) else (
-    echo       node_modules already present.
+set VENV_PY=".venv\Scripts\python.exe"
+
+echo  + Verifying backend dependencies...
+!VENV_PY! -c "import fastapi, uvicorn, sqlalchemy, pydantic" >nul 2>&1
+if %ERRORLEVEL% NEQ 0 (
+    echo  + Installing backend dependencies...
+    !VENV_PY! -m pip install -q --disable-pip-version-check -r requirements.txt >nul 2>&1
 )
 
-:: ── Start backend in a new window ────────────────────────────
+if not exist "agos.db" (
+    echo  + Seeding initial database...
+    !VENV_PY! seed.py >nul
+)
+cd ..
 echo.
-echo [3/4] Starting backend  ^(http://localhost:8000^)...
-start "AGOS Backend" cmd /k "cd /d "%~dp0backend" && echo Starting AGOS backend... && %PYEXE% -m uvicorn main:app --reload --host 0.0.0.0 --port 8000"
 
-:: ── Start frontend in a new window ───────────────────────────
-echo.
-echo [4/4] Starting frontend ^(http://localhost:5173^)...
-start "AGOS Frontend" cmd /k "cd /d "%~dp0frontend" && echo Starting AGOS frontend... && npm run dev"
+:: ── Setup Frontend ───────────────────────────────────────────
+echo [*] Initializing Frontend (React/Vite)...
+cd /d "%~dp0frontend"
 
+if not exist "node_modules\" (
+    echo  + Installing frontend dependencies ^(this may take a moment^)...
+    call npm install >nul
+)
+cd ..
 echo.
-echo ============================================================
-echo  Both servers are starting in separate windows.
-echo  Backend  : http://localhost:8000
-echo  API docs : http://localhost:8000/docs
-echo  Frontend : http://localhost:5173
-echo ============================================================
+
+:: ── Launch Servers ───────────────────────────────────────────
+echo [*] Launching AGOS Services...
 echo.
-pause
+
+start "AGOS Backend API" cmd /k "title AGOS Backend API && cd /d "%~dp0backend" && echo ======================================== && echo  AGOS BACKEND API LOGS && echo ======================================== && echo. && .venv\Scripts\python.exe -m uvicorn main:app --reload --host 0.0.0.0 --port 8000"
+
+start "AGOS Frontend Dashboard" cmd /k "title AGOS Frontend Dashboard && cd /d "%~dp0frontend" && echo ======================================== && echo  AGOS FRONTEND DEV SERVER && echo ======================================== && echo. && npm run dev"
+
+echo ===============================================================================
+echo   SYSTEM ONLINE
+echo ===============================================================================
+echo   - Backend API  : http://localhost:8000
+echo   - API Docs     : http://localhost:8000/docs
+echo   - Dashboard    : http://localhost:5173
+echo ===============================================================================
+echo.
+echo Press any key to safely close this launcher window ^(Servers will keep running in their own windows^).
+pause >nul
