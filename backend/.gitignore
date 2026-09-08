@@ -1,0 +1,8 @@
+﻿# Generated SQLite database — do not commit
+agos.db
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
