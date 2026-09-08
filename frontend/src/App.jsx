@@ -1,122 +1,75 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+﻿import { Routes, Route, NavLink, useLocation } from 'react-router-dom'
+import { Waves, LayoutDashboard, AlertTriangle, RotateCcw, Bell } from 'lucide-react'
+import StreetsPage from './pages/StreetsPage'
+import HouseholdsPage from './pages/HouseholdsPage'
+import RecoveryPage from './pages/RecoveryPage'
+import AlertPage from './pages/AlertPage'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Sidebar() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <aside className="sidebar">
+      <div className="sidebar-brand">
+        <div className="logo-icon">
+          <Waves size={20} color="#fff" strokeWidth={2.5} />
         </div>
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+          <div className="brand-name">AGOS</div>
+          <div className="brand-sub">Flood Risk System</div>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </div>
 
-      <div className="ticks"></div>
+      <span className="sidebar-section-label">Navigation</span>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <NavLink to="/" end className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>
+        <LayoutDashboard size={16} className="nav-icon" />
+        Streets Dashboard
+      </NavLink>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <span className="sidebar-section-label" style={{ marginTop: 8 }}>Info</span>
+      <div className="nav-link" style={{ cursor: 'default', opacity: 0.5, fontSize: 12 }}>
+        <Waves size={14} className="nav-icon" />
+        Cabuyao, Laguna POC
+      </div>
+    </aside>
   )
 }
 
-export default App
+function Topbar() {
+  const loc = useLocation()
+  const labels = {
+    '/': { title: 'Streets Dashboard', sub: 'Flood risk overview by camera location' },
+  }
+  const matched = Object.entries(labels).find(([k]) => loc.pathname === k)
+  const { title, sub } = matched ? matched[1] : { title: 'AGOS', sub: 'Flood Risk Management' }
+
+  return (
+    <header className="topbar">
+      <div>
+        <div className="topbar-title">{title}</div>
+        <div className="topbar-sub">{sub}</div>
+      </div>
+      <div className="topbar-badge">
+        <span className="pulse" />
+        Live Monitor
+      </div>
+    </header>
+  )
+}
+
+export default function App() {
+  return (
+    <div className="app-shell">
+      <Sidebar />
+      <div className="main-content">
+        <Topbar />
+        <Routes>
+          <Route path="/" element={<StreetsPage />} />
+          <Route path="/streets/:streetId" element={<HouseholdsPage />} />
+          <Route path="/streets/:streetId/recovery" element={<RecoveryPage />} />
+          <Route path="/streets/:streetId/alert" element={<AlertPage />} />
+        </Routes>
+      </div>
+    </div>
+  )
+}

@@ -15,7 +15,7 @@ def load_seed(db: Session) -> None:
     if db.query(Street).count() > 0:
         return
 
-    with open(_SEED_PATH, encoding="utf-8-sig") as f:
+    with open(_SEED_PATH, encoding="utf-8") as f:
         data = json.load(f)
 
     # Streets

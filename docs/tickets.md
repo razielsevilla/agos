@@ -51,12 +51,12 @@ Development flow for the Hack4Progress hackathon deliverables: the OpenCV waterl
 
 | Ticket ID | Ticket Name | Status | Type | Acceptance Criteria | Dependency |
 |---|---|---|---|---|---|
-| AGOS-016 | Dashboard app scaffolding & routing | Blocked | Frontend | - [ ] App runs locally with routes for: streets, household list, alert view, recovery view<br>- [ ] Base layout/nav in place | AGOS-001, AGOS-003 |
-| AGOS-017 | View: flagged street list & risk score | Blocked | Frontend | - [ ] Displays flagged streets with sample rainfall-fusion risk score from AGOS-011<br>- [ ] Selecting a street navigates to its household list | AGOS-011, AGOS-016 |
-| AGOS-018 | View: household risk list | Blocked | Frontend | - [ ] Displays ranked household list from AGOS-012 for a selected street<br>- [ ] Shows elevation/ground-floor basis for ranking, not just a raw score | AGOS-012, AGOS-016 |
-| AGOS-019 | Interaction: "mark as flooded/affected" action | Blocked | Frontend | - [ ] User can mark a household as flooded/affected during a simulated event<br>- [ ] Calls AGOS-013 and reflects updated state in UI immediately | AGOS-013, AGOS-018 |
-| AGOS-020 | View: post-flood recovery-priority record (closing the loop) | Blocked | Frontend | - [ ] Displays AGOS-014's annotated household list as the post-flood recovery view<br>- [ ] Visually distinguishes "predicted + confirmed affected" households<br>- [ ] Clear before/after framing showing the same list evolving across the event | AGOS-014, AGOS-019 |
-| AGOS-021 | View: mocked alert output screen | Blocked | Frontend | - [ ] Renders AGOS-015's alert payload as a barangay DRRMO/resident-facing mock screen<br>- [ ] Includes flagged street, household list, and evacuation route | AGOS-015, AGOS-016 |
+| AGOS-016 | Dashboard app scaffolding & routing | Done | Frontend | - [x] App runs locally with routes for: streets, household list, alert view, recovery view<br>- [x] Base layout/nav in place | AGOS-001, AGOS-003 |
+| AGOS-017 | View: flagged street list & risk score | Done | Frontend | - [x] Displays flagged streets with sample rainfall-fusion risk score from AGOS-011<br>- [x] Selecting a street navigates to its household list | AGOS-011, AGOS-016 |
+| AGOS-018 | View: household risk list | Done | Frontend | - [x] Displays ranked household list from AGOS-012 for a selected street<br>- [x] Shows elevation/ground-floor basis for ranking, not just a raw score | AGOS-012, AGOS-016 |
+| AGOS-019 | Interaction: "mark as flooded/affected" action | Done | Frontend | - [x] User can mark a household as flooded/affected during a simulated event<br>- [x] Calls AGOS-013 and reflects updated state in UI immediately | AGOS-013, AGOS-018 |
+| AGOS-020 | View: post-flood recovery-priority record (closing the loop) | Done | Frontend | - [x] Displays AGOS-014's annotated household list as the post-flood recovery view<br>- [x] Visually distinguishes "predicted + confirmed affected" households<br>- [x] Clear before/after framing showing the same list evolving across the event | AGOS-014, AGOS-019 |
+| AGOS-021 | View: mocked alert output screen | Done | Frontend | - [x] Renders AGOS-015's alert payload as a barangay DRRMO/resident-facing mock screen<br>- [x] Includes flagged street, household list, and evacuation route | AGOS-015, AGOS-016 |
 
 ---
 
