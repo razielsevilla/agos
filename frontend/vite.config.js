@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,           // bind 0.0.0.0 — reachable from phones/tablets on same LAN
     proxy: {
       '/api': 'http://localhost:8000',
     },

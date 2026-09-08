@@ -77,7 +77,7 @@ if not exist "frontend\node_modules" (
 :: ── Start backend in a new window ────────────────────────────
 echo.
 echo [3/4] Starting backend  ^(http://localhost:8000^)...
-start "AGOS Backend" cmd /k "cd /d "%~dp0backend" && echo Starting AGOS backend... && %PYEXE% -m uvicorn main:app --reload --host 127.0.0.1 --port 8000"
+start "AGOS Backend" cmd /k "cd /d "%~dp0backend" && echo Starting AGOS backend... && %PYEXE% -m uvicorn main:app --reload --host 0.0.0.0 --port 8000"
 
 :: ── Start frontend in a new window ───────────────────────────
 echo.
