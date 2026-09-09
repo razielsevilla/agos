@@ -1,0 +1,5 @@
+# Local virtualenv — do not commit
+.venv/
+venv/
+__pycache__/
+*.pyc

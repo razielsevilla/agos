@@ -1,0 +1,30 @@
+{
+  "clip": "flood_2.mp4",
+  "calibrated_frame_index": 273,
+  "reference_label": "Mooring piling, cap band (stormy framing)",
+  "point_a": [
+    435,
+    228
+  ],
+  "point_b": [
+    435,
+    258
+  ],
+  "reference_length_cm": 40.0,
+  "is_illustrative_assumption": true,
+  "px_per_cm": 0.75,
+  "created_at": "2026-09-09T20:13:03.715213+00:00",
+  "method": "manual reference-object calibration (AGOS-006) \u2014 not a trained model",
+  "note": "reference_length_cm is an ESTIMATED value, not a field measurement. Replace with an on-site tape-measured value during pilot calibration.",
+  "estimation_method": "Domain estimate: same physical piling as marinig_fishing_port.json (flood_1.mp4), re-calibrated independently because this clip uses a different camera zoom/framing - see cv/README.md. Same 30-60cm IALA-style marker-band reasoning applies; 40cm kept for consistency between the two observations of the same object.",
+  "display_point_a": [
+    435,
+    228
+  ],
+  "display_point_b": [
+    435,
+    300
+  ],
+  "display_length_cm": 96.0,
+  "display_note": "display_point_a/b span the reference object's fuller visually-recognizable extent, for drawing/labeling it on video overlays. display_length_cm is derived from the same px_per_cm as point_a/point_b above, NOT independently measured. The water-level datum stays anchored to point_a/point_b, unaffected by this."
+}

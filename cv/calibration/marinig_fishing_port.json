@@ -1,0 +1,30 @@
+{
+  "clip": "flood_1.mp4",
+  "calibrated_frame_index": 0,
+  "reference_label": "Mooring piling, white/grey cap band",
+  "point_a": [
+    522,
+    78
+  ],
+  "point_b": [
+    522,
+    152
+  ],
+  "reference_length_cm": 40.0,
+  "is_illustrative_assumption": true,
+  "px_per_cm": 1.85,
+  "created_at": "2026-09-09T12:42:08.090772+00:00",
+  "method": "manual reference-object calibration (AGOS-006) \u2014 not a trained model",
+  "note": "reference_length_cm is an ESTIMATED value, not a field measurement. Replace with an on-site tape-measured value during pilot calibration.",
+  "estimation_method": "Domain estimate: the piling is a maritime mooring pile with a red/white IALA-style navigational hazard-marker paint band on its upper section - a convention used to keep the pile visible to boat operators across a range of water levels. Marker bands on small-craft mooring piles of this type are typically 30-60cm long; 40cm is taken as a representative mid-range value. No independent secondary object of confidently-known size was available in this frame to cross-check further (the moored boat's freeboard varies with load/buoyancy and isn't a fixed reference; nearby stairs and railings are too foreshortened/obscured by the camera's oblique angle to measure reliably).",
+  "display_point_a": [
+    522,
+    78
+  ],
+  "display_point_b": [
+    522,
+    200
+  ],
+  "display_length_cm": 65.9,
+  "display_note": "display_point_a/b span the reference object's fuller visually-recognizable extent, for drawing/labeling it on video overlays. display_length_cm is derived from the same px_per_cm as point_a/point_b above, NOT independently measured. The water-level datum stays anchored to point_a/point_b, unaffected by this."
+}

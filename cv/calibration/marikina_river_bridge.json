@@ -1,0 +1,30 @@
+{
+  "clip": "flood_3.mp4",
+  "calibrated_frame_index": 900,
+  "reference_label": "Near bridge pier, width",
+  "point_a": [
+    790,
+    460
+  ],
+  "point_b": [
+    830,
+    460
+  ],
+  "reference_length_cm": 150.0,
+  "is_illustrative_assumption": true,
+  "px_per_cm": 0.2667,
+  "created_at": "2026-09-09T20:13:20.825048+00:00",
+  "method": "manual reference-object calibration (AGOS-006) \u2014 not a trained model",
+  "note": "reference_length_cm is an ESTIMATED value, not a field measurement. Replace with an on-site tape-measured value during pilot calibration.",
+  "estimation_method": "Cross-referenced against a light/medium delivery truck (Isuzu Elf-class, a standardized ~2.5m-tall PH commercial vehicle) visible on the near-side access road at frame 900 (approx. pixel columns 1600-1780, rows 420-508 in this clip's native 1886x1060 frame): the truck measures ~71px tall there, giving ~0.284 px/cm at the truck's distance from camera. The truck sits closer to the camera than the pier row across the river, and apparent size shrinks with distance, so the true px/cm at the pier's greater distance is lower than the truck's own ratio -- meaning the pier is wider than a same-ratio estimate would suggest. Combined with standard DPWH practice for elevated-viaduct RC column piers (commonly 1.2-1.8m diameter for a multi-lane carriageway of this apparent span), 150cm is taken as a representative diameter for this pier, revised up from an earlier unreferenced 100cm assumption.",
+  "display_point_a": [
+    800,
+    425
+  ],
+  "display_point_b": [
+    800,
+    560
+  ],
+  "display_length_cm": 506.2,
+  "display_note": "display_point_a/b span the reference object's fuller visually-recognizable extent, for drawing/labeling it on video overlays. display_length_cm is derived from the same px_per_cm as point_a/point_b above, NOT independently measured. The water-level datum stays anchored to point_a/point_b, unaffected by this."
+}
