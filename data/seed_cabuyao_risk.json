@@ -1,0 +1,854 @@
+{
+  "_meta": {
+    "description": "AGOS v2 prototype dataset for the normalized schema in backend/models_v2.py. NOT loaded by the running app (backend/main.py + seed.py use the flat data/seed.json instead) \u2014 this file exists only as a reference for a possible future pilot-phase migration.",
+    "status": "PROTOTYPE \u2014 UNUSED BY THE LIVE APP",
+    "generated_at": "2026-09-09T16:00:00+08:00",
+    "psgc_city": "043404000",
+    "sources": [
+      "Barangay list, 2020 CPH population figures, and city PSGC code: PSA 2020 Census of Population and Housing, cross-checked via PhilAtlas (philatlas.com/luzon/r04a/laguna/cabuyao.html) and the city's Wikipedia infobox. Populations sum to the official city total of 355,330.",
+      "Lakeshore barangay classification: Cabuyao city article (Wikipedia) \u2014 six barangays front Laguna de Bay: Bigaa, Butong, Marinig, Gulod, Baclaran, Mamatid.",
+      "Street names/coordinates: OpenStreetMap (Overpass API), each barangay assignment independently confirmed via Nominatim reverse geocoding of the OSM coordinate (not assumed from the street name).",
+      "Street elevation: SRTM 90m DEM via the OpenTopoData API (coarse resolution \u2014 treat as indicative, not survey-grade)."
+    ],
+    "known_gaps": [
+      "Individual barangay-level 10-digit PSGC codes could not be verified from an accessible public source in this session (PSA's own PSGC lookup and its FOI barangay-PSGC page both blocked automated access). Left null rather than invented \u2014 look them up from the official PSGC Excel publication before relying on them.",
+      "Street-level demographic/vulnerability data (residents, seniors, children, pregnant, PWD per street) and per-street risk assessments have been removed from this file. PSA does not publish population data below barangay level, so any street-level breakdown would be fabricated. Per docs/scope.md, real CDRRMO-validated demographic data is an explicit pilot-phase deliverable, not something to synthesize here. backend/scoring.py's vulnerability_score() still works from barangay-level totals if needed.",
+      "A prior version of this file cited fake OSM way IDs, a wrong PSGC city code, barangay populations off by up to -77%/+457% from the real 2020 census, and placed Felix Limcaoco Street in Marinig when it is actually in Barangay Dos (Poblacion II) \u2014 none of that carried forward.",
+      "Marinig (3 streets) and Niugan (2 streets) have fewer than the 4-5 found for most other barangays; Casile has only 1. OSM street-level tagging is sparse for these three even after multiple targeted searches (admin-boundary queries, centroid searches) \u2014 not fabricated to hit a uniform count."
+    ],
+    "barangays": 18,
+    "streets": 78
+  },
+  "barangays": [
+    {
+      "id": 1,
+      "name": "Baclaran",
+      "code": null,
+      "total_population_2020": 14606,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 2,
+      "name": "Banaybanay",
+      "code": null,
+      "total_population_2020": 34260,
+      "zone": "inland"
+    },
+    {
+      "id": 3,
+      "name": "Banlic",
+      "code": null,
+      "total_population_2020": 20646,
+      "zone": "inland"
+    },
+    {
+      "id": 4,
+      "name": "Bigaa",
+      "code": null,
+      "total_population_2020": 13665,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 5,
+      "name": "Butong",
+      "code": null,
+      "total_population_2020": 14764,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 6,
+      "name": "Casile",
+      "code": null,
+      "total_population_2020": 3619,
+      "zone": "upland"
+    },
+    {
+      "id": 7,
+      "name": "Diezmo",
+      "code": null,
+      "total_population_2020": 6622,
+      "zone": "inland"
+    },
+    {
+      "id": 8,
+      "name": "Gulod",
+      "code": null,
+      "total_population_2020": 17215,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 9,
+      "name": "Mamatid",
+      "code": null,
+      "total_population_2020": 61085,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 10,
+      "name": "Marinig",
+      "code": null,
+      "total_population_2020": 45343,
+      "zone": "lakeshore"
+    },
+    {
+      "id": 11,
+      "name": "Niugan",
+      "code": null,
+      "total_population_2020": 38576,
+      "zone": "inland"
+    },
+    {
+      "id": 12,
+      "name": "Pittland",
+      "code": null,
+      "total_population_2020": 6052,
+      "zone": "inland"
+    },
+    {
+      "id": 13,
+      "name": "Pulo",
+      "code": null,
+      "total_population_2020": 35113,
+      "zone": "inland"
+    },
+    {
+      "id": 14,
+      "name": "Sala",
+      "code": null,
+      "total_population_2020": 10903,
+      "zone": "inland"
+    },
+    {
+      "id": 15,
+      "name": "San Isidro",
+      "code": null,
+      "total_population_2020": 23324,
+      "zone": "inland"
+    },
+    {
+      "id": 16,
+      "name": "Barangay Uno (Poblacion I)",
+      "code": null,
+      "total_population_2020": 3690,
+      "zone": "inland"
+    },
+    {
+      "id": 17,
+      "name": "Barangay Dos (Poblacion II)",
+      "code": null,
+      "total_population_2020": 1573,
+      "zone": "inland"
+    },
+    {
+      "id": 18,
+      "name": "Barangay Tres (Poblacion III)",
+      "code": null,
+      "total_population_2020": 4274,
+      "zone": "inland"
+    }
+  ],
+  "streets": [
+    {
+      "id": "STR-001",
+      "barangay_name": "Baclaran",
+      "street_name": "Sibuyan Street",
+      "latitude": 14.2434731,
+      "longitude": 121.1691122,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-002",
+      "barangay_name": "Baclaran",
+      "street_name": "Leyte Street",
+      "latitude": 14.2447,
+      "longitude": 121.1681,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-003",
+      "barangay_name": "Baclaran",
+      "street_name": "Arenal Lane",
+      "latitude": 14.2462,
+      "longitude": 121.1679,
+      "average_elevation_m": 8.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-004",
+      "barangay_name": "Baclaran",
+      "street_name": "Catanduanes Lane",
+      "latitude": 14.2435,
+      "longitude": 121.1688,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-005",
+      "barangay_name": "Baclaran",
+      "street_name": "Batanes Lane",
+      "latitude": 14.246,
+      "longitude": 121.1684,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-006",
+      "barangay_name": "Banaybanay",
+      "street_name": "Bronze Street",
+      "latitude": 14.2550228,
+      "longitude": 121.1324065,
+      "average_elevation_m": 22.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-007",
+      "barangay_name": "Banaybanay",
+      "street_name": "Mahogany Street",
+      "latitude": 14.2493,
+      "longitude": 121.1273,
+      "average_elevation_m": 28.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-008",
+      "barangay_name": "Banaybanay",
+      "street_name": "Maganda Street",
+      "latitude": 14.2555,
+      "longitude": 121.1296,
+      "average_elevation_m": 25.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-009",
+      "barangay_name": "Banaybanay",
+      "street_name": "Cherry",
+      "latitude": 14.2493,
+      "longitude": 121.124,
+      "average_elevation_m": 32.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-010",
+      "barangay_name": "Banaybanay",
+      "street_name": "Mahinhin Street",
+      "latitude": 14.2573,
+      "longitude": 121.1309,
+      "average_elevation_m": 24.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-011",
+      "barangay_name": "Banlic",
+      "street_name": "Zaragoza",
+      "latitude": 14.2350358,
+      "longitude": 121.1408729,
+      "average_elevation_m": 28.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-012",
+      "barangay_name": "Banlic",
+      "street_name": "Ringgit Street",
+      "latitude": 14.2269,
+      "longitude": 121.1354,
+      "average_elevation_m": 24.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-013",
+      "barangay_name": "Banlic",
+      "street_name": "Dollar Street",
+      "latitude": 14.2274,
+      "longitude": 121.1361,
+      "average_elevation_m": 25.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-014",
+      "barangay_name": "Bigaa",
+      "street_name": "Burgos Street",
+      "latitude": 14.2811197,
+      "longitude": 121.1251931,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-015",
+      "barangay_name": "Bigaa",
+      "street_name": "El Sol Avenue",
+      "latitude": 14.2791,
+      "longitude": 121.1317,
+      "average_elevation_m": 11.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-016",
+      "barangay_name": "Bigaa",
+      "street_name": "Abigail Street",
+      "latitude": 14.2805,
+      "longitude": 121.1308,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-017",
+      "barangay_name": "Bigaa",
+      "street_name": "N. Basaca Street",
+      "latitude": 14.2853,
+      "longitude": 121.1283,
+      "average_elevation_m": 12.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-018",
+      "barangay_name": "Bigaa",
+      "street_name": "Maria Cecilia",
+      "latitude": 14.2819,
+      "longitude": 121.134,
+      "average_elevation_m": 9.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-019",
+      "barangay_name": "Butong",
+      "street_name": "Orchid Street",
+      "latitude": 14.2818303,
+      "longitude": 121.1409012,
+      "average_elevation_m": 9.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-020",
+      "barangay_name": "Butong",
+      "street_name": "Jerusalem Street",
+      "latitude": 14.2849,
+      "longitude": 121.1381,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-021",
+      "barangay_name": "Butong",
+      "street_name": "Annexa Boulevard",
+      "latitude": 14.2826,
+      "longitude": 121.14,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-022",
+      "barangay_name": "Butong",
+      "street_name": "Milan Street",
+      "latitude": 14.2835,
+      "longitude": 121.1384,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-023",
+      "barangay_name": "Butong",
+      "street_name": "Jade Street",
+      "latitude": 14.283,
+      "longitude": 121.1403,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-024",
+      "barangay_name": "Casile",
+      "street_name": "Nuvali-Casile-Mount Sungay Road",
+      "latitude": 14.2113313,
+      "longitude": 121.05478,
+      "average_elevation_m": 135.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-025",
+      "barangay_name": "Diezmo",
+      "street_name": "South Road",
+      "latitude": 14.2299777,
+      "longitude": 121.0933678,
+      "average_elevation_m": 78.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-026",
+      "barangay_name": "Diezmo",
+      "street_name": "Circuit Street",
+      "latitude": 14.2359,
+      "longitude": 121.0978,
+      "average_elevation_m": 65.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-027",
+      "barangay_name": "Diezmo",
+      "street_name": "Philips Avenue",
+      "latitude": 14.2295,
+      "longitude": 121.0955,
+      "average_elevation_m": 75.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-028",
+      "barangay_name": "Diezmo",
+      "street_name": "Diode",
+      "latitude": 14.235,
+      "longitude": 121.1006,
+      "average_elevation_m": 65.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-029",
+      "barangay_name": "Diezmo",
+      "street_name": "Main Avenue",
+      "latitude": 14.2349,
+      "longitude": 121.1009,
+      "average_elevation_m": 65.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-030",
+      "barangay_name": "Barangay Dos (Poblacion II)",
+      "street_name": "Felix Limcaoco Street",
+      "latitude": 14.2791442,
+      "longitude": 121.1251338,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-031",
+      "barangay_name": "Barangay Dos (Poblacion II)",
+      "street_name": "Juan Luna Street",
+      "latitude": 14.2795,
+      "longitude": 121.1259,
+      "average_elevation_m": 13.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-032",
+      "barangay_name": "Barangay Dos (Poblacion II)",
+      "street_name": "Miguel Malvar Street",
+      "latitude": 14.2786,
+      "longitude": 121.126,
+      "average_elevation_m": 13.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-033",
+      "barangay_name": "Barangay Dos (Poblacion II)",
+      "street_name": "Gregorio del Pilar Street",
+      "latitude": 14.2765,
+      "longitude": 121.1252,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-034",
+      "barangay_name": "Barangay Dos (Poblacion II)",
+      "street_name": "Andres Bonifacio Street",
+      "latitude": 14.2773,
+      "longitude": 121.1251,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-035",
+      "barangay_name": "Gulod",
+      "street_name": "Saint Jerome Street",
+      "latitude": 14.2639323,
+      "longitude": 121.1549521,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-036",
+      "barangay_name": "Gulod",
+      "street_name": "Saint Hilary Loop Street",
+      "latitude": 14.2629,
+      "longitude": 121.1557,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-037",
+      "barangay_name": "Gulod",
+      "street_name": "Saint Philip Street",
+      "latitude": 14.2618,
+      "longitude": 121.1555,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-038",
+      "barangay_name": "Gulod",
+      "street_name": "Tumbali",
+      "latitude": 14.2632,
+      "longitude": 121.1499,
+      "average_elevation_m": 8.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-039",
+      "barangay_name": "Gulod",
+      "street_name": "Saint Fabian Street",
+      "latitude": 14.2602,
+      "longitude": 121.1545,
+      "average_elevation_m": 9.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-040",
+      "barangay_name": "Mamatid",
+      "street_name": "Vermilion Drive",
+      "latitude": 14.2392268,
+      "longitude": 121.1702431,
+      "average_elevation_m": 8.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-041",
+      "barangay_name": "Mamatid",
+      "street_name": "Siena Street",
+      "latitude": 14.2394,
+      "longitude": 121.1702,
+      "average_elevation_m": 8.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-042",
+      "barangay_name": "Mamatid",
+      "street_name": "Crimson Street",
+      "latitude": 14.239,
+      "longitude": 121.1687,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-043",
+      "barangay_name": "Mamatid",
+      "street_name": "Lilac Street",
+      "latitude": 14.239,
+      "longitude": 121.1691,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-044",
+      "barangay_name": "Mamatid",
+      "street_name": "Manadi Street",
+      "latitude": 14.2401,
+      "longitude": 121.1682,
+      "average_elevation_m": 7.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-045",
+      "barangay_name": "Marinig",
+      "street_name": "Marinig Road",
+      "latitude": 14.2780473,
+      "longitude": 121.1398856,
+      "average_elevation_m": 9.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-046",
+      "barangay_name": "Marinig",
+      "street_name": "Saint Lawrence Street",
+      "latitude": 14.2689701,
+      "longitude": 121.1551933,
+      "average_elevation_m": 5.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-047",
+      "barangay_name": "Marinig",
+      "street_name": "Saint Frederick Street",
+      "latitude": 14.2685574,
+      "longitude": 121.1554283,
+      "average_elevation_m": 6.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-048",
+      "barangay_name": "Niugan",
+      "street_name": "St. Francis Homes",
+      "latitude": 14.2639155,
+      "longitude": 121.1287799,
+      "average_elevation_m": 19.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-049",
+      "barangay_name": "Niugan",
+      "street_name": "NIA Road",
+      "latitude": 14.2645289,
+      "longitude": 121.1327735,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-050",
+      "barangay_name": "Pittland",
+      "street_name": "Calle La Palma",
+      "latitude": 14.2276725,
+      "longitude": 121.0911457,
+      "average_elevation_m": 76.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-051",
+      "barangay_name": "Pittland",
+      "street_name": "Calle Cartagena",
+      "latitude": 14.2273,
+      "longitude": 121.0887,
+      "average_elevation_m": 81.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-052",
+      "barangay_name": "Pittland",
+      "street_name": "Calle Vitoria",
+      "latitude": 14.2285,
+      "longitude": 121.0906,
+      "average_elevation_m": 76.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-053",
+      "barangay_name": "Pittland",
+      "street_name": "Calle Reinosa",
+      "latitude": 14.2263,
+      "longitude": 121.0886,
+      "average_elevation_m": 81.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-054",
+      "barangay_name": "Pittland",
+      "street_name": "Calle Madrid",
+      "latitude": 14.2287,
+      "longitude": 121.0898,
+      "average_elevation_m": 77.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-055",
+      "barangay_name": "Pulo",
+      "street_name": "RFM Road",
+      "latitude": 14.2492,
+      "longitude": 121.1322,
+      "average_elevation_m": 26.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-056",
+      "barangay_name": "Pulo",
+      "street_name": "Chico Street",
+      "latitude": 14.2496,
+      "longitude": 121.137,
+      "average_elevation_m": 17.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-057",
+      "barangay_name": "Pulo",
+      "street_name": "Plum Street",
+      "latitude": 14.2488,
+      "longitude": 121.1347,
+      "average_elevation_m": 25.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-058",
+      "barangay_name": "Pulo",
+      "street_name": "Orange Street",
+      "latitude": 14.2489,
+      "longitude": 121.1343,
+      "average_elevation_m": 26.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-059",
+      "barangay_name": "Pulo",
+      "street_name": "Via Cosenza",
+      "latitude": 14.2403,
+      "longitude": 121.1227,
+      "average_elevation_m": 36.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-060",
+      "barangay_name": "Sala",
+      "street_name": "Emerald Street",
+      "latitude": 14.2730977,
+      "longitude": 121.1271683,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-061",
+      "barangay_name": "Sala",
+      "street_name": "Ruby Street",
+      "latitude": 14.2718,
+      "longitude": 121.1261,
+      "average_elevation_m": 16.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-062",
+      "barangay_name": "Sala",
+      "street_name": "Gem Street",
+      "latitude": 14.273,
+      "longitude": 121.1274,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-063",
+      "barangay_name": "Sala",
+      "street_name": "Gold Street",
+      "latitude": 14.2728,
+      "longitude": 121.1273,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-064",
+      "barangay_name": "Sala",
+      "street_name": "J. P. Rizal Street",
+      "latitude": 14.2718,
+      "longitude": 121.1255,
+      "average_elevation_m": 16.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-065",
+      "barangay_name": "San Isidro",
+      "street_name": "Via Amadei",
+      "latitude": 14.2380928,
+      "longitude": 121.1253478,
+      "average_elevation_m": 36.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-066",
+      "barangay_name": "San Isidro",
+      "street_name": "Road 12",
+      "latitude": 14.2426,
+      "longitude": 121.1348,
+      "average_elevation_m": 24.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-067",
+      "barangay_name": "San Isidro",
+      "street_name": "Road 11",
+      "latitude": 14.2419,
+      "longitude": 121.1344,
+      "average_elevation_m": 27.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-068",
+      "barangay_name": "San Isidro",
+      "street_name": "Via Cagliari",
+      "latitude": 14.2393,
+      "longitude": 121.1224,
+      "average_elevation_m": 36.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-069",
+      "barangay_name": "San Isidro",
+      "street_name": "Iris Street",
+      "latitude": 14.2366,
+      "longitude": 121.1388,
+      "average_elevation_m": 27.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-070",
+      "barangay_name": "Barangay Uno (Poblacion I)",
+      "street_name": "Manuel Quezon Street",
+      "latitude": 14.2782354,
+      "longitude": 121.1240624,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-071",
+      "barangay_name": "Barangay Uno (Poblacion I)",
+      "street_name": "A. Mabini Street",
+      "latitude": 14.2802,
+      "longitude": 121.125,
+      "average_elevation_m": 12.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-072",
+      "barangay_name": "Barangay Uno (Poblacion I)",
+      "street_name": "Carpena Street",
+      "latitude": 14.2818,
+      "longitude": 121.125,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-073",
+      "barangay_name": "Barangay Uno (Poblacion I)",
+      "street_name": "Burgos Street",
+      "latitude": 14.2803,
+      "longitude": 121.1236,
+      "average_elevation_m": 15.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-074",
+      "barangay_name": "Barangay Tres (Poblacion III)",
+      "street_name": "Felix Avenue",
+      "latitude": 14.2762236,
+      "longitude": 121.1224548,
+      "average_elevation_m": 17.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-075",
+      "barangay_name": "Barangay Tres (Poblacion III)",
+      "street_name": "Enrique Drive",
+      "latitude": 14.2756,
+      "longitude": 121.1212,
+      "average_elevation_m": 18.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-076",
+      "barangay_name": "Barangay Tres (Poblacion III)",
+      "street_name": "Limcauco Street",
+      "latitude": 14.2755,
+      "longitude": 121.1259,
+      "average_elevation_m": 14.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-077",
+      "barangay_name": "Barangay Tres (Poblacion III)",
+      "street_name": "Vicente Drive",
+      "latitude": 14.2756,
+      "longitude": 121.1217,
+      "average_elevation_m": 18.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    },
+    {
+      "id": "STR-078",
+      "barangay_name": "Barangay Tres (Poblacion III)",
+      "street_name": "Elsol Circumferential Avenue",
+      "latitude": 14.2761,
+      "longitude": 121.1214,
+      "average_elevation_m": 17.0,
+      "source": "OSM way + Nominatim reverse geocode (barangay confirmed) + OpenTopoData SRTM90m"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ export default function SensorsFeeds() {
   return (
     <div>
       <header style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-main)' }}>Sensors & Feeds</h2>
+        <h2>Live Sensors</h2>
         <p style={{ color: 'var(--text-muted)', marginTop: '0.25rem' }}>Live telemetry and computer vision feeds from surveillance stations.</p>
       </header>
 
@@ -107,7 +107,7 @@ export default function SensorsFeeds() {
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-muted)' }}>Fused Risk Score:</span>
+                    <span style={{ color: 'var(--text-muted)' }}>Fused Hazard Score:</span>
                     <span style={{ fontWeight: 600 }}>{street.risk_score}/100</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -1,633 +1,3761 @@
 {
   "_meta": {
-    "description": "AGOS illustrative/synthetic seed dataset generated using OSM data combined with scoring algorithms.",
-    "generated_at": "2026-09-09T14:24:25+08:00",
-    "streets": 6,
-    "households": 40,
-    "flood_events": 6
+    "description": "AGOS hackathon MVP seed data (docs/data-model.md). All 18 Cabuyao barangays represented with multiple streets each where OSM has them (15 of 18 barangays have 4-5 streets; Marinig has 3; Niugan has 2; Casile has 1 due to genuinely sparse OSM street-level tagging there). Street identity/location is real (verified via OpenStreetMap + Nominatim reverse geocoding + SRTM elevation); rainfall/elevation VALUES are illustrative sample inputs for the demo, not live sensor or CDRRMO-validated readings (see docs/scope.md, out of scope). Rainfall is the same for every street within one barangay (a broad-area illustrative input, not something with real street-level granularity). risk_score/status/risk_rank/predicted_at_risk are NOT stored here - backend/seed.py computes them from these raw inputs via backend/illustrative_scoring.py.",
+    "generated_at": "2026-09-09T08:00:00+08:00",
+    "streets": 78,
+    "households": 312,
+    "flood_events": 78
   },
   "streets": [
     {
       "id": "STR-001",
-      "name": "Gregorio del Pilar Street",
-      "barangay": "Banay-Banay",
-      "camera_label": "Fishing Port, Brgy. Marinig — CDRRMO Water Level Monitoring (nearest available reference feed)",
-      "reference_object": "Mooring piling, white/grey cap band",
-      "video_filename": "flood_1.mp4",
-      "latitude": 14.2765368,
-      "longitude": 121.1251813,
-      "status": "flagged",
-      "risk_score": 100,
-      "water_level_estimate_cm": 0.0,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "name": "Sibuyan Street",
+      "barangay": "Baclaran",
+      "camera_label": "Sibuyan Street Cam (Baclaran)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2434731,
+      "longitude": 121.1691122,
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "suggested_evacuation_route": "Proceed to the Baclaran barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "STR-002",
-      "name": "Felix Limcaoco Street",
-      "barangay": "Sala",
-      "camera_label": "Marikina River Bridge Cam — reference feed (not a Cabuyao camera)",
-      "reference_object": "Near bridge pier, width",
-      "video_filename": "flood_3.mp4",
-      "latitude": 14.2791442,
-      "longitude": 121.1251338,
-      "status": "flagged",
-      "risk_score": 100,
-      "water_level_estimate_cm": -167.2,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "name": "Leyte Street",
+      "barangay": "Baclaran",
+      "camera_label": "Leyte Street Cam (Baclaran)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2447,
+      "longitude": 121.1681,
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "suggested_evacuation_route": "Proceed to the Baclaran barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "STR-003",
+      "name": "Arenal Lane",
+      "barangay": "Baclaran",
+      "camera_label": "Arenal Lane Cam (Baclaran)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2462,
+      "longitude": 121.1679,
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "suggested_evacuation_route": "Proceed to the Baclaran barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-004",
+      "name": "Catanduanes Lane",
+      "barangay": "Baclaran",
+      "camera_label": "Catanduanes Lane Cam (Baclaran)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2435,
+      "longitude": 121.1688,
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "suggested_evacuation_route": "Proceed to the Baclaran barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-005",
+      "name": "Batanes Lane",
+      "barangay": "Baclaran",
+      "camera_label": "Batanes Lane Cam (Baclaran)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.246,
+      "longitude": 121.1684,
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "suggested_evacuation_route": "Proceed to the Baclaran barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-006",
+      "name": "Bronze Street",
+      "barangay": "Banaybanay",
+      "camera_label": "Bronze Street Cam (Banaybanay)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2550228,
+      "longitude": 121.1324065,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "suggested_evacuation_route": "Proceed to the Banaybanay barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-007",
+      "name": "Mahogany Street",
+      "barangay": "Banaybanay",
+      "camera_label": "Mahogany Street Cam (Banaybanay)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2493,
+      "longitude": 121.1273,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "suggested_evacuation_route": "Proceed to the Banaybanay barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-008",
+      "name": "Maganda Street",
+      "barangay": "Banaybanay",
+      "camera_label": "Maganda Street Cam (Banaybanay)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2555,
+      "longitude": 121.1296,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "suggested_evacuation_route": "Proceed to the Banaybanay barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-009",
+      "name": "Cherry",
+      "barangay": "Banaybanay",
+      "camera_label": "Cherry Cam (Banaybanay)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2493,
+      "longitude": 121.124,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "suggested_evacuation_route": "Proceed to the Banaybanay barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-010",
+      "name": "Mahinhin Street",
+      "barangay": "Banaybanay",
+      "camera_label": "Mahinhin Street Cam (Banaybanay)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2573,
+      "longitude": 121.1309,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "suggested_evacuation_route": "Proceed to the Banaybanay barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-011",
+      "name": "Zaragoza",
+      "barangay": "Banlic",
+      "camera_label": "Zaragoza Cam (Banlic)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2350358,
+      "longitude": 121.1408729,
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "suggested_evacuation_route": "Proceed to the Banlic barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-012",
+      "name": "Ringgit Street",
+      "barangay": "Banlic",
+      "camera_label": "Ringgit Street Cam (Banlic)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2269,
+      "longitude": 121.1354,
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "suggested_evacuation_route": "Proceed to the Banlic barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-013",
+      "name": "Dollar Street",
+      "barangay": "Banlic",
+      "camera_label": "Dollar Street Cam (Banlic)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2274,
+      "longitude": 121.1361,
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "suggested_evacuation_route": "Proceed to the Banlic barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-014",
+      "name": "Burgos Street",
+      "barangay": "Bigaa",
+      "camera_label": "Burgos Street Cam (Bigaa)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2811197,
+      "longitude": 121.1251931,
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Bigaa barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-015",
+      "name": "El Sol Avenue",
+      "barangay": "Bigaa",
+      "camera_label": "El Sol Avenue Cam (Bigaa)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2791,
+      "longitude": 121.1317,
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Bigaa barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-016",
+      "name": "Abigail Street",
+      "barangay": "Bigaa",
+      "camera_label": "Abigail Street Cam (Bigaa)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2805,
+      "longitude": 121.1308,
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Bigaa barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-017",
+      "name": "N. Basaca Street",
+      "barangay": "Bigaa",
+      "camera_label": "N. Basaca Street Cam (Bigaa)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2853,
+      "longitude": 121.1283,
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Bigaa barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-018",
+      "name": "Maria Cecilia",
+      "barangay": "Bigaa",
+      "camera_label": "Maria Cecilia Cam (Bigaa)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2819,
+      "longitude": 121.134,
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Bigaa barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-019",
+      "name": "Orchid Street",
+      "barangay": "Butong",
+      "camera_label": "Orchid Street Cam (Butong)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2818303,
+      "longitude": 121.1409012,
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Butong barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-020",
+      "name": "Jerusalem Street",
+      "barangay": "Butong",
+      "camera_label": "Jerusalem Street Cam (Butong)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2849,
+      "longitude": 121.1381,
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Butong barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-021",
+      "name": "Annexa Boulevard",
+      "barangay": "Butong",
+      "camera_label": "Annexa Boulevard Cam (Butong)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2826,
+      "longitude": 121.14,
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Butong barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-022",
+      "name": "Milan Street",
+      "barangay": "Butong",
+      "camera_label": "Milan Street Cam (Butong)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2835,
+      "longitude": 121.1384,
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Butong barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-023",
+      "name": "Jade Street",
+      "barangay": "Butong",
+      "camera_label": "Jade Street Cam (Butong)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.283,
+      "longitude": 121.1403,
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Butong barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-024",
+      "name": "Nuvali-Casile-Mount Sungay Road",
+      "barangay": "Casile",
+      "camera_label": "Nuvali-Casile-Mount Sungay Road Cam (Casile)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2113313,
+      "longitude": 121.05478,
+      "rainfall_mm_hr": 3.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Casile barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-025",
+      "name": "South Road",
+      "barangay": "Diezmo",
+      "camera_label": "South Road Cam (Diezmo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2299777,
+      "longitude": 121.0933678,
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Diezmo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-026",
+      "name": "Circuit Street",
+      "barangay": "Diezmo",
+      "camera_label": "Circuit Street Cam (Diezmo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2359,
+      "longitude": 121.0978,
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Diezmo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-027",
+      "name": "Philips Avenue",
+      "barangay": "Diezmo",
+      "camera_label": "Philips Avenue Cam (Diezmo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2295,
+      "longitude": 121.0955,
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Diezmo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-028",
+      "name": "Diode",
+      "barangay": "Diezmo",
+      "camera_label": "Diode Cam (Diezmo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.235,
+      "longitude": 121.1006,
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Diezmo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-029",
+      "name": "Main Avenue",
+      "barangay": "Diezmo",
+      "camera_label": "Main Avenue Cam (Diezmo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2349,
+      "longitude": 121.1009,
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Diezmo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-030",
       "name": "Felix Limcaoco Street",
+      "barangay": "Barangay Dos (Poblacion II)",
+      "camera_label": "Felix Limcaoco Street Cam (Barangay Dos)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2791442,
+      "longitude": 121.1251338,
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Dos barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-031",
+      "name": "Juan Luna Street",
+      "barangay": "Barangay Dos (Poblacion II)",
+      "camera_label": "Juan Luna Street Cam (Barangay Dos)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2795,
+      "longitude": 121.1259,
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Dos barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-032",
+      "name": "Miguel Malvar Street",
+      "barangay": "Barangay Dos (Poblacion II)",
+      "camera_label": "Miguel Malvar Street Cam (Barangay Dos)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2786,
+      "longitude": 121.126,
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Dos barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-033",
+      "name": "Gregorio del Pilar Street",
+      "barangay": "Barangay Dos (Poblacion II)",
+      "camera_label": "Gregorio del Pilar Street Cam (Barangay Dos)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2765,
+      "longitude": 121.1252,
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Dos barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-034",
+      "name": "Andres Bonifacio Street",
+      "barangay": "Barangay Dos (Poblacion II)",
+      "camera_label": "Andres Bonifacio Street Cam (Barangay Dos)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2773,
+      "longitude": 121.1251,
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Dos barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-035",
+      "name": "Saint Jerome Street",
+      "barangay": "Gulod",
+      "camera_label": "Saint Jerome Street Cam (Gulod)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2639323,
+      "longitude": 121.1549521,
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Gulod barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-036",
+      "name": "Saint Hilary Loop Street",
+      "barangay": "Gulod",
+      "camera_label": "Saint Hilary Loop Street Cam (Gulod)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2629,
+      "longitude": 121.1557,
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Gulod barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-037",
+      "name": "Saint Philip Street",
+      "barangay": "Gulod",
+      "camera_label": "Saint Philip Street Cam (Gulod)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2618,
+      "longitude": 121.1555,
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Gulod barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-038",
+      "name": "Tumbali",
+      "barangay": "Gulod",
+      "camera_label": "Tumbali Cam (Gulod)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2632,
+      "longitude": 121.1499,
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Gulod barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-039",
+      "name": "Saint Fabian Street",
+      "barangay": "Gulod",
+      "camera_label": "Saint Fabian Street Cam (Gulod)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2602,
+      "longitude": 121.1545,
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Gulod barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-040",
+      "name": "Vermilion Drive",
+      "barangay": "Mamatid",
+      "camera_label": "Vermilion Drive Cam (Mamatid)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2392268,
+      "longitude": 121.1702431,
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Mamatid barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-041",
+      "name": "Siena Street",
+      "barangay": "Mamatid",
+      "camera_label": "Siena Street Cam (Mamatid)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2394,
+      "longitude": 121.1702,
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Mamatid barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-042",
+      "name": "Crimson Street",
+      "barangay": "Mamatid",
+      "camera_label": "Crimson Street Cam (Mamatid)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.239,
+      "longitude": 121.1687,
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Mamatid barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-043",
+      "name": "Lilac Street",
+      "barangay": "Mamatid",
+      "camera_label": "Lilac Street Cam (Mamatid)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.239,
+      "longitude": 121.1691,
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Mamatid barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-044",
+      "name": "Manadi Street",
+      "barangay": "Mamatid",
+      "camera_label": "Manadi Street Cam (Mamatid)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2401,
+      "longitude": 121.1682,
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed to the Mamatid barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-045",
+      "name": "Marinig Road",
+      "barangay": "Marinig",
+      "camera_label": "Fishing Port, Brgy. Marinig — CDRRMO Water Level Monitoring (nearest available reference feed)",
+      "reference_object": "Mooring piling, white/grey cap band",
+      "video_filename": "flood_1.mp4",
+      "latitude": 14.2780473,
+      "longitude": 121.1398856,
+      "rainfall_mm_hr": 19.0,
+      "water_level_estimate_cm": 0.0,
+      "suggested_evacuation_route": "Proceed to the Marinig barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-046",
+      "name": "Saint Lawrence Street",
       "barangay": "Marinig",
       "camera_label": "Fishing Port, Brgy. Marinig — CDRRMO Water Level Monitoring",
       "reference_object": "Mooring piling, cap band",
       "video_filename": "flood_2.mp4",
-      "latitude": 14.2791442,
-      "longitude": 121.1251338,
-      "status": "flagged",
-      "risk_score": 94,
+      "latitude": 14.2689701,
+      "longitude": 121.1551933,
+      "rainfall_mm_hr": 19.0,
       "water_level_estimate_cm": 4.9,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "suggested_evacuation_route": "Proceed to the Marinig barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     },
     {
-      "id": "STR-004",
-      "name": "Andres Bonifacio Street",
+      "id": "STR-047",
+      "name": "Saint Frederick Street",
+      "barangay": "Marinig",
+      "camera_label": "Saint Frederick Street Cam (Marinig)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2685574,
+      "longitude": 121.1554283,
+      "rainfall_mm_hr": 19.0,
+      "water_level_estimate_cm": 19,
+      "suggested_evacuation_route": "Proceed to the Marinig barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-048",
+      "name": "St. Francis Homes",
+      "barangay": "Niugan",
+      "camera_label": "St. Francis Homes Cam (Niugan)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2639155,
+      "longitude": 121.1287799,
+      "rainfall_mm_hr": 9.0,
+      "water_level_estimate_cm": 8,
+      "suggested_evacuation_route": "Proceed to the Niugan barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-049",
+      "name": "NIA Road",
+      "barangay": "Niugan",
+      "camera_label": "NIA Road Cam (Niugan)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2645289,
+      "longitude": 121.1327735,
+      "rainfall_mm_hr": 9.0,
+      "water_level_estimate_cm": 8,
+      "suggested_evacuation_route": "Proceed to the Niugan barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-050",
+      "name": "Calle La Palma",
       "barangay": "Pittland",
-      "camera_label": "Fishing Port, Brgy. Marinig — CDRRMO Water Level Monitoring (nearest available reference feed)",
-      "reference_object": "Mooring piling, white/grey cap band",
-      "video_filename": "flood_1.mp4",
-      "latitude": 14.2772961,
-      "longitude": 121.1251336,
-      "status": "flagged",
-      "risk_score": 81,
-      "water_level_estimate_cm": 0.0,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "camera_label": "Calle La Palma Cam (Pittland)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2276725,
+      "longitude": 121.0911457,
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pittland barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     },
     {
-      "id": "STR-005",
+      "id": "STR-051",
+      "name": "Calle Cartagena",
+      "barangay": "Pittland",
+      "camera_label": "Calle Cartagena Cam (Pittland)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2273,
+      "longitude": 121.0887,
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pittland barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-052",
+      "name": "Calle Vitoria",
+      "barangay": "Pittland",
+      "camera_label": "Calle Vitoria Cam (Pittland)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2285,
+      "longitude": 121.0906,
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pittland barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-053",
+      "name": "Calle Reinosa",
+      "barangay": "Pittland",
+      "camera_label": "Calle Reinosa Cam (Pittland)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2263,
+      "longitude": 121.0886,
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pittland barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-054",
+      "name": "Calle Madrid",
+      "barangay": "Pittland",
+      "camera_label": "Calle Madrid Cam (Pittland)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2287,
+      "longitude": 121.0898,
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pittland barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-055",
       "name": "RFM Road",
-      "barangay": "Gulod",
-      "camera_label": "Marikina River Bridge Cam — reference feed (not a Cabuyao camera)",
-      "reference_object": "Near bridge pier, width",
-      "video_filename": "flood_3.mp4",
-      "latitude": 14.2491978,
-      "longitude": 121.1321793,
-      "status": "watch",
-      "risk_score": 53,
-      "water_level_estimate_cm": -167.2,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "barangay": "Pulo",
+      "camera_label": "RFM Road Cam (Pulo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2492,
+      "longitude": 121.1322,
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pulo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     },
     {
-      "id": "STR-006",
+      "id": "STR-056",
+      "name": "Chico Street",
+      "barangay": "Pulo",
+      "camera_label": "Chico Street Cam (Pulo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2496,
+      "longitude": 121.137,
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pulo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-057",
+      "name": "Plum Street",
+      "barangay": "Pulo",
+      "camera_label": "Plum Street Cam (Pulo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2488,
+      "longitude": 121.1347,
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pulo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-058",
+      "name": "Orange Street",
+      "barangay": "Pulo",
+      "camera_label": "Orange Street Cam (Pulo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2489,
+      "longitude": 121.1343,
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pulo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-059",
+      "name": "Via Cosenza",
+      "barangay": "Pulo",
+      "camera_label": "Via Cosenza Cam (Pulo)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2403,
+      "longitude": 121.1227,
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Pulo barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-060",
+      "name": "Emerald Street",
+      "barangay": "Sala",
+      "camera_label": "Emerald Street Cam (Sala)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2730977,
+      "longitude": 121.1271683,
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "suggested_evacuation_route": "Proceed to the Sala barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-061",
+      "name": "Ruby Street",
+      "barangay": "Sala",
+      "camera_label": "Ruby Street Cam (Sala)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2718,
+      "longitude": 121.1261,
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "suggested_evacuation_route": "Proceed to the Sala barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-062",
+      "name": "Gem Street",
+      "barangay": "Sala",
+      "camera_label": "Gem Street Cam (Sala)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.273,
+      "longitude": 121.1274,
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "suggested_evacuation_route": "Proceed to the Sala barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-063",
+      "name": "Gold Street",
+      "barangay": "Sala",
+      "camera_label": "Gold Street Cam (Sala)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2728,
+      "longitude": 121.1273,
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "suggested_evacuation_route": "Proceed to the Sala barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-064",
+      "name": "J. P. Rizal Street",
+      "barangay": "Sala",
+      "camera_label": "J. P. Rizal Street Cam (Sala)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2718,
+      "longitude": 121.1255,
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "suggested_evacuation_route": "Proceed to the Sala barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-065",
+      "name": "Via Amadei",
+      "barangay": "San Isidro",
+      "camera_label": "Via Amadei Cam (San Isidro)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2380928,
+      "longitude": 121.1253478,
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the San Isidro barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-066",
+      "name": "Road 12",
+      "barangay": "San Isidro",
+      "camera_label": "Road 12 Cam (San Isidro)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2426,
+      "longitude": 121.1348,
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the San Isidro barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-067",
+      "name": "Road 11",
+      "barangay": "San Isidro",
+      "camera_label": "Road 11 Cam (San Isidro)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2419,
+      "longitude": 121.1344,
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the San Isidro barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-068",
+      "name": "Via Cagliari",
+      "barangay": "San Isidro",
+      "camera_label": "Via Cagliari Cam (San Isidro)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2393,
+      "longitude": 121.1224,
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the San Isidro barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-069",
+      "name": "Iris Street",
+      "barangay": "San Isidro",
+      "camera_label": "Iris Street Cam (San Isidro)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2366,
+      "longitude": 121.1388,
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the San Isidro barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-070",
+      "name": "Manuel Quezon Street",
+      "barangay": "Barangay Uno (Poblacion I)",
+      "camera_label": "Manuel Quezon Street Cam (Barangay Uno)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2782354,
+      "longitude": 121.1240624,
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Uno barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-071",
       "name": "A. Mabini Street",
-      "barangay": "Mamatid",
-      "camera_label": "Fishing Port, Brgy. Marinig — CDRRMO Water Level Monitoring (nearest available reference feed)",
-      "reference_object": "Mooring piling, cap band",
-      "video_filename": "flood_2.mp4",
-      "latitude": 14.2802114,
-      "longitude": 121.1249694,
-      "status": "normal",
-      "risk_score": 10,
-      "water_level_estimate_cm": 4.9,
-      "suggested_evacuation_route": "Proceed to the nearest barangay covered court on higher ground.",
-      "last_updated": "2026-09-09T14:24:25+08:00"
+      "barangay": "Barangay Uno (Poblacion I)",
+      "camera_label": "A. Mabini Street Cam (Barangay Uno)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2802,
+      "longitude": 121.125,
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Uno barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-072",
+      "name": "Carpena Street",
+      "barangay": "Barangay Uno (Poblacion I)",
+      "camera_label": "Carpena Street Cam (Barangay Uno)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2818,
+      "longitude": 121.125,
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Uno barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-073",
+      "name": "Burgos Street",
+      "barangay": "Barangay Uno (Poblacion I)",
+      "camera_label": "Burgos Street Cam (Barangay Uno)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2803,
+      "longitude": 121.1236,
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Uno barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-074",
+      "name": "Felix Avenue",
+      "barangay": "Barangay Tres (Poblacion III)",
+      "camera_label": "Felix Avenue Cam (Barangay Tres)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2762236,
+      "longitude": 121.1224548,
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Tres barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-075",
+      "name": "Enrique Drive",
+      "barangay": "Barangay Tres (Poblacion III)",
+      "camera_label": "Enrique Drive Cam (Barangay Tres)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2756,
+      "longitude": 121.1212,
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Tres barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-076",
+      "name": "Limcauco Street",
+      "barangay": "Barangay Tres (Poblacion III)",
+      "camera_label": "Limcauco Street Cam (Barangay Tres)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2755,
+      "longitude": 121.1259,
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Tres barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-077",
+      "name": "Vicente Drive",
+      "barangay": "Barangay Tres (Poblacion III)",
+      "camera_label": "Vicente Drive Cam (Barangay Tres)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2756,
+      "longitude": 121.1217,
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Tres barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "STR-078",
+      "name": "Elsol Circumferential Avenue",
+      "barangay": "Barangay Tres (Poblacion III)",
+      "camera_label": "Elsol Circumferential Avenue Cam (Barangay Tres)",
+      "reference_object": "Street-side structure, 0.5m markings",
+      "latitude": 14.2761,
+      "longitude": 121.1214,
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to the Barangay Tres barangay hall or nearest covered court on higher ground.",
+      "last_updated": "2026-09-09T08:00:00+08:00"
     }
   ],
   "households": [
     {
-      "id": "HH-004",
-      "street_id": "STR-001",
-      "address_label": "Bldg/Lot 8",
-      "elevation_m": 208.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
-    },
-    {
-      "id": "HH-005",
-      "street_id": "STR-001",
-      "address_label": "Bldg/Lot 82",
-      "elevation_m": 24.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
-    },
-    {
-      "id": "HH-006",
-      "street_id": "STR-001",
-      "address_label": "Bldg/Lot 71",
-      "elevation_m": 23.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
-    },
-    {
       "id": "HH-001",
       "street_id": "STR-001",
-      "address_label": "Bldg/Lot 60",
-      "elevation_m": 15.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
+      "address_label": "Bldg/Lot 38",
+      "elevation_m": 0.3,
+      "ground_floor": true
     },
     {
       "id": "HH-002",
       "street_id": "STR-001",
-      "address_label": "Bldg/Lot 48",
-      "elevation_m": 16.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
+      "address_label": "Bldg/Lot 75",
+      "elevation_m": 1.0,
+      "ground_floor": true
     },
     {
       "id": "HH-003",
       "street_id": "STR-001",
-      "address_label": "Bldg/Lot 6",
-      "elevation_m": 206.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 6
+      "address_label": "Bldg/Lot 13",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-004",
+      "street_id": "STR-001",
+      "address_label": "Bldg/Lot 50",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-005",
+      "street_id": "STR-002",
+      "address_label": "Bldg/Lot 87",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-006",
+      "street_id": "STR-002",
+      "address_label": "Bldg/Lot 25",
+      "elevation_m": 1.04,
+      "ground_floor": true
     },
     {
       "id": "HH-007",
       "street_id": "STR-002",
-      "address_label": "Bldg/Lot 80",
-      "elevation_m": 15.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
+      "address_label": "Bldg/Lot 62",
+      "elevation_m": 1.84,
+      "ground_floor": false
     },
     {
       "id": "HH-008",
       "street_id": "STR-002",
-      "address_label": "Bldg/Lot 33",
-      "elevation_m": 18.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
-    },
-    {
-      "id": "HH-012",
-      "street_id": "STR-002",
-      "address_label": "Bldg/Lot 31",
-      "elevation_m": 163.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
-    },
-    {
-      "id": "HH-013",
-      "street_id": "STR-002",
-      "address_label": "Bldg/Lot 74",
-      "elevation_m": 159.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
+      "address_label": "Bldg/Lot 99",
+      "elevation_m": 2.64,
+      "ground_floor": false
     },
     {
       "id": "HH-009",
-      "street_id": "STR-002",
-      "address_label": "Bldg/Lot 42",
-      "elevation_m": 40.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
+      "street_id": "STR-003",
+      "address_label": "Bldg/Lot 37",
+      "elevation_m": 0.38,
+      "ground_floor": true
     },
     {
       "id": "HH-010",
-      "street_id": "STR-002",
-      "address_label": "Bldg/Lot 88",
-      "elevation_m": 41.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 6
+      "street_id": "STR-003",
+      "address_label": "Bldg/Lot 74",
+      "elevation_m": 1.08,
+      "ground_floor": true
     },
     {
       "id": "HH-011",
-      "street_id": "STR-002",
-      "address_label": "Bldg/Lot 85",
-      "elevation_m": 44.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 7
+      "street_id": "STR-003",
+      "address_label": "Bldg/Lot 12",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-012",
+      "street_id": "STR-003",
+      "address_label": "Bldg/Lot 49",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-013",
+      "street_id": "STR-004",
+      "address_label": "Bldg/Lot 86",
+      "elevation_m": 0.42,
+      "ground_floor": true
     },
     {
       "id": "HH-014",
-      "street_id": "STR-003",
-      "address_label": "Bldg/Lot 16",
-      "elevation_m": 164.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
+      "street_id": "STR-004",
+      "address_label": "Bldg/Lot 24",
+      "elevation_m": 1.12,
+      "ground_floor": true
     },
     {
       "id": "HH-015",
-      "street_id": "STR-003",
-      "address_label": "Bldg/Lot 65",
-      "elevation_m": 4.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
+      "street_id": "STR-004",
+      "address_label": "Bldg/Lot 61",
+      "elevation_m": 1.92,
+      "ground_floor": false
     },
     {
       "id": "HH-016",
-      "street_id": "STR-003",
-      "address_label": "Bldg/Lot 77",
-      "elevation_m": 30.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
+      "street_id": "STR-004",
+      "address_label": "Bldg/Lot 98",
+      "elevation_m": 2.72,
+      "ground_floor": false
     },
     {
       "id": "HH-017",
-      "street_id": "STR-003",
-      "address_label": "Bldg/Lot 12",
-      "elevation_m": 25.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
+      "street_id": "STR-005",
+      "address_label": "Bldg/Lot 36",
+      "elevation_m": 0.46,
+      "ground_floor": true
     },
     {
       "id": "HH-018",
-      "street_id": "STR-003",
-      "address_label": "Bldg/Lot 100",
-      "elevation_m": 37.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
+      "street_id": "STR-005",
+      "address_label": "Bldg/Lot 73",
+      "elevation_m": 1.16,
+      "ground_floor": true
     },
     {
       "id": "HH-019",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 18",
-      "elevation_m": 37.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
+      "street_id": "STR-005",
+      "address_label": "Bldg/Lot 11",
+      "elevation_m": 1.96,
+      "ground_floor": false
     },
     {
       "id": "HH-020",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 40",
-      "elevation_m": 22.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
+      "street_id": "STR-005",
+      "address_label": "Bldg/Lot 48",
+      "elevation_m": 2.76,
+      "ground_floor": false
     },
     {
       "id": "HH-021",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 14",
-      "elevation_m": 37.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
-    },
-    {
-      "id": "HH-023",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 40",
-      "elevation_m": 32.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
-    },
-    {
-      "id": "HH-025",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 77",
-      "elevation_m": 32.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
-    },
-    {
-      "id": "HH-026",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 43",
-      "elevation_m": 37.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 6
+      "street_id": "STR-006",
+      "address_label": "Bldg/Lot 85",
+      "elevation_m": 0.5,
+      "ground_floor": true
     },
     {
       "id": "HH-022",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 100",
-      "elevation_m": 32.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 7
+      "street_id": "STR-006",
+      "address_label": "Bldg/Lot 23",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-023",
+      "street_id": "STR-006",
+      "address_label": "Bldg/Lot 60",
+      "elevation_m": 2.0,
+      "ground_floor": false
     },
     {
       "id": "HH-024",
-      "street_id": "STR-004",
-      "address_label": "Bldg/Lot 19",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 8
+      "street_id": "STR-006",
+      "address_label": "Bldg/Lot 97",
+      "elevation_m": 2.8,
+      "ground_floor": false
     },
     {
-      "id": "HH-028",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 67",
-      "elevation_m": 32.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
+      "id": "HH-025",
+      "street_id": "STR-007",
+      "address_label": "Bldg/Lot 35",
+      "elevation_m": 0.54,
+      "ground_floor": true
     },
     {
-      "id": "HH-031",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 76",
-      "elevation_m": 32.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
-    },
-    {
-      "id": "HH-032",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 71",
-      "elevation_m": 24.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
-    },
-    {
-      "id": "HH-034",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 18",
-      "elevation_m": 38.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
+      "id": "HH-026",
+      "street_id": "STR-007",
+      "address_label": "Bldg/Lot 72",
+      "elevation_m": 1.24,
+      "ground_floor": true
     },
     {
       "id": "HH-027",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 33",
-      "elevation_m": 38.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
+      "street_id": "STR-007",
+      "address_label": "Bldg/Lot 10",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-028",
+      "street_id": "STR-007",
+      "address_label": "Bldg/Lot 47",
+      "elevation_m": 2.84,
+      "ground_floor": false
     },
     {
       "id": "HH-029",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 76",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 6
+      "street_id": "STR-008",
+      "address_label": "Bldg/Lot 84",
+      "elevation_m": 0.3,
+      "ground_floor": true
     },
     {
       "id": "HH-030",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 9",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 7
+      "street_id": "STR-008",
+      "address_label": "Bldg/Lot 22",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-031",
+      "street_id": "STR-008",
+      "address_label": "Bldg/Lot 59",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-032",
+      "street_id": "STR-008",
+      "address_label": "Bldg/Lot 96",
+      "elevation_m": 2.6,
+      "ground_floor": false
     },
     {
       "id": "HH-033",
-      "street_id": "STR-005",
-      "address_label": "Bldg/Lot 10",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 8
+      "street_id": "STR-009",
+      "address_label": "Bldg/Lot 34",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-034",
+      "street_id": "STR-009",
+      "address_label": "Bldg/Lot 71",
+      "elevation_m": 1.04,
+      "ground_floor": true
     },
     {
       "id": "HH-035",
-      "street_id": "STR-006",
-      "address_label": "Bldg/Lot 68",
-      "elevation_m": 37.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 1
+      "street_id": "STR-009",
+      "address_label": "Bldg/Lot 9",
+      "elevation_m": 1.84,
+      "ground_floor": false
     },
     {
       "id": "HH-036",
-      "street_id": "STR-006",
-      "address_label": "Bldg/Lot 9",
-      "elevation_m": 38.0,
-      "ground_floor": true,
-      "risk_score": 15,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 2
+      "street_id": "STR-009",
+      "address_label": "Bldg/Lot 46",
+      "elevation_m": 2.64,
+      "ground_floor": false
     },
     {
       "id": "HH-037",
-      "street_id": "STR-006",
+      "street_id": "STR-010",
       "address_label": "Bldg/Lot 83",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 3
+      "elevation_m": 0.38,
+      "ground_floor": true
     },
     {
       "id": "HH-038",
-      "street_id": "STR-006",
-      "address_label": "Bldg/Lot 75",
-      "elevation_m": 32.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 4
+      "street_id": "STR-010",
+      "address_label": "Bldg/Lot 21",
+      "elevation_m": 1.08,
+      "ground_floor": true
     },
     {
       "id": "HH-039",
-      "street_id": "STR-006",
-      "address_label": "Bldg/Lot 52",
-      "elevation_m": 38.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 5
+      "street_id": "STR-010",
+      "address_label": "Bldg/Lot 58",
+      "elevation_m": 1.88,
+      "ground_floor": false
     },
     {
       "id": "HH-040",
-      "street_id": "STR-006",
+      "street_id": "STR-010",
+      "address_label": "Bldg/Lot 95",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-041",
+      "street_id": "STR-011",
+      "address_label": "Bldg/Lot 33",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-042",
+      "street_id": "STR-011",
+      "address_label": "Bldg/Lot 70",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-043",
+      "street_id": "STR-011",
+      "address_label": "Bldg/Lot 8",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-044",
+      "street_id": "STR-011",
+      "address_label": "Bldg/Lot 45",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-045",
+      "street_id": "STR-012",
+      "address_label": "Bldg/Lot 82",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-046",
+      "street_id": "STR-012",
+      "address_label": "Bldg/Lot 20",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-047",
+      "street_id": "STR-012",
+      "address_label": "Bldg/Lot 57",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-048",
+      "street_id": "STR-012",
+      "address_label": "Bldg/Lot 94",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-049",
+      "street_id": "STR-013",
+      "address_label": "Bldg/Lot 32",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-050",
+      "street_id": "STR-013",
+      "address_label": "Bldg/Lot 69",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-051",
+      "street_id": "STR-013",
+      "address_label": "Bldg/Lot 7",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-052",
+      "street_id": "STR-013",
+      "address_label": "Bldg/Lot 44",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-053",
+      "street_id": "STR-014",
+      "address_label": "Bldg/Lot 81",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-054",
+      "street_id": "STR-014",
+      "address_label": "Bldg/Lot 19",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-055",
+      "street_id": "STR-014",
+      "address_label": "Bldg/Lot 56",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-056",
+      "street_id": "STR-014",
+      "address_label": "Bldg/Lot 93",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-057",
+      "street_id": "STR-015",
+      "address_label": "Bldg/Lot 31",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-058",
+      "street_id": "STR-015",
+      "address_label": "Bldg/Lot 68",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-059",
+      "street_id": "STR-015",
+      "address_label": "Bldg/Lot 6",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-060",
+      "street_id": "STR-015",
+      "address_label": "Bldg/Lot 43",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-061",
+      "street_id": "STR-016",
+      "address_label": "Bldg/Lot 80",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-062",
+      "street_id": "STR-016",
+      "address_label": "Bldg/Lot 18",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-063",
+      "street_id": "STR-016",
+      "address_label": "Bldg/Lot 55",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-064",
+      "street_id": "STR-016",
+      "address_label": "Bldg/Lot 92",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-065",
+      "street_id": "STR-017",
+      "address_label": "Bldg/Lot 30",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-066",
+      "street_id": "STR-017",
+      "address_label": "Bldg/Lot 67",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-067",
+      "street_id": "STR-017",
+      "address_label": "Bldg/Lot 5",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-068",
+      "street_id": "STR-017",
+      "address_label": "Bldg/Lot 42",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-069",
+      "street_id": "STR-018",
+      "address_label": "Bldg/Lot 79",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-070",
+      "street_id": "STR-018",
+      "address_label": "Bldg/Lot 17",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-071",
+      "street_id": "STR-018",
+      "address_label": "Bldg/Lot 54",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-072",
+      "street_id": "STR-018",
+      "address_label": "Bldg/Lot 91",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-073",
+      "street_id": "STR-019",
       "address_label": "Bldg/Lot 29",
-      "elevation_m": 37.0,
-      "ground_floor": false,
-      "risk_score": 0,
-      "predicted_at_risk": false,
-      "affected_status": "unmarked",
-      "marked_at": null,
-      "risk_rank": 6
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-074",
+      "street_id": "STR-019",
+      "address_label": "Bldg/Lot 66",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-075",
+      "street_id": "STR-019",
+      "address_label": "Bldg/Lot 4",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-076",
+      "street_id": "STR-019",
+      "address_label": "Bldg/Lot 41",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-077",
+      "street_id": "STR-020",
+      "address_label": "Bldg/Lot 78",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-078",
+      "street_id": "STR-020",
+      "address_label": "Bldg/Lot 16",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-079",
+      "street_id": "STR-020",
+      "address_label": "Bldg/Lot 53",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-080",
+      "street_id": "STR-020",
+      "address_label": "Bldg/Lot 90",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-081",
+      "street_id": "STR-021",
+      "address_label": "Bldg/Lot 28",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-082",
+      "street_id": "STR-021",
+      "address_label": "Bldg/Lot 65",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-083",
+      "street_id": "STR-021",
+      "address_label": "Bldg/Lot 3",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-084",
+      "street_id": "STR-021",
+      "address_label": "Bldg/Lot 40",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-085",
+      "street_id": "STR-022",
+      "address_label": "Bldg/Lot 77",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-086",
+      "street_id": "STR-022",
+      "address_label": "Bldg/Lot 15",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-087",
+      "street_id": "STR-022",
+      "address_label": "Bldg/Lot 52",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-088",
+      "street_id": "STR-022",
+      "address_label": "Bldg/Lot 89",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-089",
+      "street_id": "STR-023",
+      "address_label": "Bldg/Lot 27",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-090",
+      "street_id": "STR-023",
+      "address_label": "Bldg/Lot 64",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-091",
+      "street_id": "STR-023",
+      "address_label": "Bldg/Lot 2",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-092",
+      "street_id": "STR-023",
+      "address_label": "Bldg/Lot 39",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-093",
+      "street_id": "STR-024",
+      "address_label": "Bldg/Lot 76",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-094",
+      "street_id": "STR-024",
+      "address_label": "Bldg/Lot 14",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-095",
+      "street_id": "STR-024",
+      "address_label": "Bldg/Lot 51",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-096",
+      "street_id": "STR-024",
+      "address_label": "Bldg/Lot 88",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-097",
+      "street_id": "STR-025",
+      "address_label": "Bldg/Lot 26",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-098",
+      "street_id": "STR-025",
+      "address_label": "Bldg/Lot 63",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-099",
+      "street_id": "STR-025",
+      "address_label": "Bldg/Lot 1",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-100",
+      "street_id": "STR-025",
+      "address_label": "Bldg/Lot 38",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-101",
+      "street_id": "STR-026",
+      "address_label": "Bldg/Lot 75",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-102",
+      "street_id": "STR-026",
+      "address_label": "Bldg/Lot 13",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-103",
+      "street_id": "STR-026",
+      "address_label": "Bldg/Lot 50",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-104",
+      "street_id": "STR-026",
+      "address_label": "Bldg/Lot 87",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-105",
+      "street_id": "STR-027",
+      "address_label": "Bldg/Lot 25",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-106",
+      "street_id": "STR-027",
+      "address_label": "Bldg/Lot 62",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-107",
+      "street_id": "STR-027",
+      "address_label": "Bldg/Lot 99",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-108",
+      "street_id": "STR-027",
+      "address_label": "Bldg/Lot 37",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-109",
+      "street_id": "STR-028",
+      "address_label": "Bldg/Lot 74",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-110",
+      "street_id": "STR-028",
+      "address_label": "Bldg/Lot 12",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-111",
+      "street_id": "STR-028",
+      "address_label": "Bldg/Lot 49",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-112",
+      "street_id": "STR-028",
+      "address_label": "Bldg/Lot 86",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-113",
+      "street_id": "STR-029",
+      "address_label": "Bldg/Lot 24",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-114",
+      "street_id": "STR-029",
+      "address_label": "Bldg/Lot 61",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-115",
+      "street_id": "STR-029",
+      "address_label": "Bldg/Lot 98",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-116",
+      "street_id": "STR-029",
+      "address_label": "Bldg/Lot 36",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-117",
+      "street_id": "STR-030",
+      "address_label": "Bldg/Lot 73",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-118",
+      "street_id": "STR-030",
+      "address_label": "Bldg/Lot 11",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-119",
+      "street_id": "STR-030",
+      "address_label": "Bldg/Lot 48",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-120",
+      "street_id": "STR-030",
+      "address_label": "Bldg/Lot 85",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-121",
+      "street_id": "STR-031",
+      "address_label": "Bldg/Lot 23",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-122",
+      "street_id": "STR-031",
+      "address_label": "Bldg/Lot 60",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-123",
+      "street_id": "STR-031",
+      "address_label": "Bldg/Lot 97",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-124",
+      "street_id": "STR-031",
+      "address_label": "Bldg/Lot 35",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-125",
+      "street_id": "STR-032",
+      "address_label": "Bldg/Lot 72",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-126",
+      "street_id": "STR-032",
+      "address_label": "Bldg/Lot 10",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-127",
+      "street_id": "STR-032",
+      "address_label": "Bldg/Lot 47",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-128",
+      "street_id": "STR-032",
+      "address_label": "Bldg/Lot 84",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-129",
+      "street_id": "STR-033",
+      "address_label": "Bldg/Lot 22",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-130",
+      "street_id": "STR-033",
+      "address_label": "Bldg/Lot 59",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-131",
+      "street_id": "STR-033",
+      "address_label": "Bldg/Lot 96",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-132",
+      "street_id": "STR-033",
+      "address_label": "Bldg/Lot 34",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-133",
+      "street_id": "STR-034",
+      "address_label": "Bldg/Lot 71",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-134",
+      "street_id": "STR-034",
+      "address_label": "Bldg/Lot 9",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-135",
+      "street_id": "STR-034",
+      "address_label": "Bldg/Lot 46",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-136",
+      "street_id": "STR-034",
+      "address_label": "Bldg/Lot 83",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-137",
+      "street_id": "STR-035",
+      "address_label": "Bldg/Lot 21",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-138",
+      "street_id": "STR-035",
+      "address_label": "Bldg/Lot 58",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-139",
+      "street_id": "STR-035",
+      "address_label": "Bldg/Lot 95",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-140",
+      "street_id": "STR-035",
+      "address_label": "Bldg/Lot 33",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-141",
+      "street_id": "STR-036",
+      "address_label": "Bldg/Lot 70",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-142",
+      "street_id": "STR-036",
+      "address_label": "Bldg/Lot 8",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-143",
+      "street_id": "STR-036",
+      "address_label": "Bldg/Lot 45",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-144",
+      "street_id": "STR-036",
+      "address_label": "Bldg/Lot 82",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-145",
+      "street_id": "STR-037",
+      "address_label": "Bldg/Lot 20",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-146",
+      "street_id": "STR-037",
+      "address_label": "Bldg/Lot 57",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-147",
+      "street_id": "STR-037",
+      "address_label": "Bldg/Lot 94",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-148",
+      "street_id": "STR-037",
+      "address_label": "Bldg/Lot 32",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-149",
+      "street_id": "STR-038",
+      "address_label": "Bldg/Lot 69",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-150",
+      "street_id": "STR-038",
+      "address_label": "Bldg/Lot 7",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-151",
+      "street_id": "STR-038",
+      "address_label": "Bldg/Lot 44",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-152",
+      "street_id": "STR-038",
+      "address_label": "Bldg/Lot 81",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-153",
+      "street_id": "STR-039",
+      "address_label": "Bldg/Lot 19",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-154",
+      "street_id": "STR-039",
+      "address_label": "Bldg/Lot 56",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-155",
+      "street_id": "STR-039",
+      "address_label": "Bldg/Lot 93",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-156",
+      "street_id": "STR-039",
+      "address_label": "Bldg/Lot 31",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-157",
+      "street_id": "STR-040",
+      "address_label": "Bldg/Lot 68",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-158",
+      "street_id": "STR-040",
+      "address_label": "Bldg/Lot 6",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-159",
+      "street_id": "STR-040",
+      "address_label": "Bldg/Lot 43",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-160",
+      "street_id": "STR-040",
+      "address_label": "Bldg/Lot 80",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-161",
+      "street_id": "STR-041",
+      "address_label": "Bldg/Lot 18",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-162",
+      "street_id": "STR-041",
+      "address_label": "Bldg/Lot 55",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-163",
+      "street_id": "STR-041",
+      "address_label": "Bldg/Lot 92",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-164",
+      "street_id": "STR-041",
+      "address_label": "Bldg/Lot 30",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-165",
+      "street_id": "STR-042",
+      "address_label": "Bldg/Lot 67",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-166",
+      "street_id": "STR-042",
+      "address_label": "Bldg/Lot 5",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-167",
+      "street_id": "STR-042",
+      "address_label": "Bldg/Lot 42",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-168",
+      "street_id": "STR-042",
+      "address_label": "Bldg/Lot 79",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-169",
+      "street_id": "STR-043",
+      "address_label": "Bldg/Lot 17",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-170",
+      "street_id": "STR-043",
+      "address_label": "Bldg/Lot 54",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-171",
+      "street_id": "STR-043",
+      "address_label": "Bldg/Lot 91",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-172",
+      "street_id": "STR-043",
+      "address_label": "Bldg/Lot 29",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-173",
+      "street_id": "STR-044",
+      "address_label": "Bldg/Lot 66",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-174",
+      "street_id": "STR-044",
+      "address_label": "Bldg/Lot 4",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-175",
+      "street_id": "STR-044",
+      "address_label": "Bldg/Lot 41",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-176",
+      "street_id": "STR-044",
+      "address_label": "Bldg/Lot 78",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-177",
+      "street_id": "STR-045",
+      "address_label": "Bldg/Lot 16",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-178",
+      "street_id": "STR-045",
+      "address_label": "Bldg/Lot 53",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-179",
+      "street_id": "STR-045",
+      "address_label": "Bldg/Lot 90",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-180",
+      "street_id": "STR-045",
+      "address_label": "Bldg/Lot 28",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-181",
+      "street_id": "STR-046",
+      "address_label": "Bldg/Lot 65",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-182",
+      "street_id": "STR-046",
+      "address_label": "Bldg/Lot 3",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-183",
+      "street_id": "STR-046",
+      "address_label": "Bldg/Lot 40",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-184",
+      "street_id": "STR-046",
+      "address_label": "Bldg/Lot 77",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-185",
+      "street_id": "STR-047",
+      "address_label": "Bldg/Lot 15",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-186",
+      "street_id": "STR-047",
+      "address_label": "Bldg/Lot 52",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-187",
+      "street_id": "STR-047",
+      "address_label": "Bldg/Lot 89",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-188",
+      "street_id": "STR-047",
+      "address_label": "Bldg/Lot 27",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-189",
+      "street_id": "STR-048",
+      "address_label": "Bldg/Lot 64",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-190",
+      "street_id": "STR-048",
+      "address_label": "Bldg/Lot 2",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-191",
+      "street_id": "STR-048",
+      "address_label": "Bldg/Lot 39",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-192",
+      "street_id": "STR-048",
+      "address_label": "Bldg/Lot 76",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-193",
+      "street_id": "STR-049",
+      "address_label": "Bldg/Lot 14",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-194",
+      "street_id": "STR-049",
+      "address_label": "Bldg/Lot 51",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-195",
+      "street_id": "STR-049",
+      "address_label": "Bldg/Lot 88",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-196",
+      "street_id": "STR-049",
+      "address_label": "Bldg/Lot 26",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-197",
+      "street_id": "STR-050",
+      "address_label": "Bldg/Lot 63",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-198",
+      "street_id": "STR-050",
+      "address_label": "Bldg/Lot 1",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-199",
+      "street_id": "STR-050",
+      "address_label": "Bldg/Lot 38",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-200",
+      "street_id": "STR-050",
+      "address_label": "Bldg/Lot 75",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-201",
+      "street_id": "STR-051",
+      "address_label": "Bldg/Lot 13",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-202",
+      "street_id": "STR-051",
+      "address_label": "Bldg/Lot 50",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-203",
+      "street_id": "STR-051",
+      "address_label": "Bldg/Lot 87",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-204",
+      "street_id": "STR-051",
+      "address_label": "Bldg/Lot 25",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-205",
+      "street_id": "STR-052",
+      "address_label": "Bldg/Lot 62",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-206",
+      "street_id": "STR-052",
+      "address_label": "Bldg/Lot 99",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-207",
+      "street_id": "STR-052",
+      "address_label": "Bldg/Lot 37",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-208",
+      "street_id": "STR-052",
+      "address_label": "Bldg/Lot 74",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-209",
+      "street_id": "STR-053",
+      "address_label": "Bldg/Lot 12",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-210",
+      "street_id": "STR-053",
+      "address_label": "Bldg/Lot 49",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-211",
+      "street_id": "STR-053",
+      "address_label": "Bldg/Lot 86",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-212",
+      "street_id": "STR-053",
+      "address_label": "Bldg/Lot 24",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-213",
+      "street_id": "STR-054",
+      "address_label": "Bldg/Lot 61",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-214",
+      "street_id": "STR-054",
+      "address_label": "Bldg/Lot 98",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-215",
+      "street_id": "STR-054",
+      "address_label": "Bldg/Lot 36",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-216",
+      "street_id": "STR-054",
+      "address_label": "Bldg/Lot 73",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-217",
+      "street_id": "STR-055",
+      "address_label": "Bldg/Lot 11",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-218",
+      "street_id": "STR-055",
+      "address_label": "Bldg/Lot 48",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-219",
+      "street_id": "STR-055",
+      "address_label": "Bldg/Lot 85",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-220",
+      "street_id": "STR-055",
+      "address_label": "Bldg/Lot 23",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-221",
+      "street_id": "STR-056",
+      "address_label": "Bldg/Lot 60",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-222",
+      "street_id": "STR-056",
+      "address_label": "Bldg/Lot 97",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-223",
+      "street_id": "STR-056",
+      "address_label": "Bldg/Lot 35",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-224",
+      "street_id": "STR-056",
+      "address_label": "Bldg/Lot 72",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-225",
+      "street_id": "STR-057",
+      "address_label": "Bldg/Lot 10",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-226",
+      "street_id": "STR-057",
+      "address_label": "Bldg/Lot 47",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-227",
+      "street_id": "STR-057",
+      "address_label": "Bldg/Lot 84",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-228",
+      "street_id": "STR-057",
+      "address_label": "Bldg/Lot 22",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-229",
+      "street_id": "STR-058",
+      "address_label": "Bldg/Lot 59",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-230",
+      "street_id": "STR-058",
+      "address_label": "Bldg/Lot 96",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-231",
+      "street_id": "STR-058",
+      "address_label": "Bldg/Lot 34",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-232",
+      "street_id": "STR-058",
+      "address_label": "Bldg/Lot 71",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-233",
+      "street_id": "STR-059",
+      "address_label": "Bldg/Lot 9",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-234",
+      "street_id": "STR-059",
+      "address_label": "Bldg/Lot 46",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-235",
+      "street_id": "STR-059",
+      "address_label": "Bldg/Lot 83",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-236",
+      "street_id": "STR-059",
+      "address_label": "Bldg/Lot 21",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-237",
+      "street_id": "STR-060",
+      "address_label": "Bldg/Lot 58",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-238",
+      "street_id": "STR-060",
+      "address_label": "Bldg/Lot 95",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-239",
+      "street_id": "STR-060",
+      "address_label": "Bldg/Lot 33",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-240",
+      "street_id": "STR-060",
+      "address_label": "Bldg/Lot 70",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-241",
+      "street_id": "STR-061",
+      "address_label": "Bldg/Lot 8",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-242",
+      "street_id": "STR-061",
+      "address_label": "Bldg/Lot 45",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-243",
+      "street_id": "STR-061",
+      "address_label": "Bldg/Lot 82",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-244",
+      "street_id": "STR-061",
+      "address_label": "Bldg/Lot 20",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-245",
+      "street_id": "STR-062",
+      "address_label": "Bldg/Lot 57",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-246",
+      "street_id": "STR-062",
+      "address_label": "Bldg/Lot 94",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-247",
+      "street_id": "STR-062",
+      "address_label": "Bldg/Lot 32",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-248",
+      "street_id": "STR-062",
+      "address_label": "Bldg/Lot 69",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-249",
+      "street_id": "STR-063",
+      "address_label": "Bldg/Lot 7",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-250",
+      "street_id": "STR-063",
+      "address_label": "Bldg/Lot 44",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-251",
+      "street_id": "STR-063",
+      "address_label": "Bldg/Lot 81",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-252",
+      "street_id": "STR-063",
+      "address_label": "Bldg/Lot 19",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-253",
+      "street_id": "STR-064",
+      "address_label": "Bldg/Lot 56",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-254",
+      "street_id": "STR-064",
+      "address_label": "Bldg/Lot 93",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-255",
+      "street_id": "STR-064",
+      "address_label": "Bldg/Lot 31",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-256",
+      "street_id": "STR-064",
+      "address_label": "Bldg/Lot 68",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-257",
+      "street_id": "STR-065",
+      "address_label": "Bldg/Lot 6",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-258",
+      "street_id": "STR-065",
+      "address_label": "Bldg/Lot 43",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-259",
+      "street_id": "STR-065",
+      "address_label": "Bldg/Lot 80",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-260",
+      "street_id": "STR-065",
+      "address_label": "Bldg/Lot 18",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-261",
+      "street_id": "STR-066",
+      "address_label": "Bldg/Lot 55",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-262",
+      "street_id": "STR-066",
+      "address_label": "Bldg/Lot 92",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-263",
+      "street_id": "STR-066",
+      "address_label": "Bldg/Lot 30",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-264",
+      "street_id": "STR-066",
+      "address_label": "Bldg/Lot 67",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-265",
+      "street_id": "STR-067",
+      "address_label": "Bldg/Lot 5",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-266",
+      "street_id": "STR-067",
+      "address_label": "Bldg/Lot 42",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-267",
+      "street_id": "STR-067",
+      "address_label": "Bldg/Lot 79",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-268",
+      "street_id": "STR-067",
+      "address_label": "Bldg/Lot 17",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-269",
+      "street_id": "STR-068",
+      "address_label": "Bldg/Lot 54",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-270",
+      "street_id": "STR-068",
+      "address_label": "Bldg/Lot 91",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-271",
+      "street_id": "STR-068",
+      "address_label": "Bldg/Lot 29",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-272",
+      "street_id": "STR-068",
+      "address_label": "Bldg/Lot 66",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-273",
+      "street_id": "STR-069",
+      "address_label": "Bldg/Lot 4",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-274",
+      "street_id": "STR-069",
+      "address_label": "Bldg/Lot 41",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-275",
+      "street_id": "STR-069",
+      "address_label": "Bldg/Lot 78",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-276",
+      "street_id": "STR-069",
+      "address_label": "Bldg/Lot 16",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-277",
+      "street_id": "STR-070",
+      "address_label": "Bldg/Lot 53",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-278",
+      "street_id": "STR-070",
+      "address_label": "Bldg/Lot 90",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-279",
+      "street_id": "STR-070",
+      "address_label": "Bldg/Lot 28",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-280",
+      "street_id": "STR-070",
+      "address_label": "Bldg/Lot 65",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-281",
+      "street_id": "STR-071",
+      "address_label": "Bldg/Lot 3",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-282",
+      "street_id": "STR-071",
+      "address_label": "Bldg/Lot 40",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-283",
+      "street_id": "STR-071",
+      "address_label": "Bldg/Lot 77",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-284",
+      "street_id": "STR-071",
+      "address_label": "Bldg/Lot 15",
+      "elevation_m": 2.6,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-285",
+      "street_id": "STR-072",
+      "address_label": "Bldg/Lot 52",
+      "elevation_m": 0.34,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-286",
+      "street_id": "STR-072",
+      "address_label": "Bldg/Lot 89",
+      "elevation_m": 1.04,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-287",
+      "street_id": "STR-072",
+      "address_label": "Bldg/Lot 27",
+      "elevation_m": 1.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-288",
+      "street_id": "STR-072",
+      "address_label": "Bldg/Lot 64",
+      "elevation_m": 2.64,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-289",
+      "street_id": "STR-073",
+      "address_label": "Bldg/Lot 2",
+      "elevation_m": 0.38,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-290",
+      "street_id": "STR-073",
+      "address_label": "Bldg/Lot 39",
+      "elevation_m": 1.08,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-291",
+      "street_id": "STR-073",
+      "address_label": "Bldg/Lot 76",
+      "elevation_m": 1.88,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-292",
+      "street_id": "STR-073",
+      "address_label": "Bldg/Lot 14",
+      "elevation_m": 2.68,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-293",
+      "street_id": "STR-074",
+      "address_label": "Bldg/Lot 51",
+      "elevation_m": 0.42,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-294",
+      "street_id": "STR-074",
+      "address_label": "Bldg/Lot 88",
+      "elevation_m": 1.12,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-295",
+      "street_id": "STR-074",
+      "address_label": "Bldg/Lot 26",
+      "elevation_m": 1.92,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-296",
+      "street_id": "STR-074",
+      "address_label": "Bldg/Lot 63",
+      "elevation_m": 2.72,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-297",
+      "street_id": "STR-075",
+      "address_label": "Bldg/Lot 1",
+      "elevation_m": 0.46,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-298",
+      "street_id": "STR-075",
+      "address_label": "Bldg/Lot 38",
+      "elevation_m": 1.16,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-299",
+      "street_id": "STR-075",
+      "address_label": "Bldg/Lot 75",
+      "elevation_m": 1.96,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-300",
+      "street_id": "STR-075",
+      "address_label": "Bldg/Lot 13",
+      "elevation_m": 2.76,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-301",
+      "street_id": "STR-076",
+      "address_label": "Bldg/Lot 50",
+      "elevation_m": 0.5,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-302",
+      "street_id": "STR-076",
+      "address_label": "Bldg/Lot 87",
+      "elevation_m": 1.2,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-303",
+      "street_id": "STR-076",
+      "address_label": "Bldg/Lot 25",
+      "elevation_m": 2.0,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-304",
+      "street_id": "STR-076",
+      "address_label": "Bldg/Lot 62",
+      "elevation_m": 2.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-305",
+      "street_id": "STR-077",
+      "address_label": "Bldg/Lot 99",
+      "elevation_m": 0.54,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-306",
+      "street_id": "STR-077",
+      "address_label": "Bldg/Lot 37",
+      "elevation_m": 1.24,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-307",
+      "street_id": "STR-077",
+      "address_label": "Bldg/Lot 74",
+      "elevation_m": 2.04,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-308",
+      "street_id": "STR-077",
+      "address_label": "Bldg/Lot 12",
+      "elevation_m": 2.84,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-309",
+      "street_id": "STR-078",
+      "address_label": "Bldg/Lot 49",
+      "elevation_m": 0.3,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-310",
+      "street_id": "STR-078",
+      "address_label": "Bldg/Lot 86",
+      "elevation_m": 1.0,
+      "ground_floor": true
+    },
+    {
+      "id": "HH-311",
+      "street_id": "STR-078",
+      "address_label": "Bldg/Lot 24",
+      "elevation_m": 1.8,
+      "ground_floor": false
+    },
+    {
+      "id": "HH-312",
+      "street_id": "STR-078",
+      "address_label": "Bldg/Lot 61",
+      "elevation_m": 2.6,
+      "ground_floor": false
     }
   ],
   "flood_events": [
     {
       "id": "EVT-001",
       "street_id": "STR-001",
-      "rainfall_mm_hr": 49.199999999999996,
-      "water_level_estimate_cm": 18,
-      "fused_risk_score": 100,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "EVT-002",
       "street_id": "STR-002",
-      "rainfall_mm_hr": 37.2,
-      "water_level_estimate_cm": 18,
-      "fused_risk_score": 100,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "EVT-003",
       "street_id": "STR-003",
-      "rainfall_mm_hr": 27.599999999999998,
-      "water_level_estimate_cm": 18,
-      "fused_risk_score": 94,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "EVT-004",
       "street_id": "STR-004",
-      "rainfall_mm_hr": 22.799999999999997,
-      "water_level_estimate_cm": 18,
-      "fused_risk_score": 81,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "EVT-005",
       "street_id": "STR-005",
-      "rainfall_mm_hr": 13.200000000000001,
-      "water_level_estimate_cm": null,
-      "fused_risk_score": 53,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "rainfall_mm_hr": 22.0,
+      "water_level_estimate_cm": 21,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     },
     {
       "id": "EVT-006",
       "street_id": "STR-006",
-      "rainfall_mm_hr": 2.4000000000000004,
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-007",
+      "street_id": "STR-007",
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-008",
+      "street_id": "STR-008",
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-009",
+      "street_id": "STR-009",
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-010",
+      "street_id": "STR-010",
+      "rainfall_mm_hr": 12.0,
+      "water_level_estimate_cm": 10,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-011",
+      "street_id": "STR-011",
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-012",
+      "street_id": "STR-012",
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-013",
+      "street_id": "STR-013",
+      "rainfall_mm_hr": 8.0,
+      "water_level_estimate_cm": 8,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-014",
+      "street_id": "STR-014",
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-015",
+      "street_id": "STR-015",
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-016",
+      "street_id": "STR-016",
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-017",
+      "street_id": "STR-017",
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-018",
+      "street_id": "STR-018",
+      "rainfall_mm_hr": 18.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-019",
+      "street_id": "STR-019",
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-020",
+      "street_id": "STR-020",
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-021",
+      "street_id": "STR-021",
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-022",
+      "street_id": "STR-022",
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-023",
+      "street_id": "STR-023",
+      "rainfall_mm_hr": 16.0,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-024",
+      "street_id": "STR-024",
+      "rainfall_mm_hr": 3.0,
       "water_level_estimate_cm": null,
-      "fused_risk_score": 10,
-      "recorded_at": "2026-09-09T14:24:25+08:00"
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-025",
+      "street_id": "STR-025",
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-026",
+      "street_id": "STR-026",
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-027",
+      "street_id": "STR-027",
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-028",
+      "street_id": "STR-028",
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-029",
+      "street_id": "STR-029",
+      "rainfall_mm_hr": 6.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-030",
+      "street_id": "STR-030",
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-031",
+      "street_id": "STR-031",
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-032",
+      "street_id": "STR-032",
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-033",
+      "street_id": "STR-033",
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-034",
+      "street_id": "STR-034",
+      "rainfall_mm_hr": 2.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-035",
+      "street_id": "STR-035",
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-036",
+      "street_id": "STR-036",
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-037",
+      "street_id": "STR-037",
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-038",
+      "street_id": "STR-038",
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-039",
+      "street_id": "STR-039",
+      "rainfall_mm_hr": 16.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-040",
+      "street_id": "STR-040",
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-041",
+      "street_id": "STR-041",
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-042",
+      "street_id": "STR-042",
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-043",
+      "street_id": "STR-043",
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-044",
+      "street_id": "STR-044",
+      "rainfall_mm_hr": 17.5,
+      "water_level_estimate_cm": 18,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-045",
+      "street_id": "STR-045",
+      "rainfall_mm_hr": 19.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-046",
+      "street_id": "STR-046",
+      "rainfall_mm_hr": 19.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-047",
+      "street_id": "STR-047",
+      "rainfall_mm_hr": 19.0,
+      "water_level_estimate_cm": 19,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-048",
+      "street_id": "STR-048",
+      "rainfall_mm_hr": 9.0,
+      "water_level_estimate_cm": 8,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-049",
+      "street_id": "STR-049",
+      "rainfall_mm_hr": 9.0,
+      "water_level_estimate_cm": 8,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-050",
+      "street_id": "STR-050",
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-051",
+      "street_id": "STR-051",
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-052",
+      "street_id": "STR-052",
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-053",
+      "street_id": "STR-053",
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-054",
+      "street_id": "STR-054",
+      "rainfall_mm_hr": 5.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-055",
+      "street_id": "STR-055",
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-056",
+      "street_id": "STR-056",
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-057",
+      "street_id": "STR-057",
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-058",
+      "street_id": "STR-058",
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-059",
+      "street_id": "STR-059",
+      "rainfall_mm_hr": 7.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-060",
+      "street_id": "STR-060",
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-061",
+      "street_id": "STR-061",
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-062",
+      "street_id": "STR-062",
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-063",
+      "street_id": "STR-063",
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-064",
+      "street_id": "STR-064",
+      "rainfall_mm_hr": 10.0,
+      "water_level_estimate_cm": 9,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-065",
+      "street_id": "STR-065",
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-066",
+      "street_id": "STR-066",
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-067",
+      "street_id": "STR-067",
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-068",
+      "street_id": "STR-068",
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-069",
+      "street_id": "STR-069",
+      "rainfall_mm_hr": 4.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-070",
+      "street_id": "STR-070",
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-071",
+      "street_id": "STR-071",
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-072",
+      "street_id": "STR-072",
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-073",
+      "street_id": "STR-073",
+      "rainfall_mm_hr": 2.0,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-074",
+      "street_id": "STR-074",
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-075",
+      "street_id": "STR-075",
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-076",
+      "street_id": "STR-076",
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-077",
+      "street_id": "STR-077",
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
+    },
+    {
+      "id": "EVT-078",
+      "street_id": "STR-078",
+      "rainfall_mm_hr": 1.5,
+      "water_level_estimate_cm": null,
+      "recorded_at": "2026-09-09T08:00:00+08:00"
     }
   ]
 }

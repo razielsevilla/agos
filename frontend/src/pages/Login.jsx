@@ -49,7 +49,7 @@ export default function Login() {
             onChange={(e) => setMunicipalCode(e.target.value)}
             autoFocus
             required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)', outline: 'none' }}
+            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)' }}
           />
         </div>
 
@@ -62,7 +62,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)', outline: 'none' }}
+            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)' }}
           />
         </div>
 
@@ -79,13 +79,8 @@ export default function Login() {
         <button
           type="submit"
           disabled={submitting}
-          className="transition-all"
-          style={{
-            width: '100%', backgroundColor: 'var(--primary)', color: 'white',
-            padding: '0.75rem', borderRadius: '0.5rem', fontWeight: 600,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-            opacity: submitting ? 0.7 : 1,
-          }}
+          className="btn-solid"
+          style={{ width: '100%' }}
         >
           <Lock size={16} /> {submitting ? 'Signing in…' : 'Sign In'}
         </button>
