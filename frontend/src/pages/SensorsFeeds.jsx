@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api';
-import { MapPin, VideoOff, AlertCircle, Activity } from 'lucide-react';
+import { MapPin, AlertCircle, Activity } from 'lucide-react';
 import CalibratedVideo from '../components/CalibratedVideo';
 import { CV_CALIBRATION } from '../cvCalibration';
 
 const VIDEO_BASE_URL = 'http://localhost:8000/videos';
+
+// Only 3 real clips exist for many more streets — cycled here as demo filler
+// (flood_1 -> flood_2 -> flood_3 -> flood_1...) for streets with no
+// specifically-matched camera (street.video_filename is null for those; see
+// cv/README.md for which streets have a real, calibrated match instead).
+const DEMO_CYCLE_VIDEOS = ['flood_1.mp4', 'flood_2.mp4', 'flood_3.mp4'];
 
 export default function SensorsFeeds() {
   const [streets, setStreets] = useState([]);
@@ -21,9 +27,9 @@ export default function SensorsFeeds() {
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
-        {streets.map((street) => {
-          const hasFeed = Boolean(street.video_filename);
-          const videoSrc = hasFeed ? `${VIDEO_BASE_URL}/${street.video_filename}` : null;
+        {streets.map((street, index) => {
+          const videoFilename = street.video_filename || DEMO_CYCLE_VIDEOS[index % DEMO_CYCLE_VIDEOS.length];
+          const videoSrc = `${VIDEO_BASE_URL}/${videoFilename}`;
           const hasReading = typeof street.water_level_estimate_cm === 'number';
           const isElevatedReading = hasReading && street.water_level_estimate_cm > 0;
 
@@ -39,25 +45,18 @@ export default function SensorsFeeds() {
               justifyContent: 'center',
               borderBottom: '1px solid var(--border)'
             }}>
-              {hasFeed ? (
-                <CalibratedVideo
-                  src={videoSrc}
-                  calibration={CV_CALIBRATION[street.video_filename]}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
-              ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', color: '#64748b' }}>
-                  <VideoOff size={28} />
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>No camera feed configured</span>
-                </div>
-              )}
+              <CalibratedVideo
+                src={videoSrc}
+                calibration={CV_CALIBRATION[videoFilename]}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
 
               {/* Overlay elements */}
               <div style={{ position: 'absolute', top: '1rem', left: '1rem', display: 'flex', gap: '0.5rem' }}>
-                {hasFeed && <span className="badge danger" style={{ backgroundColor: 'rgba(220, 38, 38, 0.9)', color: 'white', border: 'none' }}>REC</span>}
+                <span className="badge danger" style={{ backgroundColor: 'rgba(220, 38, 38, 0.9)', color: 'white', border: 'none' }}>REC</span>
               </div>
             </div>
 

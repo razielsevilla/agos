@@ -17,6 +17,8 @@ export default function CalibratedVideo({ src, calibration, ...videoProps }) {
     width: calibration?.videoWidth ?? 0,
     height: calibration?.videoHeight ?? 0,
   });
+  const [hasEnteredView, setHasEnteredView] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -28,6 +30,35 @@ export default function CalibratedVideo({ src, calibration, ...videoProps }) {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Only fetches/decodes video once its card is actually near the viewport,
+  // and pauses (without dropping the loaded data) once it scrolls back out —
+  // with dozens of cards on screen this is the difference between all of
+  // them streaming simultaneously and only the visible handful doing any
+  // work (same approach as components/LazyVideo.jsx).
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) setHasEnteredView(true);
+      },
+      { rootMargin: '150px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !hasEnteredView) return;
+    if (isVisible) {
+      v.play?.().catch(() => {}); // autoplay can be rejected before user interaction; harmless
+    } else {
+      v.pause?.();
+    }
+  }, [isVisible, hasEnteredView]);
 
   const handleLoadedMetadata = () => {
     const v = videoRef.current;
@@ -46,7 +77,8 @@ export default function CalibratedVideo({ src, calibration, ...videoProps }) {
     <div ref={containerRef} style={{ position: 'absolute', inset: 0 }}>
       <video
         ref={videoRef}
-        src={src}
+        src={hasEnteredView ? src : undefined}
+        preload="none"
         onLoadedMetadata={handleLoadedMetadata}
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         {...videoProps}
