@@ -1,4 +1,4 @@
-﻿# models.py — SQLAlchemy ORM models matching docs/data-model.md
+# models.py — SQLAlchemy ORM models matching docs/data-model.md
 from sqlalchemy import Boolean, Column, Float, Integer, String
 from database import Base
 
@@ -11,6 +11,8 @@ class Street(Base):
     barangay = Column(String, nullable=False)
     camera_label = Column(String, nullable=False)
     reference_object = Column(String, nullable=False)
+    latitude = Column(Float, nullable=False)
+    longitude = Column(Float, nullable=False)
     status = Column(String, nullable=False)          # "normal" | "watch" | "flagged"
     risk_score = Column(Float, nullable=False)
     water_level_estimate_cm = Column(Float, nullable=True)

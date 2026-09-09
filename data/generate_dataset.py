@@ -57,9 +57,9 @@ def main():
         osm_streets = [w for w in ways if 'tags' in w and 'highway' in w['tags'] and 'name' in w['tags']]
         osm_buildings = [w for w in ways if 'tags' in w and 'building' in w['tags']]
         
-        # Select 3 distinct streets
-        selected_osm_streets = osm_streets[:3]
-        if len(selected_osm_streets) < 3:
+        # Select 6 distinct streets
+        selected_osm_streets = osm_streets[:6]
+        if len(selected_osm_streets) < 6:
              print("Warning: Not enough streets found in OSM, using fallbacks.")
     else:
         selected_osm_streets = []
@@ -67,10 +67,13 @@ def main():
         print("Warning: OSM fetch failed or empty, using entirely synthetic fallback.")
 
     # Fallback names if OSM fails or doesn't have enough data
-    fallback_street_names = ["Purok 3, Brgy. Banay-Banay", "Purok 7, Brgy. Sala", "Purok 1, Brgy. Marinig"]
+    fallback_street_names = [
+        "Purok 3, Brgy. Banay-Banay", "Purok 7, Brgy. Sala", "Purok 1, Brgy. Marinig",
+        "Purok 4, Brgy. Pittland", "Purok 2, Brgy. Gulod", "Purok 5, Brgy. Mamatid"
+    ]
     
     # Pre-fetch real elevations for buildings
-    selected_osm_buildings = osm_buildings[:30] # Limit to 30 to not overload the API and keep it fast
+    selected_osm_buildings = osm_buildings[:60] # Limit to 60 to not overload the API and keep it fast
     building_locations = []
     for b in selected_osm_buildings:
         if 'center' in b and 'lat' in b['center'] and 'lon' in b['center']:
@@ -95,7 +98,7 @@ def main():
     # Fallback to random if API fails
     if not real_elevations:
         print("Using synthetic fallback elevations.")
-        real_elevations = [random.uniform(0.2, 3.0) for _ in range(30)]
+        real_elevations = [random.uniform(0.2, 3.0) for _ in range(60)]
 
     # Fetch historical real rainfall data for Typhoon Carina (July 2024)
     print("Fetching historical rainfall data (Typhoon Carina) from Open-Meteo...")
@@ -110,19 +113,35 @@ def main():
                 # Open-Meteo is a global model and averages over large grids, underestimating local peaks.
                 # We extract real relative intensities but scale them to match local rain gauge equivalent peaks.
                 peaks = sorted(list(set(precip_data)), reverse=True)
-                carina_rainfall = [peaks[0] * 12, peaks[len(peaks)//4] * 12, peaks[-2] * 12] # Scale by 12x for local intensity
+                carina_rainfall = [
+                    peaks[0] * 12, 
+                    peaks[len(peaks)//6] * 12, 
+                    peaks[2*len(peaks)//6] * 12,
+                    peaks[3*len(peaks)//6] * 12,
+                    peaks[4*len(peaks)//6] * 12,
+                    peaks[-2] * 12
+                ]
     except Exception as e:
         print(f"Error fetching historical rainfall: {e}")
 
-    if not carina_rainfall or len(carina_rainfall) < 3:
-        carina_rainfall = [20.0, 10.0, 4.0]
+    if not carina_rainfall or len(carina_rainfall) < 6:
+        carina_rainfall = [20.0, 15.0, 10.0, 8.0, 4.0, 2.0]
 
-    # We want exactly 3 streets
-    for i in range(3):
+    # We want exactly 6 streets
+    for i in range(6):
         street_id = f"STR-{i+1:03d}"
+        
+        lat = 14.2764 + random.uniform(-0.01, 0.01)
+        lng = 121.1235 + random.uniform(-0.01, 0.01)
+        
+        # Extract the specific barangay name from our fallback list
+        fallback_brgy = fallback_street_names[i].split("Brgy. ")[1] if "Brgy. " in fallback_street_names[i] else "Cabuyao Area"
         
         if i < len(selected_osm_streets):
             name = selected_osm_streets[i]['tags'].get('name', fallback_street_names[i])
+            if 'center' in selected_osm_streets[i]:
+                lat = selected_osm_streets[i]['center']['lat']
+                lng = selected_osm_streets[i]['center']['lon']
         else:
             name = fallback_street_names[i]
             
@@ -132,9 +151,11 @@ def main():
         streets.append({
             "id": street_id,
             "name": name,
-            "barangay": "Cabuyao Area",
+            "barangay": fallback_brgy,
             "camera_label": f"{name} Cam",
             "reference_object": "Street-side structure, 0.5m markings",
+            "latitude": lat,
+            "longitude": lng,
             "status": status,
             "risk_score": round(risk_score),
             "water_level_estimate_cm": 18 if status == "flagged" else None,

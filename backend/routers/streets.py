@@ -1,4 +1,4 @@
-﻿# routers/streets.py — GET /streets and GET /streets/{street_id} (AGOS-011)
+# routers/streets.py — GET /streets and GET /streets/{street_id} (AGOS-011)
 from datetime import datetime, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -13,6 +13,8 @@ def _street_summary(s: Street) -> dict:
         "id": s.id,
         "name": s.name,
         "barangay": s.barangay,
+        "latitude": s.latitude,
+        "longitude": s.longitude,
         "status": s.status,
         "risk_score": s.risk_score,
         "last_updated": s.last_updated,
@@ -24,6 +26,8 @@ def _street_detail(s: Street) -> dict:
         "id": s.id,
         "name": s.name,
         "barangay": s.barangay,
+        "latitude": s.latitude,
+        "longitude": s.longitude,
         "camera_label": s.camera_label,
         "reference_object": s.reference_object,
         "status": s.status,

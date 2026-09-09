@@ -29,6 +29,8 @@ def load_seed(db: Session) -> None:
             barangay=s["barangay"],
             camera_label=s["camera_label"],
             reference_object=s["reference_object"],
+            latitude=s["latitude"],
+            longitude=s["longitude"],
             status=s["status"],
             risk_score=s["risk_score"],
             water_level_estimate_cm=s.get("water_level_estimate_cm"),

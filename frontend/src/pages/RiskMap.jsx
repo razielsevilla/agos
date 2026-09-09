@@ -46,22 +46,18 @@ export default function RiskMap() {
           />
           
           {streets.map(street => {
-            // Very rough mock coordinates for demonstration near Cabuyao
-            // In a real app, 'street' object would have precise lat/lng
-            const lat = centerPosition[0] + (Math.random() * 0.02 - 0.01);
-            const lng = centerPosition[1] + (Math.random() * 0.02 - 0.01);
             const isCritical = street.status === 'flagged';
             
             return (
               <div key={street.id}>
-                <Marker position={[lat, lng]}>
+                <Marker position={[street.latitude, street.longitude]}>
                   <Popup>
                     <div style={{ fontWeight: 600 }}>{street.name}</div>
                     <div style={{ color: '#64748b' }}>Risk Score: {street.risk_score}</div>
                   </Popup>
                 </Marker>
                 <Circle 
-                  center={[lat, lng]} 
+                  center={[street.latitude, street.longitude]} 
                   radius={isCritical ? 400 : 200}
                   pathOptions={{
                     color: isCritical ? '#dc2626' : '#1e40af',
