@@ -1,9 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../api';
-import { ArrowLeft, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Radar, Zap, ClipboardCheck, Download, Loader2, LifeBuoy, Footprints, Clock, Eye, Bell, Siren, CheckCircle2 } from 'lucide-react';
 import HelpTip from '../components/HelpTip';
 import { priorityForScore } from '../lib/priority';
+import { downloadPdnaCsv } from '../lib/pdnaExport';
+
+// Illustrative operational status per priority tier, shown during the
+// "During Flood Response" stage — there's no real dispatch-tracking backend,
+// so this is a display-only readout derived from the same hazard score
+// already computed for the street, not separately fabricated per-street data.
+const OPERATIONAL_STATUS = {
+  critical: { label: 'Rescue Team Deployed', icon: LifeBuoy, badgeClass: 'danger' },
+  high: { label: 'Ongoing Evacuation', icon: Footprints, badgeClass: 'warning' },
+  moderate: { label: 'On Standby', icon: Clock, badgeClass: 'primary' },
+  low: { label: 'Monitoring', icon: Eye, badgeClass: 'normal' },
+};
 
 // Same three-stage concept as the (temporarily disabled) per-street household
 // view, but ranking this barangay's STREETS instead of one street's
@@ -11,9 +23,27 @@ import { priorityForScore } from '../lib/priority';
 // households, streets have no per-item "mark affected/dry" action in the
 // backend, so there's no separate mutable state to show per stage.
 const STAGES = [
-  { key: 'pre', label: 'Pre-Flood Priority List' },
-  { key: 'active', label: 'During Flood Response' },
-  { key: 'post', label: 'Post-Flood Recovery Record' },
+  {
+    key: 'pre',
+    label: 'Pre-Flood Priority List',
+    phase: 'Pre-Disaster — Early Warning & Vulnerability Ranking',
+    description: 'Rainfall input is fused with street elevation data to predict flood onset and rank at-risk areas before water levels rise.',
+    icon: Radar,
+  },
+  {
+    key: 'active',
+    label: 'During Flood Response',
+    phase: 'Mid-Disaster — Real-Time Operational Response',
+    description: 'Live hazard scores stream to this dashboard so responders can dispatch targeted alerts and log verified conditions in a single click.',
+    icon: Zap,
+  },
+  {
+    key: 'post',
+    label: 'Post-Flood Recovery Record',
+    phase: 'Post-Disaster — Closing the Loop & Recovery',
+    description: 'This ranking becomes a timestamped record the LGU can use to prioritize relief distribution and rehabilitation without running manual surveys from scratch.',
+    icon: ClipboardCheck,
+  },
 ];
 
 export default function BarangayDetail() {
@@ -22,10 +52,10 @@ export default function BarangayDetail() {
   const [streets, setStreets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [stage, setStage] = useState('pre');
-  // Mock-only: no backend endpoint for street-level notification, so this is
-  // local UI state that resets on refresh — same spirit as the "Disseminate
-  // Alert via SMS" button on the alert payload mock.
-  const [notifiedIds, setNotifiedIds] = useState(new Set());
+  const [downloadingId, setDownloadingId] = useState(null);
+  // Mock-only: no backend endpoint for escalation, local UI state that
+  // resets on refresh — same spirit as the alert payload mock elsewhere.
+  const [escalatedIds, setEscalatedIds] = useState(new Set());
 
   useEffect(() => {
     api.getStreets()
@@ -45,17 +75,31 @@ export default function BarangayDetail() {
 
   if (loading) return <div style={{ padding: '2rem' }}>Loading streets...</div>;
 
+  const currentStage = STAGES.find(s => s.key === stage);
+  const StageIcon = currentStage.icon;
+
   const stageStatusText = {
-    pre: 'Not yet monitored — this list is for planning ahead of the flood.',
     post: 'Recovery prioritization uses the same ranking, highest hazard first.',
   }[stage];
 
-  const toggleNotified = (streetId) => {
-    setNotifiedIds(prev => {
+  const toggleEscalated = (streetId) => {
+    setEscalatedIds(prev => {
       const next = new Set(prev);
       next.has(streetId) ? next.delete(streetId) : next.add(streetId);
       return next;
     });
+  };
+
+  const handleDownloadPdna = async (street) => {
+    setDownloadingId(street.id);
+    try {
+      const households = await api.getHouseholds(street.id);
+      downloadPdnaCsv(street, households);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setDownloadingId(null);
+    }
   };
 
   return (
@@ -76,7 +120,7 @@ export default function BarangayDetail() {
         </div>
       </header>
 
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
         {STAGES.map(s => (
           <button
             key={s.key}
@@ -94,6 +138,24 @@ export default function BarangayDetail() {
         ))}
       </div>
 
+      <div className="card" style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '0.875rem',
+        padding: '1.125rem 1.25rem',
+        marginBottom: '1.25rem',
+        backgroundColor: 'var(--primary-light)',
+        border: '1px solid #bfdbfe',
+      }}>
+        <div className="icon-circle" style={{ backgroundColor: 'var(--bg-surface)', width: '2.25rem', height: '2.25rem', flexShrink: 0 }}>
+          <StageIcon size={18} color="var(--primary)" />
+        </div>
+        <div>
+          <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.25rem' }}>{currentStage.phase}</div>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{currentStage.description}</p>
+        </div>
+      </div>
+
       <div className="card" style={{ overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
@@ -104,8 +166,8 @@ export default function BarangayDetail() {
                 Hazard Basis
                 <HelpTip text="Fused hazard score and priority level for this street, computed from the illustrative rainfall input." />
               </th>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', textAlign: stage === 'active' ? 'right' : 'left' }}>
-                {stage === 'active' ? 'Action' : 'Status'}
+              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', textAlign: stage === 'post' ? 'right' : 'left' }}>
+                {stage === 'active' ? 'Operational Status' : stage === 'post' ? 'PDNA Sample Report' : 'Alert Status'}
               </th>
             </tr>
           </thead>
@@ -130,34 +192,79 @@ export default function BarangayDetail() {
                     </div>
                   </td>
                   {stage === 'active' ? (
-                    <td style={{ padding: '1rem', textAlign: 'right' }}>
-                      {notifiedIds.has(street.id) ? (
-                        <span className="badge success" style={{ padding: '0.5rem 0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-                          <CheckCircle2 size={14} /> Notified
-                        </span>
-                      ) : (
-                        <button
-                          onClick={() => toggleNotified(street.id)}
-                          className="transition-all"
-                          style={{
-                            padding: '0.5rem 0.875rem',
-                            borderRadius: '0.375rem',
-                            backgroundColor: 'var(--primary)',
-                            color: 'white',
-                            fontWeight: 600,
-                            fontSize: '0.8125rem',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.375rem',
-                          }}
-                        >
-                          <Send size={14} /> Notify Barangay
-                        </button>
-                      )}
+                    <td style={{ padding: '1rem' }}>
+                      {(() => {
+                        const op = OPERATIONAL_STATUS[level.key];
+                        const OpIcon = op.icon;
+                        return (
+                          <span className={`badge ${op.badgeClass}`} style={{ padding: '0.5rem 0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+                            <OpIcon size={14} /> {op.label}
+                          </span>
+                        );
+                      })()}
                     </td>
-                  ) : (
+                  ) : stage === 'post' ? (
+                    <td style={{ padding: '1rem', textAlign: 'right' }}>
+                      <button
+                        onClick={() => handleDownloadPdna(street)}
+                        disabled={downloadingId === street.id}
+                        className="transition-all"
+                        style={{
+                          padding: '0.5rem 0.875rem',
+                          borderRadius: '0.375rem',
+                          backgroundColor: 'var(--primary)',
+                          color: 'white',
+                          fontWeight: 600,
+                          fontSize: '0.8125rem',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.375rem',
+                          opacity: downloadingId === street.id ? 0.7 : 1,
+                        }}
+                        title="Downloads a CSV: household/location/elevation fields are real; damage, needs, and relief-status fields are synthetic demo data, clearly labeled (SYNTHETIC) in every column — not a real survey result."
+                      >
+                        {downloadingId === street.id ? (
+                          <Loader2 size={14} className="spin" />
+                        ) : (
+                          <Download size={14} />
+                        )}
+                        Download PDNA Sample
+                      </button>
+                    </td>
+                  ) : stage === 'post' ? (
                     <td style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                       {stageStatusText}
+                    </td>
+                  ) : (
+                    <td style={{ padding: '1rem' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
+                        <span className="badge success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+                          <Bell size={12} /> Automated Alert Sent
+                        </span>
+                        {escalatedIds.has(street.id) ? (
+                          <span className="badge danger" style={{ padding: '0.5rem 0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+                            <CheckCircle2 size={14} /> Escalated to Rescue & Authorities
+                          </span>
+                        ) : (
+                          <button
+                            onClick={() => toggleEscalated(street.id)}
+                            className="transition-all"
+                            style={{
+                              padding: '0.5rem 0.875rem',
+                              borderRadius: '0.375rem',
+                              backgroundColor: 'var(--danger)',
+                              color: 'white',
+                              fontWeight: 600,
+                              fontSize: '0.8125rem',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.375rem',
+                            }}
+                          >
+                            <Siren size={14} /> Alert Rescue & Authorities
+                          </button>
+                        )}
+                      </div>
                     </td>
                   )}
                 </tr>
