@@ -1,7 +1,8 @@
-﻿# main.py — AGOS FastAPI application entry point (AGOS-009)
+# main.py — AGOS FastAPI application entry point (AGOS-009)
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from database import engine, SessionLocal, Base
 from models import Street, Household, FloodEvent  # ensure models are registered
@@ -38,6 +39,8 @@ app.add_middleware(
 
 app.include_router(streets.router, prefix="/api")
 app.include_router(households.router, prefix="/api")
+
+app.mount("/videos", StaticFiles(directory="../data/videos"), name="videos")
 
 
 @app.get("/api/health", tags=["health"])

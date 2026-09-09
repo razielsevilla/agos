@@ -17,11 +17,14 @@ export default function SensorsFeeds() {
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
-        {streets.map(street => (
+        {streets.map((street, index) => {
+          const videoSrc = `http://localhost:8000/videos/flood_${(index % 3) + 1}.mp4`;
+          
+          return (
           <div key={street.id} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            {/* Mock Video Player */}
+            {/* Video Dataset Player */}
             <div style={{ 
-              backgroundColor: '#0f172a', 
+              backgroundColor: '#000', 
               aspectRatio: '16/9', 
               position: 'relative',
               display: 'flex',
@@ -29,11 +32,14 @@ export default function SensorsFeeds() {
               justifyContent: 'center',
               borderBottom: '1px solid var(--border)'
             }}>
-              <div style={{ color: 'rgba(255,255,255,0.5)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-                 <Video size={32} />
-                 <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>Feed Offline / Placeholder</span>
-                 <span style={{ fontSize: '0.75rem' }}>AGOS-005 Video Dataset Target</span>
-              </div>
+              <video 
+                src={videoSrc}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
 
               {/* Overlay elements */}
               <div style={{ position: 'absolute', top: '1rem', left: '1rem', display: 'flex', gap: '0.5rem' }}>
@@ -71,7 +77,8 @@ export default function SensorsFeeds() {
               </button>
             </div>
           </div>
-        ))}
+        );
+      })}
       </div>
     </div>
   );
