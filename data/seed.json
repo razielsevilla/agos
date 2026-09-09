@@ -1,0 +1,197 @@
+﻿{
+  "_meta": {
+    "description": "AGOS illustrative/synthetic seed dataset — hackathon MVP build. Not real CDRRMO-validated data. Field values are computed from the scoring formulas in docs/data-model.md and are sized to make the closing-the-loop demo flow visible out of the box.",
+    "generated_at": "2026-09-08T00:00:00+08:00",
+    "streets": 3,
+    "households": 16,
+    "flood_events": 4
+  },
+
+  "streets": [
+    {
+      "id": "STR-001",
+      "name": "Purok 3, Brgy. Banay-Banay",
+      "barangay": "Banay-Banay",
+      "camera_label": "Banay-Banay Bridge Cam 1",
+      "reference_object": "Bridge support pillar, marked at 0.5 m intervals",
+      "status": "flagged",
+      "risk_score": 73,
+      "water_level_estimate_cm": 18,
+      "suggested_evacuation_route": "Proceed via Purok 3 Main Rd northbound to the covered court on higher ground at Brgy. Hall.",
+      "last_updated": "2026-09-07T14:32:00+08:00",
+      "_scoring_note": "rainfall 20 mm/hr → 60 + ((20-15)/15)*40 = 73"
+    },
+    {
+      "id": "STR-002",
+      "name": "Purok 7, Brgy. Sala",
+      "barangay": "Sala",
+      "camera_label": "Sala Underpass Cam 1",
+      "reference_object": "Concrete curb marker at underpass entrance, painted at 0.25 m intervals",
+      "status": "watch",
+      "risk_score": 40,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Use Sala-Parian Road eastbound to the elevated barangay covered court.",
+      "last_updated": "2026-09-07T14:32:00+08:00",
+      "_scoring_note": "rainfall 10 mm/hr → 30 + ((10-7.5)/7.4)*30 = 40"
+    },
+    {
+      "id": "STR-003",
+      "name": "Purok 1, Brgy. Marinig",
+      "barangay": "Marinig",
+      "camera_label": "Marinig Road Cam 1",
+      "reference_object": "Roadside flood gauge post, 1 m visible above pavement",
+      "status": "normal",
+      "risk_score": 16,
+      "water_level_estimate_cm": null,
+      "suggested_evacuation_route": "Proceed to Marinig Multi-Purpose Hall via the main barangay road.",
+      "last_updated": "2026-09-07T14:32:00+08:00",
+      "_scoring_note": "rainfall 4 mm/hr → (4/7.5)*30 = 16"
+    }
+  ],
+
+  "households": [
+    {
+      "id": "HH-001", "street_id": "STR-001", "address_label": "Blk 2 Lot 4",
+      "elevation_m": 0.2, "ground_floor": true,
+      "risk_score": 91, "risk_rank": 1, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=95 → 95*0.8+15=91"
+    },
+    {
+      "id": "HH-002", "street_id": "STR-001", "address_label": "Blk 2 Lot 7",
+      "elevation_m": 0.5, "ground_floor": true,
+      "risk_score": 85, "risk_rank": 2, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=87.5 → 87.5*0.8+15=85"
+    },
+    {
+      "id": "HH-003", "street_id": "STR-001", "address_label": "Blk 3 Lot 2",
+      "elevation_m": 1.0, "ground_floor": false,
+      "risk_score": 60, "risk_rank": 3, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=75 → 75*0.8+0=60"
+    },
+    {
+      "id": "HH-004", "street_id": "STR-001", "address_label": "Blk 3 Lot 9",
+      "elevation_m": 1.5, "ground_floor": false,
+      "risk_score": 50, "risk_rank": 4, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=62.5 → 62.5*0.8+0=50 (threshold boundary)"
+    },
+    {
+      "id": "HH-005", "street_id": "STR-001", "address_label": "Blk 4 Lot 1",
+      "elevation_m": 2.0, "ground_floor": false,
+      "risk_score": 40, "risk_rank": 5, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=50 → 50*0.8+0=40"
+    },
+    {
+      "id": "HH-006", "street_id": "STR-001", "address_label": "Blk 4 Lot 12",
+      "elevation_m": 2.5, "ground_floor": false,
+      "risk_score": 30, "risk_rank": 6, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=37.5 → 37.5*0.8+0=30"
+    },
+    {
+      "id": "HH-007", "street_id": "STR-002", "address_label": "Unit 3A, Sala Residences",
+      "elevation_m": 0.3, "ground_floor": true,
+      "risk_score": 89, "risk_rank": 1, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=92.5 → 92.5*0.8+15=89"
+    },
+    {
+      "id": "HH-008", "street_id": "STR-002", "address_label": "Blk 1 Lot 5",
+      "elevation_m": 0.8, "ground_floor": true,
+      "risk_score": 79, "risk_rank": 2, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=80 → 80*0.8+15=79"
+    },
+    {
+      "id": "HH-009", "street_id": "STR-002", "address_label": "Blk 2 Lot 3",
+      "elevation_m": 1.2, "ground_floor": false,
+      "risk_score": 56, "risk_rank": 3, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=70 → 70*0.8+0=56"
+    },
+    {
+      "id": "HH-010", "street_id": "STR-002", "address_label": "Blk 2 Lot 11",
+      "elevation_m": 1.8, "ground_floor": false,
+      "risk_score": 44, "risk_rank": 4, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=55 → 55*0.8+0=44"
+    },
+    {
+      "id": "HH-011", "street_id": "STR-002", "address_label": "Blk 3 Lot 6",
+      "elevation_m": 2.2, "ground_floor": false,
+      "risk_score": 36, "risk_rank": 5, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=45 → 45*0.8+0=36"
+    },
+    {
+      "id": "HH-012", "street_id": "STR-003", "address_label": "Purok 1 Blk A Lot 2",
+      "elevation_m": 0.4, "ground_floor": true,
+      "risk_score": 87, "risk_rank": 1, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=90 → 90*0.8+15=87"
+    },
+    {
+      "id": "HH-013", "street_id": "STR-003", "address_label": "Purok 1 Blk A Lot 8",
+      "elevation_m": 1.0, "ground_floor": true,
+      "risk_score": 75, "risk_rank": 2, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=75 → 75*0.8+15=75"
+    },
+    {
+      "id": "HH-014", "street_id": "STR-003", "address_label": "Purok 1 Blk B Lot 3",
+      "elevation_m": 1.5, "ground_floor": false,
+      "risk_score": 50, "risk_rank": 3, "predicted_at_risk": true,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=62.5 → 62.5*0.8+0=50"
+    },
+    {
+      "id": "HH-015", "street_id": "STR-003", "address_label": "Purok 1 Blk B Lot 9",
+      "elevation_m": 2.0, "ground_floor": false,
+      "risk_score": 40, "risk_rank": 4, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=50 → 50*0.8+0=40"
+    },
+    {
+      "id": "HH-016", "street_id": "STR-003", "address_label": "Purok 1 Blk C Lot 1",
+      "elevation_m": 3.0, "ground_floor": false,
+      "risk_score": 20, "risk_rank": 5, "predicted_at_risk": false,
+      "affected_status": "unmarked", "marked_at": null,
+      "_scoring_note": "elev_score=25 → 25*0.8+0=20"
+    }
+  ],
+
+  "flood_events": [
+    {
+      "id": "EVT-001", "street_id": "STR-001",
+      "rainfall_mm_hr": 20.0, "water_level_estimate_cm": 18,
+      "fused_risk_score": 73,
+      "recorded_at": "2026-09-07T14:30:00+08:00",
+      "_scoring_note": "60 + ((20-15)/15)*40 = 73; CV reading present"
+    },
+    {
+      "id": "EVT-002", "street_id": "STR-001",
+      "rainfall_mm_hr": 17.0, "water_level_estimate_cm": null,
+      "fused_risk_score": 65,
+      "recorded_at": "2026-09-07T13:00:00+08:00",
+      "_scoring_note": "60 + ((17-15)/15)*40 = 65; earlier, less intense sample"
+    },
+    {
+      "id": "EVT-003", "street_id": "STR-002",
+      "rainfall_mm_hr": 10.0, "water_level_estimate_cm": null,
+      "fused_risk_score": 40,
+      "recorded_at": "2026-09-07T14:30:00+08:00",
+      "_scoring_note": "30 + ((10-7.5)/7.4)*30 = 40"
+    },
+    {
+      "id": "EVT-004", "street_id": "STR-003",
+      "rainfall_mm_hr": 4.0, "water_level_estimate_cm": null,
+      "fused_risk_score": 16,
+      "recorded_at": "2026-09-07T14:30:00+08:00",
+      "_scoring_note": "(4/7.5)*30 = 16"
+    }
+  ]
+}
