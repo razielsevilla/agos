@@ -34,8 +34,12 @@ npm run dev
 cd cv
 # Activate the same virtual environment or create a new one
 pip install -r requirements.txt
-# Run the CV script
-python detect_waterline.py --input sample-footage/<clip>.mp4
+# Calibrate a camera once, then run detection per clip — see cv/README.md
+python calibrate.py --input ../data/videos/<clip>.mp4 --output calibration/<name>.json \
+  --point-a x,y --point-b x,y --length-cm N --label "..."
+python detect_waterline.py --input ../data/videos/<clip>.mp4 \
+  --calibration calibration/<name>.json --scan-column x --scan-range y0,y1 \
+  --output-dir output/<clip>
 ```
 
 See `docs/setup.md` for more complete instructions and `docs/tickets.md` for our current status.

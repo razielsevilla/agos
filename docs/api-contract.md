@@ -22,12 +22,19 @@ Flagged/all streets summary — powers the street list view (AGOS-017).
     "id": "STR-001",
     "name": "Purok 3, Brgy. Banay-Banay",
     "barangay": "Banay-Banay",
+    "camera_label": "Banay-Banay Bridge Cam 1",
+    "reference_object": "Bridge support pillar, marked at 0.5m intervals",
+    "video_filename": null,
     "status": "flagged",
     "risk_score": 72,
+    "water_level_estimate_cm": 18,
     "last_updated": "2026-09-07T14:32:00+08:00"
   }
 ]
 ```
+`video_filename` is `null` unless a real camera feed is configured for that
+exact street (see `data-model.md`) — the dashboard should render a "no feed"
+placeholder rather than substituting another street's footage.
 
 **Used by:** AGOS-011 (backend), AGOS-017 (frontend)
 

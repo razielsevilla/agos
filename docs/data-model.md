@@ -19,6 +19,7 @@ One entity per pilot camera location. Carries the current fused risk state shown
 | `barangay` | string | Barangay name | `"Banay-Banay"` |
 | `camera_label` | string | Which camera feed this represents | `"Banay-Banay Bridge Cam 1"` |
 | `reference_object` | string | Calibration reference used by the CV POC | `"Bridge support pillar, marked at 0.5m intervals"` |
+| `video_filename` | string \| null | Filename under `data/videos/`, served at `GET /videos/<file>` — a live-matched camera feed for this exact street. `null` means no camera feed is configured for this street (the dashboard should show a "no feed" placeholder, not a substitute video — see `cv/README.md` for why unrelated footage isn't reused across streets) | `"flood_3.mp4"` |
 | `status` | enum | `"normal"` \| `"watch"` \| `"flagged"` | `"flagged"` |
 | `risk_score` | number (0–100) | Fused rainfall risk score, see logic below | `72` |
 | `water_level_estimate_cm` | number \| null | Optional illustrative reading sourced from the CV POC (AGOS-008) | `18` |

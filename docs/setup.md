@@ -49,11 +49,20 @@ If the dashboard is plain HTML/JS instead of a framework, skip `npm` and just op
 
 ```bash
 cd cv
+python -m venv .venv && .venv\Scripts\activate   # Mac/Linux: source .venv/bin/activate
 pip install -r requirements.txt   # opencv-python, numpy
-python detect_waterline.py --input sample-footage/<clip>.mp4
+
+# One-time per camera framing — see cv/README.md for the full calibration guide:
+python calibrate.py --input ../data/videos/<clip>.mp4 --output calibration/<name>.json \
+  --point-a x,y --point-b x,y --length-cm N --label "..."
+
+# Then, per clip:
+python detect_waterline.py --input ../data/videos/<clip>.mp4 \
+  --calibration calibration/<name>.json --scan-column x --scan-range y0,y1 \
+  --output-dir output/<clip>
 ```
 
-Outputs annotated frames/values into `cv/output/` — this is the packaged evidence referenced in `demo-script.md` and `docs/tickets.md` (AGOS-008).
+Outputs annotated frames/values into `cv/output/<clip>/` — this is the packaged evidence referenced in `docs/tickets.md` (AGOS-008). See `cv/README.md` for how the calibration + detection method works and its known limitations.
 
 ## Environment variables
 
