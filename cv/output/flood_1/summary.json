@@ -1,0 +1,11 @@
+{
+  "clip": "flood_1.mp4",
+  "calibration_file": "marinig_fishing_port.json",
+  "frames_analyzed": 12,
+  "min_relative_level_cm": -9.73,
+  "max_relative_level_cm": -2.16,
+  "mean_relative_level_cm": -4.91,
+  "estimate_type": "opencv_calibration_poc",
+  "trained_model": false,
+  "validation": "visual (annotated frames), not measured against ground truth \u2014 see docs/scope.md"
+}

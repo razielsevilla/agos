@@ -1,0 +1,11 @@
+{
+  "clip": "flood_3.mp4",
+  "calibration_file": "marikina_river_bridge.json",
+  "frames_analyzed": 10,
+  "min_relative_level_cm": -221.22,
+  "max_relative_level_cm": -82.49,
+  "mean_relative_level_cm": -167.23,
+  "estimate_type": "opencv_calibration_poc",
+  "trained_model": false,
+  "validation": "visual (annotated frames), not measured against ground truth \u2014 see docs/scope.md"
+}
