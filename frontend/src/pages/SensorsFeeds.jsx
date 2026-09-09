@@ -30,8 +30,16 @@ export default function SensorsFeeds() {
         {streets.map((street, index) => {
           const videoFilename = street.video_filename || DEMO_CYCLE_VIDEOS[index % DEMO_CYCLE_VIDEOS.length];
           const videoSrc = `${VIDEO_BASE_URL}/${videoFilename}`;
-          const hasReading = typeof street.water_level_estimate_cm === 'number';
-          const isElevatedReading = hasReading && street.water_level_estimate_cm > 0;
+          const calibration = CV_CALIBRATION[videoFilename];
+          // Telemetry describes the footage actually playing on this card, not
+          // the street it's attached to — most cards cycle demo filler
+          // unrelated to that street (only 3 real clips exist for many more
+          // streets), so street.water_level_estimate_cm/reference_object
+          // would show a real but unrelated per-barangay rainfall figure next
+          // to a video it has nothing to do with.
+          const hasReading = typeof calibration?.waterLevelEstimateCm === 'number';
+          const waterLevelEstimateCm = calibration?.waterLevelEstimateCm;
+          const isElevatedReading = hasReading && waterLevelEstimateCm > 0;
 
           return (
           <div key={street.id} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
@@ -72,25 +80,22 @@ export default function SensorsFeeds() {
                 {street.status === 'flagged' && <AlertCircle color="var(--danger)" size={20} />}
               </div>
 
-              <details style={{
+              <div style={{
                 backgroundColor: 'var(--bg-app)',
                 border: '1px solid var(--border)',
                 borderRadius: '0.5rem',
-                overflow: 'hidden',
-                transition: 'all 0.2s'
+                overflow: 'hidden'
               }}>
-                <summary style={{
+                <div style={{
                   padding: '0.75rem',
                   fontWeight: 600,
                   color: 'var(--primary)',
-                  cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  outline: 'none'
+                  gap: '0.5rem'
                 }}>
                   <Activity size={18} /> Real-Time Telemetry
-                </summary>
+                </div>
                 <div style={{
                   padding: '1rem',
                   borderTop: '1px solid var(--border)',
@@ -102,7 +107,7 @@ export default function SensorsFeeds() {
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Water Level Est (OpenCV):</span>
                     <span style={{ fontWeight: 600, color: isElevatedReading ? 'var(--danger)' : 'var(--text-main)' }}>
-                      {hasReading ? `${Math.abs(street.water_level_estimate_cm)} cm ${street.water_level_estimate_cm > 0 ? 'above' : street.water_level_estimate_cm < 0 ? 'below' : 'at'} reference mark` : 'Not calibrated'}
+                      {hasReading ? `${Math.abs(waterLevelEstimateCm)} cm ${waterLevelEstimateCm > 0 ? 'above' : waterLevelEstimateCm < 0 ? 'below' : 'at'} reference mark` : 'Not calibrated'}
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -111,7 +116,7 @@ export default function SensorsFeeds() {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Reference Object:</span>
-                    <span style={{ fontWeight: 500, textAlign: 'right', maxWidth: '60%' }}>{street.reference_object}</span>
+                    <span style={{ fontWeight: 500, textAlign: 'right', maxWidth: '60%' }}>{calibration?.referenceLabel ?? street.reference_object}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: 'var(--text-muted)' }}>CV Pipeline:</span>
@@ -120,7 +125,7 @@ export default function SensorsFeeds() {
                     </span>
                   </div>
                 </div>
-              </details>
+              </div>
             </div>
           </div>
         );

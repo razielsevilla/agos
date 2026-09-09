@@ -11,10 +11,16 @@
 //
 // waterlineRow is the representative detected row from
 // cv/output/<clip>/readings.csv (independent of the above, drawn as the
-// horizontal estimated-flood-level line). Coordinates are in the video's
-// native pixel space; CalibratedVideo maps them onto the displayed
-// (object-fit: contain) element at render time. Videos with no entry here
-// haven't been calibrated (see cv/README.md).
+// horizontal estimated-flood-level line). waterLevelEstimateCm is that same
+// reading already converted to cm (summary.json's mean_relative_level_cm) —
+// the Sensors & Feeds panel shows THIS, not the street's own
+// water_level_estimate_cm, because the video playing on a card is
+// frequently demo filler unrelated to that street (only 3 real clips exist
+// for many more streets — see SensorsFeeds.jsx). The panel must describe
+// what's actually on screen, not the street it happens to be attached to.
+// Coordinates are in the video's native pixel space; CalibratedVideo maps
+// them onto the displayed (object-fit: contain) element at render time.
+// Videos with no entry here haven't been calibrated (see cv/README.md).
 //
 // Keyed by the CURRENT filename under data/videos/ — these slots get
 // reassigned from time to time (flood_2.mp4 and flood_3.mp4 both changed
@@ -29,6 +35,7 @@ export const CV_CALIBRATION = {
     referenceLabel: 'Mooring piling',
     referenceLengthCm: 65.9, // visible extent, top of hazard-marker band to waterline — see calibration/marinig_fishing_port.json
     waterlineRow: 161, // mean of readings.csv's waterline_row_px (156-170)
+    waterLevelEstimateCm: 0.0, // cv/output/flood_1/summary.json mean_relative_level_cm
   },
   'flood_2.mp4': {
     videoWidth: 856,
@@ -38,6 +45,7 @@ export const CV_CALIBRATION = {
     referenceLabel: 'Mooring piling',
     referenceLengthCm: 96, // visible extent, top of hazard-marker band to where the moored boat occludes it — see calibration/marinig_fishing_port_stormy.json
     waterlineRow: 258, // constant across all sampled frames
+    waterLevelEstimateCm: 4.9, // cv/output/flood_2/summary.json mean_relative_level_cm
   },
   'flood_3.mp4': {
     videoWidth: 1886,
@@ -47,5 +55,6 @@ export const CV_CALIBRATION = {
     referenceLabel: 'Bridge pier',
     referenceLengthCm: 506.2, // visible extent, underside of deck to current waterline — see calibration/marikina_river_bridge.json
     waterlineRow: 505, // mean of readings.csv's waterline_row_px (482-519, jitters — see cv/README.md)
+    waterLevelEstimateCm: -167.2, // cv/output/flood_3/summary.json mean_relative_level_cm
   },
 };
