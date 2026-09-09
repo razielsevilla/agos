@@ -13,10 +13,14 @@ def _street_summary(s: Street) -> dict:
         "id": s.id,
         "name": s.name,
         "barangay": s.barangay,
+        "camera_label": s.camera_label,
+        "reference_object": s.reference_object,
+        "video_filename": s.video_filename,
         "latitude": s.latitude,
         "longitude": s.longitude,
         "status": s.status,
         "risk_score": s.risk_score,
+        "water_level_estimate_cm": s.water_level_estimate_cm,
         "last_updated": s.last_updated,
     }
 
@@ -30,6 +34,7 @@ def _street_detail(s: Street) -> dict:
         "longitude": s.longitude,
         "camera_label": s.camera_label,
         "reference_object": s.reference_object,
+        "video_filename": s.video_filename,
         "status": s.status,
         "risk_score": s.risk_score,
         "water_level_estimate_cm": s.water_level_estimate_cm,

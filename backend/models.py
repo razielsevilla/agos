@@ -11,6 +11,7 @@ class Street(Base):
     barangay = Column(String, nullable=False)
     camera_label = Column(String, nullable=False)
     reference_object = Column(String, nullable=False)
+    video_filename = Column(String, nullable=True)    # filename under data/videos/, served at /videos/<file> — null if no camera feed is configured for this street
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
     status = Column(String, nullable=False)          # "normal" | "watch" | "flagged"

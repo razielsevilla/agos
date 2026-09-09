@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api';
-import { MapPin, Video, AlertCircle, Activity } from 'lucide-react';
+import { MapPin, VideoOff, AlertCircle, Activity } from 'lucide-react';
+import CalibratedVideo from '../components/CalibratedVideo';
+import { CV_CALIBRATION } from '../cvCalibration';
+
+const VIDEO_BASE_URL = 'http://localhost:8000/videos';
 
 export default function SensorsFeeds() {
   const [streets, setStreets] = useState([]);
@@ -17,34 +21,43 @@ export default function SensorsFeeds() {
       </header>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
-        {streets.map((street, index) => {
-          const videoSrc = `http://localhost:8000/videos/flood_${(index % 3) + 1}.mp4`;
-          
+        {streets.map((street) => {
+          const hasFeed = Boolean(street.video_filename);
+          const videoSrc = hasFeed ? `${VIDEO_BASE_URL}/${street.video_filename}` : null;
+          const hasReading = typeof street.water_level_estimate_cm === 'number';
+          const isElevatedReading = hasReading && street.water_level_estimate_cm > 0;
+
           return (
           <div key={street.id} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            {/* Video Dataset Player */}
-            <div style={{ 
-              backgroundColor: '#000', 
-              aspectRatio: '16/9', 
+            {/* Video Feed */}
+            <div style={{
+              backgroundColor: '#000',
+              aspectRatio: '16/9',
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               borderBottom: '1px solid var(--border)'
             }}>
-              <video 
-                src={videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+              {hasFeed ? (
+                <CalibratedVideo
+                  src={videoSrc}
+                  calibration={CV_CALIBRATION[street.video_filename]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', color: '#64748b' }}>
+                  <VideoOff size={28} />
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>No camera feed configured</span>
+                </div>
+              )}
 
               {/* Overlay elements */}
               <div style={{ position: 'absolute', top: '1rem', left: '1rem', display: 'flex', gap: '0.5rem' }}>
-                <span className="badge danger" style={{ backgroundColor: 'rgba(220, 38, 38, 0.9)', color: 'white', border: 'none' }}>REC</span>
-                <span className="badge normal" style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', border: 'none' }}>{street.camera_label}</span>
+                {hasFeed && <span className="badge danger" style={{ backgroundColor: 'rgba(220, 38, 38, 0.9)', color: 'white', border: 'none' }}>REC</span>}
               </div>
             </div>
 
@@ -79,18 +92,18 @@ export default function SensorsFeeds() {
                 }}>
                   <Activity size={18} /> Real-Time Telemetry
                 </summary>
-                <div style={{ 
-                  padding: '1rem', 
-                  borderTop: '1px solid var(--border)', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '0.75rem', 
-                  fontSize: '0.875rem' 
+                <div style={{
+                  padding: '1rem',
+                  borderTop: '1px solid var(--border)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.75rem',
+                  fontSize: '0.875rem'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-muted)' }}>Water Level Est:</span>
-                    <span style={{ fontWeight: 600, color: street.water_level_estimate_cm ? 'var(--danger)' : 'var(--text-main)' }}>
-                      {street.water_level_estimate_cm !== null ? `${street.water_level_estimate_cm} cm` : 'Not Detected'}
+                    <span style={{ color: 'var(--text-muted)' }}>Water Level Est (OpenCV):</span>
+                    <span style={{ fontWeight: 600, color: isElevatedReading ? 'var(--danger)' : 'var(--text-main)' }}>
+                      {hasReading ? `${Math.abs(street.water_level_estimate_cm)} cm ${street.water_level_estimate_cm > 0 ? 'above' : street.water_level_estimate_cm < 0 ? 'below' : 'at'} reference mark` : 'Not calibrated'}
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -98,12 +111,14 @@ export default function SensorsFeeds() {
                     <span style={{ fontWeight: 600 }}>{street.risk_score}/100</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-muted)' }}>Reference Pixel Target:</span>
-                    <span style={{ fontWeight: 500, textAlign: 'right', maxWidth: '60%' }}>{street.reference_object || 'Standard Gauge'}</span>
+                    <span style={{ color: 'var(--text-muted)' }}>Reference Object:</span>
+                    <span style={{ fontWeight: 500, textAlign: 'right', maxWidth: '60%' }}>{street.reference_object}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: 'var(--text-muted)' }}>CV Pipeline:</span>
-                    <span style={{ fontWeight: 600, color: '#10b981' }}>Automated (Active)</span>
+                    <span style={{ fontWeight: 600, color: hasReading ? '#10b981' : 'var(--text-muted)' }}>
+                      {hasReading ? 'Calibrated (Phase 1 POC)' : 'Not yet calibrated'}
+                    </span>
                   </div>
                 </div>
               </details>

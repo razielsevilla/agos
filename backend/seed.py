@@ -29,6 +29,7 @@ def load_seed(db: Session) -> None:
             barangay=s["barangay"],
             camera_label=s["camera_label"],
             reference_object=s["reference_object"],
+            video_filename=s.get("video_filename"),
             latitude=s["latitude"],
             longitude=s["longitude"],
             status=s["status"],
