@@ -11,10 +11,13 @@ _SEED_PATH = os.path.join(
 
 
 def load_seed(db: Session) -> None:
-    """Idempotent: only inserts if the streets table is empty."""
+    """Wipes existing data to ensure the new dataset is always perfectly in sync during MVP development."""
     if db.query(Street).count() > 0:
-        return
-
+        print("[seed] Wiping old data to sync with new dataset...")
+        db.query(FloodEvent).delete()
+        db.query(Household).delete()
+        db.query(Street).delete()
+        db.commit()
     with open(_SEED_PATH, encoding="utf-8-sig") as f:
         data = json.load(f)
 
