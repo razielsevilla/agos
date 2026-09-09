@@ -25,23 +25,23 @@ const OPERATIONAL_STATUS = {
 const STAGES = [
   {
     key: 'pre',
-    label: 'Pre-Flood Priority List',
-    phase: 'Pre-Disaster — Early Warning & Vulnerability Ranking',
-    description: 'Rainfall input is fused with street elevation data to predict flood onset and rank at-risk areas before water levels rise.',
+    label: 'Before Flood',
+    phase: 'Early Warning',
+    description: 'Predicts which streets might flood so you can prepare before water levels rise.',
     icon: Radar,
   },
   {
     key: 'active',
-    label: 'During Flood Response',
-    phase: 'Mid-Disaster — Real-Time Operational Response',
-    description: 'Live hazard scores stream to this dashboard so responders can dispatch targeted alerts and log verified conditions in a single click.',
+    label: 'During Flood',
+    phase: 'Active Response',
+    description: 'Live updates to help you dispatch rescue teams and send alerts to the most dangerous areas.',
     icon: Zap,
   },
   {
     key: 'post',
-    label: 'Post-Flood Recovery Record',
-    phase: 'Post-Disaster — Closing the Loop & Recovery',
-    description: 'This ranking becomes a timestamped record the LGU can use to prioritize relief distribution and rehabilitation without running manual surveys from scratch.',
+    label: 'After Flood',
+    phase: 'Recovery & Reports',
+    description: 'Save a record of the flood to help plan relief distribution and repairs.',
     icon: ClipboardCheck,
   },
 ];
@@ -78,10 +78,6 @@ export default function BarangayDetail() {
   const currentStage = STAGES.find(s => s.key === stage);
   const StageIcon = currentStage.icon;
 
-  const stageStatusText = {
-    post: 'Recovery prioritization uses the same ranking, highest hazard first.',
-  }[stage];
-
   const toggleEscalated = (streetId) => {
     setEscalatedIds(prev => {
       const next = new Set(prev);
@@ -108,14 +104,12 @@ export default function BarangayDetail() {
         <ArrowLeft size={16} /> Back to Dashboard
       </Link>
 
-      <header style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-        <div className="icon-circle" style={{ backgroundColor: 'var(--primary-light)', width: '3rem', height: '3rem' }}>
-          <MapPin size={22} color="var(--primary)" />
-        </div>
+      <header style={{ marginBottom: '1.75rem', display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <MapPin size={20} color="var(--text-muted)" />
         <div>
-          <h2 style={{ fontSize: '1.625rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{decodedName}</h2>
+          <h2 style={{ color: 'var(--text-main)' }}>{decodedName}</h2>
           <p style={{ color: 'var(--text-muted)', marginTop: '0.125rem', fontSize: '0.875rem' }}>
-            {streets.length} monitored street{streets.length !== 1 ? 's' : ''} in this barangay, ranked by hazard
+            {streets.length} monitored street{streets.length !== 1 ? 's' : ''} in this area, ordered by risk
           </p>
         </div>
       </header>
@@ -138,140 +132,105 @@ export default function BarangayDetail() {
         ))}
       </div>
 
-      <div className="card" style={{
+      <div style={{
         display: 'flex',
         alignItems: 'flex-start',
-        gap: '0.875rem',
-        padding: '1.125rem 1.25rem',
+        gap: '0.75rem',
+        padding: '0.125rem 0 1.25rem 1rem',
         marginBottom: '1.25rem',
-        backgroundColor: 'var(--primary-light)',
-        border: '1px solid #bfdbfe',
+        borderLeft: '2px solid var(--primary)',
       }}>
-        <div className="icon-circle" style={{ backgroundColor: 'var(--bg-surface)', width: '2.25rem', height: '2.25rem', flexShrink: 0 }}>
-          <StageIcon size={18} color="var(--primary)" />
-        </div>
+        <StageIcon size={16} color="var(--primary)" style={{ marginTop: '0.125rem', flexShrink: 0 }} />
         <div>
           <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.25rem' }}>{currentStage.phase}</div>
-          <p style={{ fontSize: '0.875rem', color: 'var(--text-main)', lineHeight: 1.5 }}>{currentStage.description}</p>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>{currentStage.description}</p>
         </div>
       </div>
 
-      <div className="card" style={{ overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-          <thead>
-            <tr style={{ backgroundColor: 'var(--bg-surface-hover)', borderBottom: '1px solid var(--border)' }}>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Priority #</th>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Street</th>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center' }}>
-                Hazard Basis
-                <HelpTip text="Fused hazard score and priority level for this street, computed from the illustrative rainfall input." />
-              </th>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', textAlign: stage === 'post' ? 'right' : 'left' }}>
-                {stage === 'active' ? 'Operational Status' : stage === 'post' ? 'PDNA Sample Report' : 'Alert Status'}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {streets.map((street, i) => {
-              const level = priorityForScore(street.risk_score);
-              const Icon = level.icon;
-              const pct = Math.round(street.risk_score);
-              return (
-                <tr key={street.id} className="transition-all" style={{ borderBottom: '1px solid var(--border)' }}>
-                  <td style={{ padding: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>#{i + 1}</td>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.25rem' }}>{street.name}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ID: {street.id}</div>
-                  </td>
-                  <td style={{ padding: '1rem' }}>
-                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                      <span style={{ fontSize: '1.125rem', fontWeight: 800, color: 'var(--text-main)' }}>{pct}%</span>
-                      <span className={`badge ${level.badgeClass}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-                        <Icon size={12} /> {level.shortLabel}
-                      </span>
-                    </div>
-                  </td>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        {streets.map((street, i) => {
+          const level = priorityForScore(street.risk_score);
+          const Icon = level.icon;
+          const pct = Math.round(street.risk_score);
+          return (
+            <div key={street.id} className="card transition-all" style={{ padding: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: '1 1 min-content' }}>
+                <div style={{
+                  width: '3rem', height: '3rem', borderRadius: '50%',
+                  backgroundColor: 'var(--bg-app)', color: 'var(--text-muted)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontWeight: 800, fontSize: '1.125rem', border: '2px solid var(--border)'
+                }}>
+                  #{i + 1}
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-main)', marginBottom: '0.25rem' }}>{street.name}</div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500, letterSpacing: '0.02em' }}>ID: {street.id}</div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flex: '2 1 min-content', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
+                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em' }}>Flood Risk</span>
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                    <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{pct}%</span>
+                    <span className={`badge ${level.badgeClass}`} style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
+                      <Icon size={14} /> {level.shortLabel}
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', minWidth: '220px' }}>
                   {stage === 'active' ? (
-                    <td style={{ padding: '1rem' }}>
-                      {(() => {
-                        const op = OPERATIONAL_STATUS[level.key];
-                        const OpIcon = op.icon;
-                        return (
-                          <span className={`badge ${op.badgeClass}`} style={{ padding: '0.5rem 0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-                            <OpIcon size={14} /> {op.label}
-                          </span>
-                        );
-                      })()}
-                    </td>
-                  ) : stage === 'post' ? (
-                    <td style={{ padding: '1rem', textAlign: 'right' }}>
-                      <button
-                        onClick={() => handleDownloadPdna(street)}
-                        disabled={downloadingId === street.id}
-                        className="transition-all"
-                        style={{
-                          padding: '0.5rem 0.875rem',
-                          borderRadius: '0.375rem',
-                          backgroundColor: 'var(--primary)',
-                          color: 'white',
-                          fontWeight: 600,
-                          fontSize: '0.8125rem',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '0.375rem',
-                          opacity: downloadingId === street.id ? 0.7 : 1,
-                        }}
-                        title="Downloads a CSV: household/location/elevation fields are real; damage, needs, and relief-status fields are synthetic demo data, clearly labeled (SYNTHETIC) in every column — not a real survey result."
-                      >
-                        {downloadingId === street.id ? (
-                          <Loader2 size={14} className="spin" />
-                        ) : (
-                          <Download size={14} />
-                        )}
-                        Download PDNA Sample
-                      </button>
-                    </td>
-                  ) : stage === 'post' ? (
-                    <td style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-                      {stageStatusText}
-                    </td>
-                  ) : (
-                    <td style={{ padding: '1rem' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
-                        <span className="badge success" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-                          <Bell size={12} /> Automated Alert Sent
+                    (() => {
+                      const op = OPERATIONAL_STATUS[level.key];
+                      const OpIcon = op.icon;
+                      return (
+                        <span className={`badge ${op.badgeClass}`} style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+                          <OpIcon size={16} /> {op.label}
                         </span>
-                        {escalatedIds.has(street.id) ? (
-                          <span className="badge danger" style={{ padding: '0.5rem 0.75rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-                            <CheckCircle2 size={14} /> Escalated to Rescue & Authorities
-                          </span>
-                        ) : (
-                          <button
-                            onClick={() => toggleEscalated(street.id)}
-                            className="transition-all"
-                            style={{
-                              padding: '0.5rem 0.875rem',
-                              borderRadius: '0.375rem',
-                              backgroundColor: 'var(--danger)',
-                              color: 'white',
-                              fontWeight: 600,
-                              fontSize: '0.8125rem',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '0.375rem',
-                            }}
-                          >
-                            <Siren size={14} /> Alert Rescue & Authorities
-                          </button>
-                        )}
-                      </div>
-                    </td>
+                      );
+                    })()
+                  ) : stage === 'post' ? (
+                    <button
+                      onClick={() => handleDownloadPdna(street)}
+                      disabled={downloadingId === street.id}
+                      className="btn-solid"
+                      style={{ padding: '0.6rem 1rem', fontSize: '0.85rem', minWidth: 'auto' }}
+                      title="Downloads a spreadsheet with location and damage estimates."
+                    >
+                      {downloadingId === street.id ? (
+                        <Loader2 size={16} className="spin" />
+                      ) : (
+                        <Download size={16} />
+                      )}
+                      Download Damage Report
+                    </button>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', alignItems: 'flex-end' }}>
+                      <span className="badge success" style={{ opacity: 0.9 }}>
+                        <Bell size={12} /> Automated Alert Sent
+                      </span>
+                      {escalatedIds.has(street.id) ? (
+                        <span className="badge danger" style={{ padding: '0.5rem 0.875rem' }}>
+                          <CheckCircle2 size={14} /> Escalated to Rescue
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => toggleEscalated(street.id)}
+                          className="btn-solid danger"
+                          style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.85rem' }}
+                        >
+                          <Siren size={14} /> Alert Rescue
+                        </button>
+                      )}
+                    </div>
                   )}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

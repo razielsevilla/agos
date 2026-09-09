@@ -45,7 +45,7 @@ export default function RiskMap() {
   return (
     <div style={{ height: 'calc(100vh - 4rem)', display: 'flex', flexDirection: 'column' }}>
       <header style={{ marginBottom: '1.5rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-main)' }}>Geospatial Hazard Map</h2>
+        <h2>Flood Map</h2>
         <p style={{ color: 'var(--text-muted)', marginTop: '0.25rem' }}>Interactive map of monitored waterways, colored by priority level.</p>
       </header>
 

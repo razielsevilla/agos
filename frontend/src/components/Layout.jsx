@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, RadioReceiver, Map, Settings, Clock, LogOut } from 'lucide-react';
+import { LayoutDashboard, RadioReceiver, Map, Settings, Clock, LogOut, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -10,6 +10,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [time, setTime] = useState(new Date());
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -21,25 +22,30 @@ export default function Layout() {
     return () => clearInterval(timer);
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
   const navItems = [
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { name: 'Sensors & Feeds', path: '/feeds', icon: RadioReceiver },
-    { name: 'Hazard Map', path: '/map', icon: Map },
+    { name: 'Live Sensors', path: '/feeds', icon: RadioReceiver },
+    { name: 'Flood Map', path: '/map', icon: Map },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-app)' }}>
+    <div className="app-layout">
+      {/* Mobile Backdrop */}
+      {isMobileMenuOpen && (
+        <div 
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 30 }}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside style={{
-        width: '260px',
-        backgroundColor: 'var(--bg-surface)',
-        borderRight: `1px solid var(--border)`,
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'fixed',
-        top: 0, bottom: 0, left: 0,
-      }}>
+      <aside className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
         <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
             <img src={wordmarkImg} alt="AGOS Wordmark" style={{ height: '48px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply' }} />
@@ -57,16 +63,7 @@ export default function Layout() {
               <Link
                 key={item.name}
                 to={item.path}
-                className="transition-all"
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
-                  padding: '0.75rem 1rem',
-                  borderRadius: '0.5rem',
-                  color: isActive ? 'var(--primary)' : 'var(--text-muted)',
-                  backgroundColor: isActive ? 'var(--primary-light)' : 'transparent',
-                  fontWeight: isActive ? 600 : 500,
-                  fontSize: '0.875rem'
-                }}
+                className={`nav-item transition-all${isActive ? ' active' : ''}`}
               >
                 <Icon size={18} />
                 {item.name}
@@ -103,12 +100,7 @@ export default function Layout() {
             <button
               onClick={handleLogout}
               title="Log out"
-              className="transition-all"
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: 32, height: 32, borderRadius: '0.5rem',
-                backgroundColor: 'transparent', color: 'var(--text-muted)',
-              }}
+              className="icon-btn transition-all"
             >
               <LogOut size={16} />
             </button>
@@ -116,8 +108,13 @@ export default function Layout() {
         </div>
       </aside>
 
+      {/* Mobile Nav Toggle (FAB) */}
+      <button className="mobile-nav-toggle transition-all" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
       {/* Main Content Area */}
-      <main style={{ marginLeft: '260px', flex: 1, padding: '2rem', maxWidth: '1200px' }}>
+      <main className="main-content">
         <Outlet />
       </main>
     </div>

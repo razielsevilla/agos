@@ -40,7 +40,7 @@ export default function AlertMock() {
         <div style={{ backgroundColor: '#b91c1c', padding: '1.5rem', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
           <AlertTriangle size={32} color="white" />
           <div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', margin: 0 }}>Flood Warning</h2>
+            <h2 style={{ fontFamily: 'inherit', fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', margin: 0 }}>Flood Warning</h2>
             <p style={{ color: '#fecaca', fontSize: '0.875rem', marginTop: '0.25rem' }}>CDRRMO Emergency Bulletin</p>
           </div>
         </div>
@@ -52,21 +52,21 @@ export default function AlertMock() {
           </div>
 
           <div style={{ marginBottom: '2rem' }}>
-            <h3 style={{ color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Location</h3>
+            <h3 style={{ fontFamily: 'inherit', color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Location</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.125rem', fontWeight: 600 }}>
               <MapPin size={20} color="#ef4444" /> {alertData.street.name}
             </div>
           </div>
 
           <div style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '0.5rem', marginBottom: '2rem', borderLeft: '4px solid #ef4444' }}>
-            <h3 style={{ color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Evacuation Directive</h3>
+            <h3 style={{ fontFamily: 'inherit', color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>Evacuation Directive</h3>
             <p style={{ fontSize: '1rem', lineHeight: 1.5 }}>
               {alertData.suggested_evacuation_route}
             </p>
           </div>
 
           <div>
-            <h3 style={{ color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>High Priority Households ({alertData.household_list.length})</h3>
+            <h3 style={{ fontFamily: 'inherit', color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>High Priority Households ({alertData.household_list.length})</h3>
             <div style={{ display: 'grid', gap: '0.5rem' }}>
               {alertData.household_list.map(hh => (
                 <div key={hh.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '0.25rem' }}>

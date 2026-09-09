@@ -194,11 +194,11 @@ export default function StreetDetail() {
                   ) : stage === 'post' ? (
                     <td style={{ padding: '1rem' }}>
                       {hh.affected_status === 'confirmed_affected' ? (
-                         <span className="badge danger" style={{ padding: '0.5rem 0.75rem' }}><AlertCircle size={14} style={{ marginRight: '0.25rem' }}/> Affected</span>
+                         <span className="badge danger"><AlertCircle size={14} /> Affected</span>
                       ) : hh.affected_status === 'confirmed_dry' ? (
-                         <span className="badge success" style={{ padding: '0.5rem 0.75rem' }}><CheckCircle2 size={14} style={{ marginRight: '0.25rem' }}/> Dry</span>
+                         <span className="badge success"><CheckCircle2 size={14} /> Dry</span>
                       ) : (
-                         <span className="badge normal" style={{ padding: '0.5rem 0.75rem' }}><CircleDashed size={14} style={{ marginRight: '0.25rem' }}/> Unmarked</span>
+                         <span className="badge normal"><CircleDashed size={14} /> Unmarked</span>
                       )}
                     </td>
                   ) : (

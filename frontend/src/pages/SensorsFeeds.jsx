@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api';
 import { MapPin, Video, AlertCircle, Activity } from 'lucide-react';
+import LazyVideo from '../components/LazyVideo';
 
 export default function SensorsFeeds() {
   const [streets, setStreets] = useState([]);
@@ -12,7 +13,7 @@ export default function SensorsFeeds() {
   return (
     <div>
       <header style={{ marginBottom: '2rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-main)' }}>Sensors & Feeds</h2>
+        <h2>Live Sensors</h2>
         <p style={{ color: 'var(--text-muted)', marginTop: '0.25rem' }}>Live telemetry and computer vision feeds from surveillance stations.</p>
       </header>
 
@@ -32,14 +33,7 @@ export default function SensorsFeeds() {
               justifyContent: 'center',
               borderBottom: '1px solid var(--border)'
             }}>
-              <video
-                src={videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+              <LazyVideo src={videoSrc} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
 
               {/* Overlay elements */}
               <div style={{ position: 'absolute', top: '1rem', left: '1rem', display: 'flex', gap: '0.5rem' }}>
