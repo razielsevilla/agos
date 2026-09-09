@@ -1,12 +1,20 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, RadioReceiver, Map, Settings, Clock } from 'lucide-react';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, RadioReceiver, Map, Settings, Clock, LogOut } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 import wordmarkImg from '../assets/wordmark.jpg';
 
 export default function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [time, setTime] = useState(new Date());
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login', { replace: true });
+  };
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -82,14 +90,28 @@ export default function Layout() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', backgroundColor: 'var(--primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: '0.875rem' }}>
-              OP
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ width: 32, height: 32, borderRadius: '50%', backgroundColor: 'var(--primary)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: '0.875rem' }}>
+                OP
+              </div>
+              <div>
+                <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>Cabuyao LGU</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Duty Officer</div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>Cabuyao LGU</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Duty Officer</div>
-            </div>
+            <button
+              onClick={handleLogout}
+              title="Log out"
+              className="transition-all"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 32, height: 32, borderRadius: '0.5rem',
+                backgroundColor: 'transparent', color: 'var(--text-muted)',
+              }}
+            >
+              <LogOut size={16} />
+            </button>
           </div>
         </div>
       </aside>

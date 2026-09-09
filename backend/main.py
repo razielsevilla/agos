@@ -1,9 +1,11 @@
 # main.py — AGOS FastAPI application entry point (AGOS-009)
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from auth import require_session
+from auth import router as auth_router
 from database import engine, SessionLocal, Base
 from models import Street, Household, FloodEvent  # ensure models are registered
 from seed import load_seed
@@ -33,12 +35,14 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_credentials=True,  # required for the session cookie to be sent/set cross-origin
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.include_router(streets.router, prefix="/api")
-app.include_router(households.router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
+app.include_router(streets.router, prefix="/api", dependencies=[Depends(require_session)])
+app.include_router(households.router, prefix="/api", dependencies=[Depends(require_session)])
 
 app.mount("/videos", StaticFiles(directory="../data/videos"), name="videos")
 

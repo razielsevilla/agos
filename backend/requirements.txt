@@ -2,3 +2,7 @@
 uvicorn[standard]
 sqlalchemy
 pydantic
+passlib[bcrypt]
+bcrypt==4.0.1
+itsdangerous
+python-dotenv

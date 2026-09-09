@@ -1,6 +1,9 @@
 ﻿# Generated SQLite database — do not commit
 agos.db
 
+# Auth secrets — do not commit
+.env
+
 # Python
 __pycache__/
 *.py[cod]
