@@ -31,10 +31,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# Allow the local Vite dev server (port 5173) to call the API
+# Allow the local Vite dev server to call the API. A regex (rather than a
+# fixed port list) is used because Vite auto-increments past 5173 whenever
+# that port is already taken (e.g. a second `npm run dev` instance) — a
+# fixed allowlist breaks every time that happens.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1):\d+",
     allow_credentials=True,  # required for the session cookie to be sent/set cross-origin
     allow_methods=["*"],
     allow_headers=["*"],

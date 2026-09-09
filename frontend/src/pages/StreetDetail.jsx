@@ -2,13 +2,25 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../api';
 import { ArrowLeft, Navigation, AlertCircle, CheckCircle2, CircleDashed } from 'lucide-react';
+import HelpTip from '../components/HelpTip';
+import { priorityForScore } from '../lib/priority';
+
+// Three stages of the closing-the-loop workflow (docs/scope.md):
+//   pre    — before the flood: read-only priority list for evacuation planning
+//   active — during the flood: operators confirm each household affected/dry
+//   post   — after the flood: recovery-priority record from what was confirmed
+const STAGES = [
+  { key: 'pre', label: 'Pre-Flood Priority List' },
+  { key: 'active', label: 'During Flood Response' },
+  { key: 'post', label: 'Post-Flood Recovery Record' },
+];
 
 export default function StreetDetail() {
   const { streetId } = useParams();
   const [street, setStreet] = useState(null);
   const [households, setHouseholds] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState('pre'); // 'pre' or 'post'
+  const [stage, setStage] = useState('pre');
 
   useEffect(() => {
     loadData();
@@ -30,13 +42,17 @@ export default function StreetDetail() {
     }
   };
 
-  const loadRecovery = async () => {
-    setView('post');
-    try {
-      const data = await api.getRecoveryRecord(streetId);
-      setHouseholds(data);
-    } catch (err) {
-      console.error(err);
+  const goToStage = async (key) => {
+    setStage(key);
+    if (key === 'post') {
+      try {
+        const data = await api.getRecoveryRecord(streetId);
+        setHouseholds(data);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      loadData();
     }
   };
 
@@ -51,24 +67,29 @@ export default function StreetDetail() {
 
   if (loading || !street) return <div>Loading details...</div>;
 
+  const level = priorityForScore(street.risk_score);
+  const Icon = level.icon;
+  const isUrgent = level.key === 'critical' || level.key === 'high';
+
   return (
     <div>
       <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1.5rem', fontWeight: 500 }}>
         <ArrowLeft size={16} /> Back to Dashboard
       </Link>
-      
+
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-main)', margin: 0 }}>{street.name}</h2>
-            <span className={`badge ${street.status === 'flagged' ? 'danger' : 'normal'}`} style={{ fontSize: '0.875rem' }}>
-              {street.status}
+            <span className={`badge ${level.badgeClass}`} style={{ fontSize: '0.875rem', display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+              <Icon size={14} /> {level.label}
+              <HelpTip text={level.tooltip} />
             </span>
           </div>
           <p style={{ color: 'var(--text-muted)' }}>Camera: {street.camera_label}</p>
         </div>
-        
-        {street.status === 'flagged' && (
+
+        {isUrgent && (
           <Link to={`/streets/${street.id}/alert`} className="transition-all" style={{
             backgroundColor: 'var(--danger)', color: 'white', padding: '0.75rem 1.5rem', borderRadius: '0.5rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem', boxShadow: 'var(--shadow)'
           }}>
@@ -78,54 +99,52 @@ export default function StreetDetail() {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
-        <button 
-          onClick={() => { setView('pre'); loadData(); }}
-          style={{ 
-            padding: '0.5rem 1rem', 
-            borderRadius: '0.375rem', 
-            backgroundColor: view === 'pre' ? 'var(--primary)' : 'transparent',
-            color: view === 'pre' ? 'white' : 'var(--text-muted)',
-            fontWeight: 600,
-            border: view === 'pre' ? 'none' : '1px solid var(--border)'
-          }}>
-          Pre-Flood Risk List
-        </button>
-        <button 
-          onClick={loadRecovery}
-          style={{ 
-            padding: '0.5rem 1rem', 
-            borderRadius: '0.375rem', 
-            backgroundColor: view === 'post' ? 'var(--warning)' : 'transparent',
-            color: view === 'post' ? 'white' : 'var(--text-muted)',
-            fontWeight: 600,
-            border: view === 'post' ? 'none' : '1px solid var(--border)'
-          }}>
-          Post-Flood Recovery Record
-        </button>
+        {STAGES.map(s => (
+          <button
+            key={s.key}
+            onClick={() => goToStage(s.key)}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '0.375rem',
+              backgroundColor: stage === s.key ? 'var(--primary)' : 'transparent',
+              color: stage === s.key ? 'white' : 'var(--text-muted)',
+              fontWeight: 600,
+              border: stage === s.key ? 'none' : '1px solid var(--border)'
+            }}>
+            {s.label}
+          </button>
+        ))}
       </div>
 
       <div className="card" style={{ overflow: 'hidden' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ backgroundColor: 'var(--bg-surface-hover)', borderBottom: '1px solid var(--border)' }}>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Rank</th>
+              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Priority #</th>
               <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Address</th>
-              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Risk Basis</th>
-              {view === 'pre' ? (
-                <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', textAlign: 'right' }}>Event Action</th>
-              ) : (
+              <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', display: 'inline-flex', alignItems: 'center' }}>
+                Hazard Basis
+                <HelpTip text="Why this household was ranked this way: how low it sits and whether it's on the ground floor." />
+              </th>
+              {stage === 'active' ? (
+                <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', textAlign: 'right' }}>
+                  Confirm Status
+                </th>
+              ) : stage === 'post' ? (
                 <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Outcome</th>
+              ) : (
+                <th style={{ padding: '1rem', fontWeight: 600, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)' }}>Status</th>
               )}
             </tr>
           </thead>
           <tbody>
             {households.map((hh) => {
-              const isPredictedAndAffected = view === 'post' && hh.predicted_at_risk && hh.affected_status === 'confirmed_affected';
-              
+              const isPredictedAndAffected = stage === 'post' && hh.predicted_at_risk && hh.affected_status === 'confirmed_affected';
+
               return (
-                <tr key={hh.id} className="transition-all" style={{ 
-                  borderBottom: '1px solid var(--border)', 
-                  backgroundColor: isPredictedAndAffected ? 'var(--warning-light)' : 'transparent' 
+                <tr key={hh.id} className="transition-all" style={{
+                  borderBottom: '1px solid var(--border)',
+                  backgroundColor: isPredictedAndAffected ? 'var(--warning-light)' : 'transparent'
                 }}>
                   <td style={{ padding: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>#{hh.risk_rank}</td>
                   <td style={{ padding: '1rem' }}>
@@ -136,14 +155,19 @@ export default function StreetDetail() {
                     <div style={{ display: 'flex', gap: '0.5rem' }}>
                       <span className="badge normal">Elev: {hh.elevation_m}m</span>
                       {hh.ground_floor && <span className="badge warning">Ground Flr</span>}
-                      {hh.predicted_at_risk && <span className="badge danger">At Risk</span>}
+                      {hh.predicted_at_risk && (
+                        <span className="badge danger" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                          Priority Household
+                          <HelpTip text="Modeled among the first households that would need evacuation assistance if this street floods." />
+                        </span>
+                      )}
                     </div>
                   </td>
-                  
-                  {view === 'pre' ? (
+
+                  {stage === 'active' ? (
                     <td style={{ padding: '1rem', textAlign: 'right' }}>
                       <div style={{ display: 'inline-flex', gap: '0.5rem', backgroundColor: 'var(--bg-app)', padding: '0.25rem', borderRadius: '0.5rem' }}>
-                        <button 
+                        <button
                           onClick={() => handleMarkAffected(hh.id, 'confirmed_affected')}
                           className="transition-all"
                           style={{
@@ -154,7 +178,7 @@ export default function StreetDetail() {
                         >
                           <AlertCircle size={20} />
                         </button>
-                        <button 
+                        <button
                           onClick={() => handleMarkAffected(hh.id, 'confirmed_dry')}
                           className="transition-all"
                           style={{
@@ -167,7 +191,7 @@ export default function StreetDetail() {
                         </button>
                       </div>
                     </td>
-                  ) : (
+                  ) : stage === 'post' ? (
                     <td style={{ padding: '1rem' }}>
                       {hh.affected_status === 'confirmed_affected' ? (
                          <span className="badge danger" style={{ padding: '0.5rem 0.75rem' }}><AlertCircle size={14} style={{ marginRight: '0.25rem' }}/> Affected</span>
@@ -176,6 +200,10 @@ export default function StreetDetail() {
                       ) : (
                          <span className="badge normal" style={{ padding: '0.5rem 0.75rem' }}><CircleDashed size={14} style={{ marginRight: '0.25rem' }}/> Unmarked</span>
                       )}
+                    </td>
+                  ) : (
+                    <td style={{ padding: '1rem', color: 'var(--text-muted)', fontSize: '0.875rem' }}>
+                      Not yet monitored — this list is for planning ahead of the flood.
                     </td>
                   )}
                 </tr>

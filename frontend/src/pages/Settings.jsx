@@ -19,7 +19,7 @@ export default function Settings() {
             </label>
             <input type="number" defaultValue={80} style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)', outline: 'none' }} />
             <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-              Streets exceeding this fused risk score will be automatically flagged for evacuation alerts.
+              Streets exceeding this fused hazard score will automatically be marked High Priority for evacuation alerts.
             </p>
           </div>
           

@@ -66,12 +66,12 @@ export default function AlertMock() {
           </div>
 
           <div>
-            <h3 style={{ color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>High Risk Households ({alertData.household_list.length})</h3>
+            <h3 style={{ color: '#9ca3af', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1rem' }}>High Priority Households ({alertData.household_list.length})</h3>
             <div style={{ display: 'grid', gap: '0.5rem' }}>
               {alertData.household_list.map(hh => (
                 <div key={hh.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '0.25rem' }}>
                   <span style={{ fontWeight: 500 }}>{hh.address_label}</span>
-                  <span style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.875rem' }}>Rank {hh.risk_rank}</span>
+                  <span style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.875rem' }}>Priority #{hh.risk_rank}</span>
                 </div>
               ))}
             </div>

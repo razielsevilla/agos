@@ -19,20 +19,20 @@ export default function SensorsFeeds() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem' }}>
         {streets.map((street, index) => {
           const videoSrc = `http://localhost:8000/videos/flood_${(index % 3) + 1}.mp4`;
-          
+
           return (
           <div key={street.id} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             {/* Video Dataset Player */}
-            <div style={{ 
-              backgroundColor: '#000', 
-              aspectRatio: '16/9', 
+            <div style={{
+              backgroundColor: '#000',
+              aspectRatio: '16/9',
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               borderBottom: '1px solid var(--border)'
             }}>
-              <video 
+              <video
                 src={videoSrc}
                 autoPlay
                 loop
@@ -79,13 +79,13 @@ export default function SensorsFeeds() {
                 }}>
                   <Activity size={18} /> Real-Time Telemetry
                 </summary>
-                <div style={{ 
-                  padding: '1rem', 
-                  borderTop: '1px solid var(--border)', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '0.75rem', 
-                  fontSize: '0.875rem' 
+                <div style={{
+                  padding: '1rem',
+                  borderTop: '1px solid var(--border)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.75rem',
+                  fontSize: '0.875rem'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Water Level Est:</span>
@@ -94,7 +94,7 @@ export default function SensorsFeeds() {
                     </span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--text-muted)' }}>Fused Risk Score:</span>
+                    <span style={{ color: 'var(--text-muted)' }}>Fused Hazard Score:</span>
                     <span style={{ fontWeight: 600 }}>{street.risk_score}/100</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -24,7 +24,7 @@ export default function Layout() {
   const navItems = [
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
     { name: 'Sensors & Feeds', path: '/feeds', icon: RadioReceiver },
-    { name: 'Risk Map', path: '/map', icon: Map },
+    { name: 'Hazard Map', path: '/map', icon: Map },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
