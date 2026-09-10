@@ -47,12 +47,11 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-app);
-  /* A subtle background gradient for modern feel */
-  
-  background-attachment: fixed;
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 button, input, select, textarea {
@@ -84,8 +83,6 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 /* Utilities */
 .card {
   background-color: var(--bg-surface);
-   /* Glassmorphism touch */
-  -webkit-
   border: 1px solid var(--border);
   border-radius: 0.5rem; /* More rounded corners */
   box-shadow: var(--shadow);
@@ -363,7 +360,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   flex: 1;
   padding: 2rem;
   max-width: 1200px;
-  width: 100%;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
 }
 

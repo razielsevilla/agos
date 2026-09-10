@@ -210,7 +210,7 @@ export default function HouseholdModal({ street, onClose }) {
                 <StatChip label="Severe" value={severeCount} color="var(--danger)" />
               </div>
               <p style={{ margin: '0.875rem 1.5rem 0', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                Record what field teams observe once a household has been reached — this is what the Post-Flood recovery report is built from.
+                Record what field teams observe once a household has been reached — this is what the Post-Disaster recovery report is built from.
               </p>
 
               {households.map(hh => {

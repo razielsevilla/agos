@@ -21,7 +21,7 @@ export default function Dashboard() {
       });
   }, []);
 
-  if (loading) return <div style={{ padding: '2rem' }}>Loading surveillance feeds...</div>;
+  if (loading) return <div style={{ padding: '2rem' }}>Loading live sensors...</div>;
 
   const urgentCount = streets.filter(s => ['critical', 'high'].includes(priorityForScore(s.risk_score).key)).length;
 
@@ -84,7 +84,7 @@ export default function Dashboard() {
           padding: '0.125rem 0 0.125rem 1rem',
           marginBottom: '2rem' }}>
           <h3 style={{ color: 'var(--danger)', fontSize: '0.9375rem', marginBottom: '0.125rem', fontWeight: 700 }}>Action Required</h3>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>{urgentCount} street(s) are at Critical or High Risk based on current conditions. Pre-flood alerts may be necessary.</p>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>{urgentCount} street(s) are at Critical or High Risk based on current conditions. Pre-disaster alerts may be necessary.</p>
         </div>
       )}
 

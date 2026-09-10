@@ -10,9 +10,9 @@ import { priorityForScore } from '../lib/priority';
 //   active — during the flood: operators confirm each household affected/dry
 //   post   — after the flood: recovery-priority record from what was confirmed
 const STAGES = [
-  { key: 'pre', label: 'Pre-Flood Priority List' },
-  { key: 'active', label: 'Mid-Flood Response' },
-  { key: 'post', label: 'Post-Flood Recovery Record' },
+  { key: 'pre', label: 'Pre-Disaster Priority List' },
+  { key: 'active', label: 'Mid-Disaster Response' },
+  { key: 'post', label: 'Post-Disaster Recovery Record' },
 ];
 
 export default function StreetDetail() {

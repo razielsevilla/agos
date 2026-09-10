@@ -28,18 +28,22 @@ export default function Login() {
 
   return (
     <div style={{
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       minHeight: '100vh', backgroundColor: 'var(--bg-app)', padding: '1rem' }}>
-      <form onSubmit={handleSubmit} className="card" style={{ width: '100%', maxWidth: '380px', padding: '2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <img src={wordmarkImg} alt="AGOS Wordmark" style={{ height: '48px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: '0.5rem' }} />
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em' }}>
-            CDRRMO COMMAND CENTER
-          </p>
-        </div>
+      
+      {/* Logo Outside the Card */}
+      <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+        <img src={wordmarkImg} alt="AGOS Wordmark" style={{ height: '110px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: '0.75rem' }} />
+        <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+          CDRRMO Command Center
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="card" style={{ width: '100%', maxWidth: '400px', padding: '2.5rem 2rem', boxShadow: 'var(--shadow-lg)' }}>
+        <h3 style={{ marginBottom: '1.5rem', textAlign: 'center', color: 'var(--text-main)', fontSize: '1.25rem' }}>Secure Sign In</h3>
 
         <div style={{ marginBottom: '1.25rem' }}>
-          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
             Municipal Code
           </label>
           <input
@@ -48,12 +52,13 @@ export default function Login() {
             onChange={(e) => setMunicipalCode(e.target.value)}
             autoFocus
             required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)' }}
+            placeholder="e.g. CABUYAO-CDRRMO"
+            style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '0.5rem', border: '1px solid var(--border)', fontSize: '0.95rem' }}
           />
         </div>
 
-        <div style={{ marginBottom: '1.5rem' }}>
-          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+        <div style={{ marginBottom: '2rem' }}>
+          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
             Password
           </label>
           <input
@@ -61,7 +66,8 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid var(--border)' }}
+            placeholder="••••••••"
+            style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '0.5rem', border: '1px solid var(--border)', fontSize: '0.95rem' }}
           />
         </div>
 
@@ -69,8 +75,8 @@ export default function Login() {
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
             backgroundColor: 'var(--danger-light)', color: 'var(--danger)',
-            padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1.25rem', fontSize: '0.875rem' }}>
-            <ShieldAlert size={16} /> {error}
+            padding: '0.875rem', borderRadius: '0.5rem', marginBottom: '1.5rem', fontSize: '0.875rem', fontWeight: 500 }}>
+            <ShieldAlert size={16} style={{ flexShrink: 0 }} /> {error}
           </div>
         )}
 
@@ -78,9 +84,9 @@ export default function Login() {
           type="submit"
           disabled={submitting}
           className="btn-solid"
-          style={{ width: '100%' }}
+          style={{ width: '100%', padding: '0.875rem', fontSize: '1rem', display: 'flex', justifyContent: 'center' }}
         >
-          <Lock size={16} /> {submitting ? 'Signing in…' : 'Sign In'}
+          {submitting ? 'Authenticating...' : 'Access Dashboard'} <Lock size={16} />
         </button>
       </form>
     </div>

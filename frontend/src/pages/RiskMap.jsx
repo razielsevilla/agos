@@ -69,7 +69,7 @@ export default function RiskMap() {
                 <Marker position={[street.latitude, street.longitude]}>
                   <Popup>
                     <div style={{ fontWeight: 600 }}>{street.name}</div>
-                    <div style={{ color: '#64748b' }}>{level.shortLabel} &middot; Hazard Score: {street.risk_score}</div>
+                    <div style={{ color: '#64748b' }}>{level.shortLabel} &middot; Peak Flood Risk: {Math.round(street.risk_score)}%</div>
                   </Popup>
                 </Marker>
                 <Circle

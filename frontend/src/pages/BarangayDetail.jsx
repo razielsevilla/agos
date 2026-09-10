@@ -24,22 +24,25 @@ import HouseholdModal from '../components/HouseholdModal';
 const STAGES = [
   {
     key: 'pre',
-    label: 'Pre-Flood',
+    label: 'Pre-Disaster',
     phase: 'Early Warning',
     description: 'Predicts which streets might flood so you can prepare before water levels rise.',
-    icon: Radar },
+    icon: Radar,
+  },
   {
     key: 'active',
-    label: 'Mid-Flood',
+    label: 'Mid-Disaster',
     phase: 'Active Response',
     description: 'Click a street to confirm household status as field reports come in, and track its response operation.',
-    icon: Zap },
+    icon: Zap,
+  },
   {
     key: 'post',
-    label: 'Post-Flood',
+    label: 'Post-Disaster',
     phase: 'Recovery & Reports',
-    description: 'A barangay-wide recovery report built from what was actually confirmed during Mid-Flood.',
-    icon: ClipboardCheck },
+    description: 'A barangay-wide recovery report built from what was actually confirmed during Mid-Disaster.',
+    icon: ClipboardCheck,
+  },
 ];
 
 // Mid-Flood response lifecycle (mock — no real dispatch-tracking backend,
@@ -190,18 +193,21 @@ export default function BarangayDetail() {
         </div>
       </header>
 
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+      <div style={{ display: 'inline-flex', gap: '0.25rem', backgroundColor: 'var(--bg-app)', padding: '0.375rem', borderRadius: '0.75rem', border: '1px solid var(--border)', marginBottom: '1.5rem' }}>
         {STAGES.map(s => (
           <button
             key={s.key}
             onClick={() => setStage(s.key)}
+            className="transition-all"
             style={{
-              padding: '0.5rem 1rem',
-              borderRadius: '0.375rem',
-              backgroundColor: stage === s.key ? 'var(--primary)' : 'transparent',
-              color: stage === s.key ? 'white' : 'var(--text-muted)',
+              padding: '0.625rem 1.25rem',
+              borderRadius: '0.5rem',
+              backgroundColor: stage === s.key ? 'var(--bg-surface)' : 'transparent',
+              color: stage === s.key ? 'var(--text-main)' : 'var(--text-muted)',
               fontWeight: 600,
-              border: stage === s.key ? 'none' : '1px solid var(--border)'
+              fontSize: '0.875rem',
+              border: 'none',
+              boxShadow: stage === s.key ? 'var(--shadow-sm)' : 'none'
             }}>
             {s.label}
           </button>
@@ -227,9 +233,9 @@ export default function BarangayDetail() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1.25rem' }}>
             <FileText size={20} color="var(--primary)" />
             <div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)' }}>{decodedName} — Post-Flood Recovery Report</h3>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)' }}>{decodedName} — Post-Disaster Recovery Report</h3>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                Built entirely from household status confirmed during Mid-Flood — not estimated or invented. Every number below traces back to a specific household an operator marked.
+                Built entirely from household status confirmed during Mid-Disaster — not estimated or invented. Every number below traces back to a specific household an operator marked.
               </p>
             </div>
           </div>
@@ -252,7 +258,7 @@ export default function BarangayDetail() {
               {barangayReport.priorityStillNeedingHelp > 0 && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', padding: '0.875rem 1rem', backgroundColor: 'var(--danger-light)', borderRadius: '0.5rem', marginBottom: '1.5rem', fontSize: '0.8125rem', color: 'var(--text-main)' }}>
                   <AlertCircle size={16} color="var(--danger)" style={{ flexShrink: 0 }} />
-                  {barangayReport.priorityStillNeedingHelp} modeled priority household{barangayReport.priorityStillNeedingHelp !== 1 ? 's' : ''} in this barangay {barangayReport.priorityStillNeedingHelp !== 1 ? "haven't" : "hasn't"} been evacuated yet — the model flagged {barangayReport.priorityStillNeedingHelp !== 1 ? 'these as' : 'this as a'} highest-vulnerability. Switch to Mid-Flood to follow up.
+                  {barangayReport.priorityStillNeedingHelp} modeled priority household{barangayReport.priorityStillNeedingHelp !== 1 ? 's' : ''} in this barangay {barangayReport.priorityStillNeedingHelp !== 1 ? "haven't" : "hasn't"} been evacuated yet — the model flagged {barangayReport.priorityStillNeedingHelp !== 1 ? 'these as' : 'this as a'} highest-vulnerability. Switch to Mid-Disaster to follow up.
                 </div>
               )}
 
@@ -284,24 +290,30 @@ export default function BarangayDetail() {
               </div>
 
               <div>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.75rem' }}>Per-Street Breakdown</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.875rem' }}>Per-Street Breakdown</div>
                 <div className="card" style={{ overflow: 'hidden' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8125rem' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
                     <thead>
-                      <tr style={{ backgroundColor: 'var(--bg-surface-hover)', borderBottom: '1px solid var(--border)' }}>
-                        <th style={{ padding: '0.625rem 1rem', textAlign: 'left', fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Street</th>
-                        <th style={{ padding: '0.625rem 1rem', textAlign: 'right', fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Evacuated</th>
-                        <th style={{ padding: '0.625rem 1rem', textAlign: 'right', fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Unable</th>
-                        <th style={{ padding: '0.625rem 1rem', textAlign: 'right', fontWeight: 600, color: 'var(--text-muted)', fontSize: '0.7rem', textTransform: 'uppercase' }}>Pending</th>
+                      <tr style={{ backgroundColor: 'var(--bg-app)', borderBottom: '1px solid var(--border)' }}>
+                        <th style={{ padding: '0.875rem 1.25rem', textAlign: 'left', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Street</th>
+                        <th style={{ padding: '0.875rem 1.25rem', textAlign: 'center', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Evacuated</th>
+                        <th style={{ padding: '0.875rem 1.25rem', textAlign: 'center', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Unable</th>
+                        <th style={{ padding: '0.875rem 1.25rem', textAlign: 'center', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Pending</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {perStreetSummary.map(({ street, evacuated, unable, pending }) => (
-                        <tr key={street.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                          <td style={{ padding: '0.625rem 1rem', fontWeight: 600, color: 'var(--text-main)' }}>{street.name}</td>
-                          <td style={{ padding: '0.625rem 1rem', textAlign: 'right', color: evacuated > 0 ? 'var(--success)' : 'var(--text-muted)' }}>{evacuated}</td>
-                          <td style={{ padding: '0.625rem 1rem', textAlign: 'right', color: unable > 0 ? 'var(--danger)' : 'var(--text-muted)' }}>{unable}</td>
-                          <td style={{ padding: '0.625rem 1rem', textAlign: 'right', color: pending > 0 ? 'var(--warning)' : 'var(--text-muted)' }}>{pending}</td>
+                      {perStreetSummary.map(({ street, evacuated, unable, pending }, idx) => (
+                        <tr key={street.id} style={{ borderBottom: '1px solid var(--border)', backgroundColor: idx % 2 === 0 ? 'var(--bg-surface)' : 'var(--bg-app)' }}>
+                          <td style={{ padding: '1rem 1.25rem', fontWeight: 600, color: 'var(--text-main)' }}>{street.name}</td>
+                          <td style={{ padding: '1rem 1.25rem', textAlign: 'center' }}>
+                            {evacuated > 0 ? <span className="badge success">{evacuated}</span> : <span style={{ color: 'var(--text-muted)' }}>0</span>}
+                          </td>
+                          <td style={{ padding: '1rem 1.25rem', textAlign: 'center' }}>
+                            {unable > 0 ? <span className="badge danger">{unable}</span> : <span style={{ color: 'var(--text-muted)' }}>0</span>}
+                          </td>
+                          <td style={{ padding: '1rem 1.25rem', textAlign: 'center' }}>
+                            {pending > 0 ? <span className="badge warning">{pending}</span> : <span style={{ color: 'var(--text-muted)' }}>0</span>}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -313,117 +325,115 @@ export default function BarangayDetail() {
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {streets.map((street, i) => {
-          const level = priorityForScore(street.risk_score);
-          const Icon = level.icon;
-          const pct = Math.round(street.risk_score);
-          const clickable = stage === 'active';
-          return (
-            <div
-              key={street.id}
-              className="card transition-all"
-              onClick={clickable ? () => setActiveHouseholdStreet(street) : undefined}
-              style={{
-                padding: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                flexWrap: 'wrap', gap: '1rem', cursor: clickable ? 'pointer' : 'default' }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: '1 1 min-content' }}>
-                <div style={{
-                  width: '3rem', height: '3rem', borderRadius: '50%',
-                  backgroundColor: 'var(--bg-app)', color: 'var(--text-muted)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontWeight: 800, fontSize: '1.125rem', border: '2px solid var(--border)'
-                }}>
-                  #{i + 1}
-                </div>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-                    <span style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-main)' }}>{street.name}</span>
-                    {clickable && <ChevronRight size={16} color="var(--text-muted)" />}
-                  </div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500, letterSpacing: '0.02em' }}>
-                    ID: {street.id}{clickable && ' · Click to confirm households'}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flex: '2 1 min-content', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
-                  <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em' }}>Flood Risk</span>
-                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                    <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{pct}%</span>
-                    <span className={`badge ${level.badgeClass}`} style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
-                      <Icon size={14} /> {level.shortLabel}
-                    </span>
-                  </div>
-                </div>
-
-                {stage !== 'post' && (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', minWidth: '220px' }}>
-                    {stage === 'active' ? (() => {
-                      const rStage = getResponseStage(street);
-                      if (rStage === 'pending') {
-                        return (
-                          <button
-                            onClick={(e) => { e.stopPropagation(); advanceResponse(street); }}
-                            className="btn-solid danger"
-                            style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.85rem' }}
-                          >
-                            <LifeBuoy size={14} /> Initiate Response
-                          </button>
-                        );
-                      }
-                      if (rStage === 'ongoing') {
-                        return (
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', alignItems: 'flex-end' }}>
-                            <span className="badge warning">
-                              <Zap size={12} /> Response Ongoing
-                            </span>
+      <div className="card" style={{ overflow: 'hidden' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
+          <thead>
+            <tr style={{ backgroundColor: 'var(--bg-app)', borderBottom: '1px solid var(--border)' }}>
+              <th style={{ padding: '1rem 1.25rem', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', width: '80px' }}>Rank</th>
+              <th style={{ padding: '1rem 1.25rem', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Street</th>
+              <th style={{ padding: '1rem 1.25rem', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Flood Risk</th>
+              {stage !== 'post' && (
+                <th style={{ padding: '1rem 1.25rem', fontWeight: 700, color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'right' }}>Action</th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {streets.map((street, i) => {
+              const level = priorityForScore(street.risk_score);
+              const Icon = level.icon;
+              const pct = Math.round(street.risk_score);
+              const clickable = stage === 'active';
+              return (
+                <tr
+                  key={street.id}
+                  className="transition-all"
+                  onClick={clickable ? () => setActiveHouseholdStreet(street) : undefined}
+                  style={{
+                    borderBottom: '1px solid var(--border)',
+                    cursor: clickable ? 'pointer' : 'default',
+                    backgroundColor: 'var(--bg-surface)'
+                  }}
+                >
+                  <td style={{ padding: '1.25rem', fontWeight: 800, color: 'var(--text-muted)', fontSize: '1.125rem' }}>#{i + 1}</td>
+                  <td style={{ padding: '1.25rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', marginBottom: '0.25rem' }}>
+                      <span style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--text-main)' }}>{street.name}</span>
+                      {clickable && <ChevronRight size={16} color="var(--text-muted)" />}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                      ID: {street.id}{clickable && ' · Click to confirm households'}
+                    </div>
+                  </td>
+                  <td style={{ padding: '1.25rem' }}>
+                    <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{pct}%</span>
+                      <span className={`badge ${level.badgeClass}`} style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem' }}>
+                        <Icon size={12} /> {level.shortLabel}
+                      </span>
+                    </div>
+                  </td>
+                  {stage !== 'post' && (
+                    <td style={{ padding: '1.25rem', textAlign: 'right' }}>
+                      {stage === 'active' ? (() => {
+                        const rStage = getResponseStage(street);
+                        if (rStage === 'pending') {
+                          return (
                             <button
                               onClick={(e) => { e.stopPropagation(); advanceResponse(street); }}
-                              className="btn-solid"
-                              style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.85rem' }}
+                              className="btn-solid danger"
+                              style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.8125rem', boxShadow: '0 4px 12px rgba(239, 68, 68, 0.25)' }}
                             >
-                              <CheckCircle2 size={14} /> Mark as Completed
+                              <LifeBuoy size={14} /> Initiate Response
                             </button>
-                          </div>
+                          );
+                        }
+                        if (rStage === 'ongoing') {
+                          return (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-end' }}>
+                              <span className="badge warning" style={{ padding: '0.25rem 0.625rem' }}>
+                                <Zap size={12} /> Ongoing
+                              </span>
+                              <button
+                                onClick={(e) => { e.stopPropagation(); advanceResponse(street); }}
+                                className="btn-solid"
+                                style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.8125rem', boxShadow: 'var(--shadow-sm)' }}
+                              >
+                                <CheckCircle2 size={14} /> Complete
+                              </button>
+                            </div>
+                          );
+                        }
+                        return (
+                          <span className="badge success" style={{ padding: '0.375rem 0.75rem' }}>
+                            <CheckCircle2 size={14} /> Completed
+                          </span>
                         );
-                      }
-                      return (
-                        <span className="badge success">
-                          <CheckCircle2 size={14} /> Response Completed
-                        </span>
-                      );
-                    })() : level.key === 'low' ? (
-                      /* Low risk gets no automated alert — the system isn't
-                         confident enough at this tier to fire one on its own,
-                         so it's a manual call for an operator who sees
-                         something on the ground to make. */
-                      escalatedIds.has(street.id) ? (
-                        <span className="badge danger" style={{ padding: '0.5rem 0.875rem' }}>
-                          <CheckCircle2 size={14} /> Escalated to Rescue
-                        </span>
+                      })() : level.key === 'low' ? (
+                        escalatedIds.has(street.id) ? (
+                          <span className="badge danger" style={{ padding: '0.5rem 0.875rem' }}>
+                            <CheckCircle2 size={14} /> Escalated
+                          </span>
+                        ) : (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); toggleEscalated(street.id); }}
+                            className="btn-solid danger"
+                            style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.8125rem' }}
+                          >
+                            <Siren size={14} /> Alert
+                          </button>
+                        )
                       ) : (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); toggleEscalated(street.id); }}
-                          className="btn-solid danger"
-                          style={{ padding: '0.5rem 1rem', minWidth: 'auto', fontSize: '0.85rem' }}
-                        >
-                          <Siren size={14} /> Alert & Rescue
-                        </button>
-                      )
-                    ) : (
-                      <span className="badge success" style={{ opacity: 0.9 }}>
-                        <Bell size={12} /> Automated Alert Sent
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
+                        <span className="badge success" style={{ opacity: 0.9 }}>
+                          <Bell size={12} /> Alert Sent
+                        </span>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
 
       {activeHouseholdStreet && (
