@@ -55,6 +55,19 @@ export const api = {
     return res.json();
   },
 
+  // updates: { evacuation_status?, damage_level? } — either or both, per
+  // AGOS-013's extended PATCH. This is what Mid-Flood's household modal
+  // actually uses; markAffected above is legacy (kept for StreetDetail.jsx).
+  updateHousehold: async (householdId, updates) => {
+    const res = await request(`/households/${householdId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updates)
+    });
+    if (!res.ok) throw new Error('Failed to update household');
+    return res.json();
+  },
+
   getRecoveryRecord: async (streetId) => {
     const res = await request(`/streets/${streetId}/recovery-record`);
     if (!res.ok) throw new Error('Failed to fetch recovery record');

@@ -83,7 +83,7 @@ function pick(rng, arr) {
   return arr[Math.floor(rng() * arr.length)];
 }
 
-function synthesizeRow(street, h) {
+export function synthesizeRow(street, h) {
   const rng = seededRng(h.id);
 
   // Bias severity toward households already modeled as priority/ground-floor,

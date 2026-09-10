@@ -45,7 +45,7 @@ export default function Dashboard() {
       <header style={{ marginBottom: '2rem' }}>
         <h2 style={{ color: 'var(--text-main)' }}>City Overview</h2>
         <p style={{ color: 'var(--text-muted)', marginTop: '0.25rem', fontSize: '0.875rem' }}>
-          Monitoring all 18 neighborhoods and {streets.length} streets
+          Monitoring all {Object.keys(byBarangay).length} neighborhoods and {streets.length} streets
         </p>
       </header>
 

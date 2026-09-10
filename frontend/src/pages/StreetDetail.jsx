@@ -11,7 +11,7 @@ import { priorityForScore } from '../lib/priority';
 //   post   — after the flood: recovery-priority record from what was confirmed
 const STAGES = [
   { key: 'pre', label: 'Pre-Flood Priority List' },
-  { key: 'active', label: 'During Flood Response' },
+  { key: 'active', label: 'Mid-Flood Response' },
   { key: 'post', label: 'Post-Flood Recovery Record' },
 ];
 

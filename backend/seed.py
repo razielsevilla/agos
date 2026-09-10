@@ -72,6 +72,8 @@ def load_seed(db: Session) -> None:
                 risk_rank=rank,
                 predicted_at_risk=risk_score >= _AT_RISK_THRESHOLD,
                 affected_status="unmarked",
+                evacuation_status="pending",
+                damage_level=None,
                 marked_at=None,
             ))
 

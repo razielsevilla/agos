@@ -32,7 +32,17 @@ class Household(Base):
     risk_score = Column(Float, nullable=False)
     risk_rank = Column(Integer, nullable=False)
     predicted_at_risk = Column(Boolean, nullable=False)
-    affected_status = Column(String, nullable=False, default="unmarked")  # "unmarked" | "confirmed_affected" | "confirmed_dry"
+    affected_status = Column(String, nullable=False, default="unmarked")  # "unmarked" | "confirmed_affected" | "confirmed_dry" — legacy, unused by the active UI (see evacuation_status)
+    # Whether flooding itself needs confirming is redundant once a street is
+    # already flagged/critical — that's what risk_score already predicts.
+    # What's genuinely uncertain, varies per household, and matters for a
+    # real recovery report is whether THIS household has actually been
+    # reached and gotten to safety yet.
+    evacuation_status = Column(String, nullable=False, default="pending")  # "pending" | "evacuated" | "unable_to_evacuate"
+    # Coarse damage observed at point of rescue contact — not a full PDNA,
+    # just what a rescue team could plausibly radio in during/after contact.
+    # null = not yet assessed (household not yet reached).
+    damage_level = Column(String, nullable=True)  # null | "none" | "minor" | "severe"
     marked_at = Column(String, nullable=True)        # ISO 8601 string | null
 
 
