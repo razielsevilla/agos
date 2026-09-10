@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* Modern Vibrant Brand Colors */
-  --primary: #4f46e5; /* Indigo */
-  --primary-hover: #4338ca;
-  --primary-light: #e0e7ff;
-  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  --primary: #1e40af; /* Indigo */
+  --primary-hover: #1e3a8a;
+  --primary-light: #eff6ff;
+  --primary-gradient: var(--primary);
 
   /* Status Colors */
   --danger: #ef4444;
@@ -18,8 +18,8 @@
   --success-light: #ecfdf5;
 
   /* Backgrounds & Surfaces */
-  --bg-app: #f4f7f9;
-  --bg-surface: rgba(255, 255, 255, 0.85); /* Slightly translucent for glass effect */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
   --bg-surface-hover: #ffffff;
 
   /* Text */
@@ -28,7 +28,7 @@
   --text-inverse: #ffffff;
 
   /* Borders */
-  --border: rgba(226, 232, 240, 0.8);
+  --border: #e2e8f0;
   --border-focus: rgba(79, 70, 229, 0.4);
 
   /* Modern Soft Shadows */
@@ -48,8 +48,7 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-app);
   /* A subtle background gradient for modern feel */
-  background-image: radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.04), transparent 25%),
-                    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.03), transparent 25%);
+  
   background-attachment: fixed;
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
@@ -73,7 +72,7 @@ a {
 
 /* Typography — modern geometric sans-serif for headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #1e293b;
@@ -85,10 +84,10 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 /* Utilities */
 .card {
   background-color: var(--bg-surface);
-  backdrop-filter: blur(12px); /* Glassmorphism touch */
-  -webkit-backdrop-filter: blur(12px);
+   /* Glassmorphism touch */
+  -webkit-
   border: 1px solid var(--border);
-  border-radius: 1rem; /* More rounded corners */
+  border-radius: 0.5rem; /* More rounded corners */
   box-shadow: var(--shadow);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
@@ -200,20 +199,20 @@ button.card.transition-all:hover {
   min-width: 13rem;
   padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   color: white;
   white-space: nowrap;
-  background: var(--primary-gradient);
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+  background-color: var(--primary);
+  
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.2s ease;
 }
 .btn-solid:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.15);
+  
 }
 .btn-solid:active:not(:disabled) {
   transform: translateY(0);
@@ -227,7 +226,7 @@ button.card.transition-all:hover {
   background: var(--text-muted);
 }
 .btn-solid.danger {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background-color: var(--danger);
   box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);
 }
 .btn-solid.danger:hover:not(:disabled) {
@@ -242,7 +241,7 @@ button.card.transition-all:hover {
   gap: 0.75rem;
   padding: 0.75rem 1rem 0.75rem 1.25rem;
   border-radius: 0.5rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--text-muted);
@@ -268,7 +267,7 @@ button.card.transition-all:hover {
   height: 60%;
   width: 4px;
   border-radius: 0 4px 4px 0;
-  background: var(--primary-gradient);
+  background-color: var(--primary);
 }
 
 .icon-btn {
@@ -312,7 +311,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   flex-shrink: 0;
   background-color: var(--primary-light);
   color: var(--primary);
@@ -374,7 +373,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   bottom: 1.5rem;
   right: 1.5rem;
   z-index: 50;
-  background: var(--primary-gradient);
+  background-color: var(--primary);
   color: white;
   border-radius: 50%;
   width: 3.5rem;

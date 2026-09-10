@@ -37,8 +37,7 @@ const DAMAGE_OPTIONS = [
 const EVAC_BADGE = {
   pending: { label: 'Pending', color: 'var(--text-muted)' },
   evacuated: { label: 'Evacuated', color: 'var(--success)' },
-  unable_to_evacuate: { label: 'Unable to Evacuate', color: 'var(--danger)' },
-};
+  unable_to_evacuate: { label: 'Unable to Evacuate', color: 'var(--danger)' } };
 
 const TABS = [
   { key: 'evacuation', label: 'Evacuation', icon: LifeBuoy },
@@ -128,8 +127,7 @@ export default function HouseholdModal({ street, onClose }) {
                     padding: '0.625rem 1rem', fontSize: '0.85rem', fontWeight: 600,
                     color: active ? 'var(--primary)' : 'var(--text-muted)',
                     borderBottom: active ? '2px solid var(--primary)' : '2px solid transparent',
-                    marginBottom: '-1px',
-                  }}
+                    marginBottom: '-1px' }}
                 >
                   <TabIcon size={15} />
                   {tab.label}
@@ -193,8 +191,7 @@ export default function HouseholdModal({ street, onClose }) {
                             padding: '0.4rem 0.6rem', borderRadius: '0.375rem', fontSize: '0.75rem', fontWeight: 600,
                             backgroundColor: active ? 'var(--bg-surface)' : 'transparent',
                             color: active ? opt.activeColor : 'var(--text-muted)',
-                            boxShadow: active ? 'var(--shadow-sm)' : 'none',
-                          }}
+                            boxShadow: active ? 'var(--shadow-sm)' : 'none' }}
                         >
                           <OptIcon size={14} /> {opt.label}
                         </button>
@@ -243,8 +240,7 @@ export default function HouseholdModal({ street, onClose }) {
                               padding: '0.4rem 0.6rem', borderRadius: '0.375rem', fontSize: '0.75rem', fontWeight: 600,
                               backgroundColor: active ? 'var(--bg-surface)' : 'transparent',
                               color: active ? 'var(--text-main)' : 'var(--text-muted)',
-                              boxShadow: active ? 'var(--shadow-sm)' : 'none',
-                            }}
+                              boxShadow: active ? 'var(--shadow-sm)' : 'none' }}
                           >
                             {opt.label}
                           </button>

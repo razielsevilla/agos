@@ -27,22 +27,19 @@ const STAGES = [
     label: 'Pre-Flood',
     phase: 'Early Warning',
     description: 'Predicts which streets might flood so you can prepare before water levels rise.',
-    icon: Radar,
-  },
+    icon: Radar },
   {
     key: 'active',
     label: 'Mid-Flood',
     phase: 'Active Response',
     description: 'Click a street to confirm household status as field reports come in, and track its response operation.',
-    icon: Zap,
-  },
+    icon: Zap },
   {
     key: 'post',
     label: 'Post-Flood',
     phase: 'Recovery & Reports',
     description: 'A barangay-wide recovery report built from what was actually confirmed during Mid-Flood.',
-    icon: ClipboardCheck,
-  },
+    icon: ClipboardCheck },
 ];
 
 // Mid-Flood response lifecycle (mock — no real dispatch-tracking backend,
@@ -69,7 +66,7 @@ function StatTile({ icon: Icon, label, value, tint }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
         <Icon size={14} /> {label}
       </div>
-      <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: '1.5rem', fontWeight: 800, color: tint || 'var(--text-main)' }}>{value}</div>
+      <div style={{ fontSize: '1.5rem', fontWeight: 800, color: tint || 'var(--text-main)' }}>{value}</div>
     </div>
   );
 }
@@ -217,8 +214,7 @@ export default function BarangayDetail() {
         gap: '0.75rem',
         padding: '0.125rem 0 1.25rem 1rem',
         marginBottom: '1.25rem',
-        borderLeft: '2px solid var(--primary)',
-      }}>
+        borderLeft: '2px solid var(--primary)' }}>
         <StageIcon size={16} color="var(--primary)" style={{ marginTop: '0.125rem', flexShrink: 0 }} />
         <div>
           <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.25rem' }}>{currentStage.phase}</div>
@@ -330,8 +326,7 @@ export default function BarangayDetail() {
               onClick={clickable ? () => setActiveHouseholdStreet(street) : undefined}
               style={{
                 padding: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                flexWrap: 'wrap', gap: '1rem', cursor: clickable ? 'pointer' : 'default',
-              }}
+                flexWrap: 'wrap', gap: '1rem', cursor: clickable ? 'pointer' : 'default' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: '1 1 min-content' }}>
                 <div style={{
@@ -344,7 +339,7 @@ export default function BarangayDetail() {
                 </div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
-                    <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-main)' }}>{street.name}</span>
+                    <span style={{ fontWeight: 700, fontSize: '1.25rem', color: 'var(--text-main)' }}>{street.name}</span>
                     {clickable && <ChevronRight size={16} color="var(--text-muted)" />}
                   </div>
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500, letterSpacing: '0.02em' }}>
@@ -357,7 +352,7 @@ export default function BarangayDetail() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem' }}>
                   <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em' }}>Flood Risk</span>
                   <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-                    <span style={{ fontFamily: 'Outfit, sans-serif', fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{pct}%</span>
+                    <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>{pct}%</span>
                     <span className={`badge ${level.badgeClass}`} style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>
                       <Icon size={14} /> {level.shortLabel}
                     </span>

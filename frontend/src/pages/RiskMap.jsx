@@ -14,8 +14,7 @@ delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
   iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-});
+  shadowUrl: markerShadow });
 
 // Streets are spread across the whole city (lakeshore to upland), not clustered
 // near one point, so the map must fit itself to whatever markers are loaded
@@ -100,8 +99,7 @@ export default function RiskMap() {
           padding: '0.75rem 1rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.5rem',
-        }}>
+          gap: '0.5rem' }}>
           <div style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Priority Level
           </div>
@@ -113,8 +111,7 @@ export default function RiskMap() {
                 borderRadius: '9999px',
                 backgroundColor: level.mapFillColor,
                 border: `2px solid ${level.mapColor}`,
-                flexShrink: 0,
-              }} />
+                flexShrink: 0 }} />
               <span style={{ fontSize: '0.8125rem', color: 'var(--text-main)', fontWeight: 500, whiteSpace: 'nowrap' }}>{level.shortLabel}</span>
             </div>
           ))}

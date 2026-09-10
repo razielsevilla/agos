@@ -61,8 +61,7 @@ export default function Dashboard() {
                 padding: '1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '0.75rem',
-              }}
+                gap: '0.75rem' }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className={`badge ${level.badgeClass}`}>
@@ -83,8 +82,7 @@ export default function Dashboard() {
         <div style={{
           borderLeft: '2px solid var(--danger)',
           padding: '0.125rem 0 0.125rem 1rem',
-          marginBottom: '2rem',
-        }}>
+          marginBottom: '2rem' }}>
           <h3 style={{ color: 'var(--danger)', fontSize: '0.9375rem', marginBottom: '0.125rem', fontWeight: 700 }}>Action Required</h3>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>{urgentCount} street(s) are at Critical or High Risk based on current conditions. Pre-flood alerts may be necessary.</p>
         </div>
@@ -105,8 +103,7 @@ export default function Dashboard() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                padding: '1.25rem',
-              }}
+                padding: '1.25rem' }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
                 <div style={{ minWidth: 0 }}>

@@ -173,8 +173,7 @@ export default function StreetDetail() {
                           style={{
                             padding: '0.5rem', borderRadius: '0.25rem',
                             backgroundColor: hh.affected_status === 'confirmed_affected' ? 'var(--danger-light)' : 'transparent',
-                            color: hh.affected_status === 'confirmed_affected' ? 'var(--danger)' : 'var(--text-muted)',
-                          }} title="Mark as Flooded/Affected"
+                            color: hh.affected_status === 'confirmed_affected' ? 'var(--danger)' : 'var(--text-muted)' }} title="Mark as Flooded/Affected"
                         >
                           <AlertCircle size={20} />
                         </button>
@@ -184,8 +183,7 @@ export default function StreetDetail() {
                           style={{
                             padding: '0.5rem', borderRadius: '0.25rem',
                             backgroundColor: hh.affected_status === 'confirmed_dry' ? 'var(--success-light)' : 'transparent',
-                            color: hh.affected_status === 'confirmed_dry' ? 'var(--success)' : 'var(--text-muted)',
-                          }} title="Mark as Safe/Dry"
+                            color: hh.affected_status === 'confirmed_dry' ? 'var(--success)' : 'var(--text-muted)' }} title="Mark as Safe/Dry"
                         >
                           <CheckCircle2 size={20} />
                         </button>

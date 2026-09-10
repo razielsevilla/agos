@@ -29,8 +29,7 @@ export default function Login() {
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      minHeight: '100vh', backgroundColor: 'var(--bg-app)', padding: '1rem',
-    }}>
+      minHeight: '100vh', backgroundColor: 'var(--bg-app)', padding: '1rem' }}>
       <form onSubmit={handleSubmit} className="card" style={{ width: '100%', maxWidth: '380px', padding: '2rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <img src={wordmarkImg} alt="AGOS Wordmark" style={{ height: '48px', width: 'auto', objectFit: 'contain', mixBlendMode: 'multiply', marginBottom: '0.5rem' }} />
@@ -70,8 +69,7 @@ export default function Login() {
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.5rem',
             backgroundColor: 'var(--danger-light)', color: 'var(--danger)',
-            padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1.25rem', fontSize: '0.875rem',
-          }}>
+            padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1.25rem', fontSize: '0.875rem' }}>
             <ShieldAlert size={16} /> {error}
           </div>
         )}

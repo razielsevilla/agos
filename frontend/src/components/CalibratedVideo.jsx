@@ -15,8 +15,7 @@ export default function CalibratedVideo({ src, calibration, ...videoProps }) {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [videoSize, setVideoSize] = useState({
     width: calibration?.videoWidth ?? 0,
-    height: calibration?.videoHeight ?? 0,
-  });
+    height: calibration?.videoHeight ?? 0 });
   const [hasEnteredView, setHasEnteredView] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
